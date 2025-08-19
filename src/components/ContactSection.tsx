@@ -25,9 +25,9 @@ export default function ContactSection() {
   return (
     <section id="contact" className="py-20 bg-white">
       <div className="w-4/5 max-w-6xl mx-auto px-5">
-        <h2 className="text-center mb-15 text-4xl relative">
+        <h2 className="text-center mb-16 text-4xl relative">
           Contact Me
-          <span className="absolute bottom-[-15px] left-1/2 transform -translate-x-1/2 w-15 h-1 bg-[#6c63ff]"></span>
+          <span className="absolute bottom-[-15px] left-1/2 transform -translate-x-1/2 w-[60px] h-1 bg-[#6c63ff]"></span>
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div className="flex flex-col gap-5">

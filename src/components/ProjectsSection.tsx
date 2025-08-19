@@ -5,7 +5,7 @@ const projects = [
     title: 'データ可視化ダッシュボード',
     description: 'COVID-19のデータを分析し、インタラクティブなダッシュボードを作成したプロジェクト',
     tags: ['Python', 'Pandas', 'Plotly', 'Dash'],
-    image: '/project1.jpg',
+    image: '/project1.svg',
     codeLink: '#',
     demoLink: '#'
   },
@@ -13,7 +13,7 @@ const projects = [
     title: '学習管理アプリ',
     description: '大学生向けの学習管理アプリケーション。タスク管理と学習進捗の可視化が可能',
     tags: ['React', 'Node.js', 'Express', 'MongoDB'],
-    image: '/project2.jpg',
+    image: '/project2.svg',
     codeLink: '#',
     demoLink: '#'
   }
@@ -23,9 +23,9 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="py-20 bg-white">
       <div className="w-4/5 max-w-6xl mx-auto px-5">
-        <h2 className="text-center mb-15 text-4xl relative">
+        <h2 className="text-center mb-16 text-4xl relative">
           Projects
-          <span className="absolute bottom-[-15px] left-1/2 transform -translate-x-1/2 w-15 h-1 bg-[#6c63ff]"></span>
+          <span className="absolute bottom-[-15px] left-1/2 transform -translate-x-1/2 w-[60px] h-1 bg-[#6c63ff]"></span>
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {projects.map((project, index) => (

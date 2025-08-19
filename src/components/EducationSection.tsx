@@ -15,9 +15,9 @@ export default function EducationSection() {
   return (
     <section id="education" className="py-20 bg-gray-50">
       <div className="w-4/5 max-w-6xl mx-auto px-5">
-        <h2 className="text-center mb-15 text-4xl relative">
+        <h2 className="text-center mb-16 text-4xl relative">
           Education
-          <span className="absolute bottom-[-15px] left-1/2 transform -translate-x-1/2 w-15 h-1 bg-[#6c63ff]"></span>
+          <span className="absolute bottom-[-15px] left-1/2 transform -translate-x-1/2 w-[60px] h-1 bg-[#6c63ff]"></span>
         </h2>
         <div className="relative max-w-4xl mx-auto">
           <div className="absolute w-0.5 bg-gray-300 top-0 bottom-0 left-8"></div>

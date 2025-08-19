@@ -1,4 +1,5 @@
-@import "tailwindcss";
+@import "tailwindcss/theme" layer(theme);
+@import "tailwindcss/utilities" layer(utilities);
 
 :root {
   --primary-color: #6c63ff;
@@ -38,21 +39,5 @@ body {
   }
 }
 
-.section-title::after {
-  content: '';
-  position: absolute;
-  bottom: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 4px;
-  background: var(--primary-color);
-}
 
-.mb-15 {
-  margin-bottom: 60px;
-}
 
-.w-15 {
-  width: 60px;
-}
