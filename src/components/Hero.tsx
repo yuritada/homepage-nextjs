@@ -5,15 +5,19 @@ import Image from 'next/image'
 export default function Hero() {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith('#')) {
+      // リンク動作の変更、デフォルトのジャンプ動作をキャンセル(prevent)して、スムーズスクロールを実行
       e.preventDefault()
+      // ターゲット要素の位置を取得して、ナビゲーションバーの高さ分を調整
       const targetElement = document.querySelector(href)
       if (targetElement) {
+        // ナビゲーションバーの高さ
         const navHeight = 80
+        // ターゲット要素の位置を計算
         const targetPosition =
           targetElement.getBoundingClientRect().top +
           window.pageYOffset -
           navHeight
-
+        // スムーズスクロールを実行
         window.scrollTo({
           top: targetPosition,
           behavior: 'smooth',
