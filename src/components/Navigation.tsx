@@ -29,7 +29,7 @@ export default function Navigation() {
       e.preventDefault()
       const targetElement = document.querySelector(href)
       if (targetElement) {
-        const navHeight = 80
+        const navHeight = 70
         const targetPosition =
           targetElement.getBoundingClientRect().top +
           window.pageYOffset -
@@ -40,7 +40,7 @@ export default function Navigation() {
           behavior: 'smooth',
         })
 
-        setIsMenuOpen(false)
+        setIsMenuOpen(false) // メニューを閉じる
       }
     }
   }
@@ -49,8 +49,8 @@ export default function Navigation() {
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/98 shadow-lg py-3'
-          : 'bg-white/95 shadow-md py-5'
+          ? 'bg-white/98 shadow-lg py-2'
+          : 'bg-white/95 shadow-md py-3'
       }`}
     >
       <div className="flex justify-between items-center px-[5%]">

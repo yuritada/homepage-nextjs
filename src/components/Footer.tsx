@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="bg-gray-800 text-white py-10">
+    <footer className="bg-gray-800 text-white py-5"> {/* フッターの背景色とテキスト色を設定 */}
       <div className="w-4/5 max-w-6xl mx-auto px-5">
         <div className="flex justify-between items-center">
           <p>&copy; 2025 多田有里. All Rights Reserved.</p>
