@@ -11,17 +11,14 @@
   --transition: all 0.3s ease;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 html {
   scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
+  padding: 0;
   font-family: var(--font-roboto, 'Roboto'), var(--font-noto-sans-jp, 'Noto Sans JP'), sans-serif;
   line-height: 1.6;
   color: var(--text-color);
