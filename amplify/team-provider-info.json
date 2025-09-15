@@ -12,8 +12,8 @@
       "AmplifyAppId": "dddwrr3qlhd85"
     },
     "categories": {
-      "function": {
-        "homepagenextjs1ddb6a00": {}
+      "auth": {
+        "homepagenextjs": {}
       }
     }
   }
