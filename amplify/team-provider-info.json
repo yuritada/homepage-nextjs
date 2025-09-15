@@ -9,11 +9,21 @@
       "UnauthRoleName": "amplify-homepagenextjs-dev-485a5-unauthRole",
       "StackName": "amplify-homepagenextjs-dev-485a5",
       "StackId": "arn:aws:cloudformation:ap-northeast-1:637423457699:stack/amplify-homepagenextjs-dev-485a5/96deea40-926c-11f0-843a-068e055cd493",
-      "AmplifyAppId": "dddwrr3qlhd85"
+      "AmplifyAppId": "dddwrr3qlhd85",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-homepagenextjs-dev-485a5-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
         "homepagenextjs": {}
+      },
+      "function": {
+        "homepagenextjs00ff5d02": {
+          "deploymentBucketName": "amplify-homepagenextjs-dev-485a5-deployment",
+          "s3Key": "amplify-builds/homepagenextjs00ff5d02-664c4e386d74472f6448-build.zip"
+        }
+      },
+      "api": {
+        "contactAPI": {}
       }
     }
   }

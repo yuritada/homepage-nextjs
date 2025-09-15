@@ -1,5 +1,20 @@
 {
-  "api": {},
+  "api": {
+    "contactAPI": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "homepagenextjs00ff5d02"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
   "auth": {
     "homepagenextjs": {
       "dependsOn": [],
@@ -26,5 +41,29 @@
       "serviceType": "managed"
     }
   },
-  "function": {}
+  "function": {
+    "homepagenextjs00ff5d02": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_homepagenextjs00ff5d02_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "homepagenextjs00ff5d02"
+        }
+      ]
+    },
+    "AMPLIFY_function_homepagenextjs00ff5d02_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "homepagenextjs00ff5d02"
+        }
+      ]
+    }
+  }
 }

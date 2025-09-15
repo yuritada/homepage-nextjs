@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "paths": {
+    "/contact": {
+      "name": "/contact",
+      "lambdaFunction": "homepagenextjs00ff5d02",
+      "permissions": {
+        "setting": "protected",
+        "auth": [
+          "create"
+        ],
+        "guest": [
+          "create"
+        ]
+      }
+    }
+  }
+}
