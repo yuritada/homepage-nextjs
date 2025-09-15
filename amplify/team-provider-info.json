@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-homepagenextjs-dev-485a5-authRole",
+      "UnauthRoleArn": "arn:aws:iam::637423457699:role/amplify-homepagenextjs-dev-485a5-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::637423457699:role/amplify-homepagenextjs-dev-485a5-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-homepagenextjs-dev-485a5-deployment",
+      "UnauthRoleName": "amplify-homepagenextjs-dev-485a5-unauthRole",
+      "StackName": "amplify-homepagenextjs-dev-485a5",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:637423457699:stack/amplify-homepagenextjs-dev-485a5/96deea40-926c-11f0-843a-068e055cd493",
+      "AmplifyAppId": "dddwrr3qlhd85"
+    },
+    "categories": {
+      "function": {
+        "homepagenextjs1ddb6a00": {}
+      }
+    }
+  }
+}
