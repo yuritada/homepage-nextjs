@@ -1,11 +1,139 @@
-import Navigation from './Navigation'
-import Hero from './Hero'
+'use client'
+
+import { useState, useEffect, useRef, Fragment } from 'react'
+import Navigation from '@/components/Navigation'
+import Starfield from '@/components/Starfield'
+
+export type JP = { title: string; hiragana: string; subtitle: string }
+export type EN = { title: string; subtitle: string }
+export type Content = JP | EN
+
+export const content: Content[] = [
+  {
+    title: '多田有里',
+    hiragana: 'ただゆうり',
+    subtitle: 'データサイエンスを学ぶ学生。\nWeb開発から機械学習まで、\nテクノロジーの世界を探求しています。',
+  },
+  {
+    title: 'Yuri Tada',
+    subtitle: 'A Data Science student\nexploring the universe of technology,\nfrom web development to machine learning.',
+  },
+]
 
 export default function Header() {
+  const [languageIndex, setLanguageIndex] = useState(0)
+  const [title, setTitle] = useState('')
+  const [subtitle, setSubtitle] = useState('')
+  const [isDeleting, setIsDeleting] = useState(false)
+  const [isTitleDone, setIsTitleDone] = useState(false)
+  const [isSubtitleDone, setIsSubtitleDone] = useState(false)
+  const [isKanjiConverted, setIsKanjiConverted] = useState(false)
+
+  // Ref to hold timeout IDs
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+  useEffect(() => {
+    const titleTypingSpeed = 120
+    const subtitleTypingSpeed = 50 // Faster as requested
+    const pauseBeforeDelete = 3000 // 3 seconds
+    const pauseBeforeKanjiConvert = 200
+    const pauseBeforeDeletionSwitch = 200 // Brief pause before instant delete
+
+    const handleTyping = () => {
+      const currentContent = content[languageIndex]
+      const isJapanese = 'hiragana' in currentContent
+
+      if (isDeleting) {
+        // --- DELETING LOGIC (INSTANT) ---
+        timeoutRef.current = setTimeout(() => {
+          setTitle('')
+          setSubtitle('')
+          setIsTitleDone(false)
+          setIsSubtitleDone(false)
+          setIsKanjiConverted(false)
+          // Move to the next language and start typing again
+          setLanguageIndex((prev) => (prev + 1) % content.length)
+          setIsDeleting(false)
+        }, pauseBeforeDeletionSwitch)
+        return
+      }
+
+      // --- TYPING LOGIC ---
+      if (!isTitleDone) {
+        // Typing title
+        if (isJapanese && !isKanjiConverted) {
+          // 1. Type Hiragana
+          if (title.length < currentContent.hiragana.length) {
+            setTitle(currentContent.hiragana.substring(0, title.length + 1))
+          } else {
+            // 2. Pause and convert to Kanji
+            timeoutRef.current = setTimeout(() => {
+              setTitle(currentContent.title) // Replace with Kanji
+              setIsKanjiConverted(true)
+            }, pauseBeforeKanjiConvert)
+          }
+        } else {
+          // Type English title or already-converted Kanji title
+          if (title.length < currentContent.title.length) {
+            setTitle(currentContent.title.substring(0, title.length + 1))
+          } else {
+            setIsTitleDone(true)
+          }
+        }
+      } else {
+        // Typing subtitle
+        if (subtitle.length < currentContent.subtitle.length) {
+          setSubtitle(currentContent.subtitle.substring(0, subtitle.length + 1))
+        } else {
+          setIsSubtitleDone(true)
+          // Finished typing subtitle, wait then start deleting
+          timeoutRef.current = setTimeout(() => setIsDeleting(true), pauseBeforeDelete)
+        }
+      }
+    }
+
+    // Set timeout for the next action
+    if (!isDeleting) {
+        const speed = isTitleDone ? subtitleTypingSpeed : titleTypingSpeed
+        timeoutRef.current = setTimeout(handleTyping, speed)
+    } else {
+        handleTyping() // Handle deletion logic immediately
+    }
+
+
+    // Cleanup function to clear timeouts
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+    }
+  }, [title, subtitle, isDeleting, isTitleDone, isSubtitleDone, languageIndex, isKanjiConverted])
+
   return (
-    <header>
+    <header id="home" className="relative h-screen flex flex-col items-center justify-center text-center overflow-hidden">
+      <Starfield />
+      <div className="relative z-10 flex flex-col items-center">
+        <h1 className="text-5xl md:text-7xl font-bold mb-4 text-foreground tracking-tighter h-24">
+          {title}
+          {!isTitleDone && !isDeleting && <span className="animate-blink">|</span>}
+        </h1>
+        <p className="text-xl md:text-2xl text-muted mb-8 max-w-2xl h-28">
+          {subtitle.split('\n').map((line, index) => (
+            <Fragment key={index}>
+              {line}
+              {index < subtitle.split('\n').length - 1 && <br />}
+            </Fragment>
+          ))}
+          {isTitleDone && !isSubtitleDone && !isDeleting && <span className="animate-blink">|</span>}
+        </p>
+        <a
+          href="#contact"
+          className="bg-primary text-white py-3 px-8 rounded-full text-lg font-semibold transition-transform hover:scale-105 hover:bg-primary-light shadow-lg"
+        >
+          Contact Me
+        </a>
+      </div>
       <Navigation />
-      <Hero />
     </header>
   )
 }

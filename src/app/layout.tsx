@@ -1,22 +1,19 @@
 import type { Metadata } from "next";
-import { Roboto, Noto_Sans_JP } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const roboto = Roboto({
-  weight: ['300', '400', '700'],
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-roboto",
-});
-
-const notoSansJP = Noto_Sans_JP({
-  weight: ['300', '400', '700'],
-  subsets: ["latin"],
-  variable: "--font-noto-sans-jp",
+  variable: "--font-space-grotesk",
 });
 
 export const metadata: Metadata = {
-  title: "多田 有里 - データサイエンス×エンジニアリング",
-  description: "データの力とエンジニアリングで未来を創る",
+  title: "Yuri Tada - Data Science & Engineering Portfolio",
+  description: "Exploring the universe of technology, from web development to machine learning.",
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({
@@ -25,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth">
       <head>
         <link 
           rel="stylesheet" 
@@ -33,7 +30,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${roboto.variable} ${notoSansJP.variable} font-roboto antialiased`}
+        className={`${spaceGrotesk.variable} font-sans antialiased`}
       >
         {children}
       </body>

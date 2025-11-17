@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false)
@@ -26,13 +27,21 @@ export default function ScrollToTop() {
   }
 
   return (
-    <button
-      className={`fixed bottom-8 right-8 w-12 h-12 rounded-full bg-[#6c63ff] text-white border-none text-xl cursor-pointer flex justify-center items-center transition-all z-50 shadow-lg hover:bg-[#5a52e0] hover:-translate-y-1 ${
-        isVisible ? 'opacity-100 visible' : 'opacity-0 invisible'
-      }`}
-      onClick={scrollToTop}
-    >
-      <i className="fas fa-arrow-up"></i>
-    </button>
+    <AnimatePresence>
+      {isVisible && (
+        <motion.button
+          className="fixed bottom-8 right-8 w-14 h-14 rounded-full bg-primary text-white border-none text-2xl cursor-pointer flex justify-center items-center z-50 shadow-lg shadow-primary/40"
+          onClick={scrollToTop}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          whileHover={{ scale: 1.1, y: -5 }}
+          whileTap={{ scale: 0.9 }}
+          transition={{ ease: 'easeOut', duration: 0.2 }}
+        >
+          <i className="fas fa-arrow-up"></i>
+        </motion.button>
+      )}
+    </AnimatePresence>
   )
 }
