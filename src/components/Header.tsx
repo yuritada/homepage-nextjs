@@ -1,18 +1,22 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, Fragment } from 'react'
 import Navigation from '@/components/Navigation'
 import Starfield from '@/components/Starfield'
 
-const content = [
+export type JP = { title: string; hiragana: string; subtitle: string }
+export type EN = { title: string; subtitle: string }
+export type Content = JP | EN
+
+export const content: Content[] = [
   {
     title: '多田有里',
     hiragana: 'ただゆうり',
-    subtitle: 'データサイエンスを学ぶ学生。Web開発から機械学習まで、テクノロジーの世界を探求しています。',
+    subtitle: 'データサイエンスを学ぶ学生。\nWeb開発から機械学習まで、\nテクノロジーの世界を探求しています。',
   },
   {
     title: 'Yuri Tada',
-    subtitle: 'A Data Science student exploring the universe of technology, from web development to machine learning.',
+    subtitle: 'A Data Science student\nexploring the universe of technology,\nfrom web development to machine learning.',
   },
 ]
 
@@ -22,6 +26,7 @@ export default function Header() {
   const [subtitle, setSubtitle] = useState('')
   const [isDeleting, setIsDeleting] = useState(false)
   const [isTitleDone, setIsTitleDone] = useState(false)
+  const [isSubtitleDone, setIsSubtitleDone] = useState(false)
   const [isKanjiConverted, setIsKanjiConverted] = useState(false)
 
   // Ref to hold timeout IDs
@@ -30,7 +35,7 @@ export default function Header() {
   useEffect(() => {
     const titleTypingSpeed = 120
     const subtitleTypingSpeed = 50 // Faster as requested
-    const pauseBeforeDelete = 10000 // 10 seconds
+    const pauseBeforeDelete = 3000 // 3 seconds
     const pauseBeforeKanjiConvert = 200
     const pauseBeforeDeletionSwitch = 200 // Brief pause before instant delete
 
@@ -44,6 +49,7 @@ export default function Header() {
           setTitle('')
           setSubtitle('')
           setIsTitleDone(false)
+          setIsSubtitleDone(false)
           setIsKanjiConverted(false)
           // Move to the next language and start typing again
           setLanguageIndex((prev) => (prev + 1) % content.length)
@@ -79,6 +85,7 @@ export default function Header() {
         if (subtitle.length < currentContent.subtitle.length) {
           setSubtitle(currentContent.subtitle.substring(0, subtitle.length + 1))
         } else {
+          setIsSubtitleDone(true)
           // Finished typing subtitle, wait then start deleting
           timeoutRef.current = setTimeout(() => setIsDeleting(true), pauseBeforeDelete)
         }
@@ -100,7 +107,7 @@ export default function Header() {
         clearTimeout(timeoutRef.current)
       }
     }
-  }, [title, subtitle, isDeleting, isTitleDone, languageIndex, isKanjiConverted])
+  }, [title, subtitle, isDeleting, isTitleDone, isSubtitleDone, languageIndex, isKanjiConverted])
 
   return (
     <header id="home" className="relative h-screen flex flex-col items-center justify-center text-center overflow-hidden">
@@ -108,11 +115,16 @@ export default function Header() {
       <div className="relative z-10 flex flex-col items-center">
         <h1 className="text-5xl md:text-7xl font-bold mb-4 text-foreground tracking-tighter h-24">
           {title}
-          {!isDeleting && <span className="animate-blink">|</span>}
+          {!isTitleDone && !isDeleting && <span className="animate-blink">|</span>}
         </h1>
-        <p className="text-xl md:text-2xl text-muted mb-8 max-w-2xl h-20">
-          {subtitle}
-          {isTitleDone && !isDeleting && <span className="animate-blink">|</span>}
+        <p className="text-xl md:text-2xl text-muted mb-8 max-w-2xl h-28">
+          {subtitle.split('\n').map((line, index) => (
+            <Fragment key={index}>
+              {line}
+              {index < subtitle.split('\n').length - 1 && <br />}
+            </Fragment>
+          ))}
+          {isTitleDone && !isSubtitleDone && !isDeleting && <span className="animate-blink">|</span>}
         </p>
         <a
           href="#contact"

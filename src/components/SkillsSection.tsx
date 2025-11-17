@@ -8,9 +8,12 @@ const skillCategories = [
     title: 'Frontend',
     skills: [
       { icon: 'fab fa-react', name: 'React' },
-      { icon: 'fas fa-layer-group', name: 'Next.js' },
+      { icon: 'fab fa-n', name: 'Next.js' },
+      { icon: 'fab fa-vuejs', name: 'Vue.js' },
+      { icon: 'fab fa-t', name: 'TypeScript' },
       { icon: 'fab fa-html5', name: 'HTML5' },
       { icon: 'fab fa-css3-alt', name: 'CSS3' },
+      { icon: 'fab fa-js-square', name: 'JavaScript' },
     ]
   },
   {

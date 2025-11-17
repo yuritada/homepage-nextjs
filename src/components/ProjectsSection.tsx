@@ -9,7 +9,7 @@ const projects = [
     title: '野球投球のファウル確率予測',
     description: '打席情報や選手情報から、その投球でファウルになる確率を予測する機械学習アプリケーションです。',
     tags: ['React', 'FastAPI', 'Python', 'LightGBM', 'scikit-learn'],
-    image: '/project1.svg',
+    image: '/project1.png',
     codeLink: 'https://github.com/yuritada/GW_2_app_flask',
     demoLink: '#'
   },
@@ -17,7 +17,7 @@ const projects = [
     title: '勝手に方言変換SNS',
     description: '投稿した発言が、すべて別の方言に自動で翻訳されてしまう、面白SNSです。ハッカソンで開発しました。',
     tags: ['Next.JS', 'FastAPI', 'PostgreSQL', 'Render', 'Vercel'],
-    image: '/project2.svg',
+    image: '/project2.png',
     codeLink: 'https://github.com/yuritada/dialect-sns',
     demoLink: '#'
   }

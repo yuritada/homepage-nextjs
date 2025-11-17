@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
 
 const navLinks = [
   { href: '#about', label: 'About' },
@@ -44,9 +43,13 @@ export default function Navigation() {
       }`}
     >
       <div className="flex justify-between items-center px-[5%] max-w-7xl mx-auto">
-        <Link href="/" className="text-3xl font-bold text-primary transition-colors hover:text-primary-light">
+        <a
+          href="#home"
+          onClick={(e) => handleNavClick(e, '#home')}
+          className="text-3xl font-bold text-primary transition-colors hover:text-primary-light cursor-pointer"
+        >
           YT
-        </Link>
+        </a>
 
         <ul
           className={`nav-links list-none ${
