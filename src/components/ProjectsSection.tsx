@@ -2,20 +2,20 @@ import Image from 'next/image'
 
 const projects = [
   {
-    title: 'データ可視化ダッシュボード',
-    description: 'COVID-19のデータを分析し、インタラクティブなダッシュボードを作成したプロジェクト',
-    tags: ['Python', 'Pandas', 'Plotly', 'Dash'],
-    image: '/project1.svg',
-    codeLink: '#',
-    demoLink: '#'
+    title: '野球投球のファウル確率予測',
+    description: '打席情報や選手情報から、その投球でファウルになる確率を予測する機械学習アプリケーションです。',
+    tags: ['React', 'FastAPI', 'Python', 'LightGBM', 'scikit-learn'],
+    image: '/project1.svg', // 画像は後で差し替えてください
+    codeLink: 'https://github.com/yuritada/GW_2_app_flask',
+    demoLink: '#' // デプロイ後、URLを記載
   },
   {
-    title: '学習管理アプリ',
-    description: '大学生向けの学習管理アプリケーション。タスク管理と学習進捗の可視化が可能',
-    tags: ['React', 'Node.js', 'Express', 'MongoDB'],
-    image: '/project2.svg',
-    codeLink: '#',
-    demoLink: '#'
+    title: '勝手に方言変換SNS',
+    description: '投稿した発言が、すべて別の方言に自動で翻訳されてしまう、面白SNSです。ハッカソンで開発しました。',
+    tags: ['Next.JS', 'FastAPI', 'PostgreSQL', 'Render', 'Vercel'],
+    image: '/project2.svg', // 画像は後で差し替えてください
+    codeLink: 'https://github.com/yuritada/dialect-sns', // (またはフロントエンドのリポジトリ)
+    demoLink: '#' // (料金的に一時停止中とのことなので、Codeリンクのみでも可)
   }
 ]
 

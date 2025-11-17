@@ -6,10 +6,10 @@ const skillCategories = [
   {
     title: 'Frontend',
     skills: [
+      { icon: 'fab fa-react', name: 'React' },
+      { icon: 'fab fa-js', name: 'Next.js' }, // 変更
       { icon: 'fab fa-html5', name: 'HTML5' },
       { icon: 'fab fa-css3-alt', name: 'CSS3' },
-      { icon: 'fab fa-js', name: 'JavaScript' },
-      { icon: 'fab fa-react', name: 'React' }
     ]
   },
   {
@@ -17,15 +17,26 @@ const skillCategories = [
     skills: [
       { icon: 'fab fa-python', name: 'Python' },
       { icon: 'fab fa-node-js', name: 'Node.js' },
-      { icon: 'fas fa-database', name: 'SQL' }
+      { icon: 'fas fa-server', name: 'FastAPI' }, // 追加
+      { icon: 'fas fa-database', name: 'SQL (Postgres)' }, // 変更
     ]
   },
   {
-    title: 'Data Science',
+    title: 'Data Science / ML', // 変更
     skills: [
-      { icon: 'fas fa-chart-bar', name: 'Data Analysis' },
       { icon: 'fas fa-brain', name: 'Machine Learning' },
-      { icon: 'fas fa-table', name: 'Pandas' }
+      { icon: 'fas fa-chart-bar', name: 'LightGBM' }, // 変更
+      { icon: 'fas fa-cogs', name: 'scikit-learn' }, // 変更
+      { icon: 'fas fa-table', name: 'Pandas' },
+    ]
+  },
+  {
+    title: 'Cloud & Deployment', // 新規
+    skills: [
+      { icon: 'fab fa-aws', name: 'AWS' },
+      { icon: 'fas fa-cloud', name: 'Amplify' }, // AWS Amplify
+      { icon: 'fas fa-lambda', name: 'Lambda' }, // AWS Lambda
+      { icon: 'fas fa-server', name: 'Docker' }, // Docker
     ]
   },
   {
@@ -33,7 +44,17 @@ const skillCategories = [
     skills: [
       { icon: 'fab fa-git-alt', name: 'Git' },
       { icon: 'fab fa-github', name: 'GitHub' },
-      { icon: 'fab fa-docker', name: 'Docker' }
+      { icon: 'fas fa-cube', name: 'Blender' }, // 追加
+      { icon: 'fas fa-gamepad', name: 'Unreal Engine' }, // 追加
+    ]
+  },
+  {
+    title: 'Learning', // 新規
+    skills: [
+      { icon: 'fab fa-java', name: 'JAVA' },
+      { icon: 'fas fa-code', name: 'C++ / C#' }, // 変更
+      { icon: 'fab fa-linux', name: 'Linux (Ubuntu)' }, // 追加
+      { icon: 'fab fa-google', name: 'Go' }, // 追加
     ]
   }
 ]
