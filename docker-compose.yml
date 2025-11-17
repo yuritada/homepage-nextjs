@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # サービス名は自由 (例: 'web', 'app'など)
   next-app:
