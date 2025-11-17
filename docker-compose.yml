@@ -1,0 +1,16 @@
+services:
+  # サービス名は自由 (例: 'web', 'app'など)
+  next-app:
+    # Dockerfileがある場所を指定
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    # ポートのマッピング
+    ports:
+      - "3000:3000"
+    # ボリュームのマッピング
+    volumes:
+      - .:/app # メインの意味はこれ
+      - /app/node_modules # これは、マウントしないフォルダを指定
+    # コンテナを常に起動状態に保つ
+    tty: true

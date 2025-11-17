@@ -1,85 +1,92 @@
+'use client'
+
 import Image from 'next/image'
+import Section from '@/components/Section'
+import { motion } from 'framer-motion'
 
 const projects = [
   {
-    title: 'データ可視化ダッシュボード',
-    description: 'COVID-19のデータを分析し、インタラクティブなダッシュボードを作成したプロジェクト',
-    tags: ['Python', 'Pandas', 'Plotly', 'Dash'],
-    image: '/project1.svg',
-    codeLink: '#',
+    title: '野球投球のファウル確率予測',
+    description: '打席情報や選手情報から、その投球でファウルになる確率を予測する機械学習アプリケーションです。',
+    tags: ['React', 'FastAPI', 'Python', 'LightGBM', 'scikit-learn'],
+    image: '/project1.png',
+    codeLink: 'https://github.com/yuritada/GW_2_app_flask',
     demoLink: '#'
   },
   {
-    title: '学習管理アプリ',
-    description: '大学生向けの学習管理アプリケーション。タスク管理と学習進捗の可視化が可能',
-    tags: ['React', 'Node.js', 'Express', 'MongoDB'],
-    image: '/project2.svg',
-    codeLink: '#',
+    title: '勝手に方言変換SNS',
+    description: '投稿した発言が、すべて別の方言に自動で翻訳されてしまう、面白SNSです。ハッカソンで開発しました。',
+    tags: ['Next.JS', 'FastAPI', 'PostgreSQL', 'Render', 'Vercel'],
+    image: '/project2.png',
+    codeLink: 'https://github.com/yuritada/dialect-sns',
     demoLink: '#'
   }
 ]
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="py-20 bg-white">
+    <Section id="projects">
       <div className="w-4/5 max-w-6xl mx-auto px-5">
-        <h2 className="text-center mb-16 text-4xl relative">
+        <h2 className="text-center mb-20 text-4xl font-bold relative">
           Projects
-          <span className="absolute bottom-[-15px] left-1/2 transform -translate-x-1/2 w-[60px] h-1 bg-[#6c63ff]"></span>
+          <span className="absolute bottom-[-15px] left-1/2 transform -translate-x-1/2 w-[70px] h-1 bg-primary"></span>
         </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {projects.map((project, index) => (
-            <div 
+            <motion.div
               key={index}
-              className="bg-white rounded-lg overflow-hidden shadow-sm transition-transform hover:-translate-y-2 hover:shadow-lg"
+              className="glassmorphism rounded-xl overflow-hidden group"
+              whileHover={{ y: -10, scale: 1.03 }}
+              transition={{ type: 'spring', stiffness: 300 }}
             >
-              <div className="h-48 overflow-hidden">
+              <div className="h-56 overflow-hidden relative">
                 <Image
                   src={project.image}
-                  alt="プロジェクト画像"
-                  width={400}
-                  height={200}
-                  className="w-full h-full object-cover transition-transform hover:scale-105"
+                  alt={`${project.title} image`}
+                  width={500}
+                  height={300}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
               </div>
-              <div className="p-5">
-                <h3 className="mb-2 text-xl font-semibold">{project.title}</h3>
-                <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+              <div className="p-6">
+                <h3 className="mb-3 text-2xl font-semibold text-foreground">{project.title}</h3>
+                <p className="text-muted mb-5 leading-relaxed">
                   {project.description}
                 </p>
-                <div className="flex flex-wrap mb-4">
+                <div className="flex flex-wrap gap-2 mb-6">
                   {project.tags.map((tag, tagIndex) => (
-                    <span 
+                    <span
                       key={tagIndex}
-                      className="bg-gray-100 px-3 py-1 rounded-full text-xs mr-2 mb-2"
+                      className="bg-primary/20 text-primary text-xs font-semibold px-3 py-1 rounded-full"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
-                <div className="flex gap-4">
-                  <a 
-                    href={project.codeLink} 
-                    target="_blank" 
+                <div className="flex gap-6">
+                  <a
+                    href={project.codeLink}
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#6c63ff] no-underline text-sm transition-colors hover:text-[#5a52e0]"
+                    className="text-primary font-semibold transition-colors hover:text-primary-light flex items-center gap-2"
                   >
-                    <i className="fab fa-github mr-1"></i> Code
+                    <i className="fab fa-github"></i> Code
                   </a>
-                  <a 
-                    href={project.demoLink} 
-                    target="_blank" 
+                  <a
+                    href={project.demoLink}
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#6c63ff] no-underline text-sm transition-colors hover:text-[#5a52e0]"
+                    className="text-primary font-semibold transition-colors hover:text-primary-light flex items-center gap-2"
                   >
-                    <i className="fas fa-external-link-alt mr-1"></i> Demo
+                    <i className="fas fa-external-link-alt"></i> Demo
                   </a>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   )
 }
