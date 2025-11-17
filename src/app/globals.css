@@ -59,3 +59,12 @@ body {
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(42, 42, 74, 0.5);
 }
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
