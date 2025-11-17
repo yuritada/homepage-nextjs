@@ -1,4 +1,7 @@
-// src/components/AchievementsSection.tsx (新規作成)
+'use client'
+
+import Section from '@/components/Section'
+import { motion } from 'framer-motion'
 
 const achievements = [
   {
@@ -30,27 +33,27 @@ const achievements = [
 
 export default function AchievementsSection() {
   return (
-    <section id="achievements" className="py-20 bg-gray-50">
+    <Section id="achievements">
       <div className="w-4/5 max-w-6xl mx-auto px-5">
-        <h2 className="text-center mb-16 text-4xl relative">
+        <h2 className="text-center mb-20 text-4xl font-bold relative">
           Achievements
-          <span className="absolute bottom-[-15px] left-1/2 transform -translate-x-1/2 w-[60px] h-1 bg-[#6c63ff]"></span>
+          <span className="absolute bottom-[-15px] left-1/2 transform -translate-x-1/2 w-[70px] h-1 bg-primary"></span>
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {achievements.map((item, index) => (
-            <div 
+            <motion.div
               key={index}
-              className="bg-white p-6 rounded-lg shadow-sm transition-transform hover:-translate-y-2 hover:shadow-lg flex items-start"
+              className="glassmorphism p-8 rounded-xl flex flex-col items-center text-center relative overflow-hidden"
+              whileHover={{ y: -8, boxShadow: '0 0 20px rgba(108, 99, 255, 0.5)' }}
+              transition={{ type: 'spring', stiffness: 300 }}
             >
-              <i className={`${item.icon} text-3xl text-[#6c63ff] w-12 text-center`}></i>
-              <div className="ml-4">
-                <h3 className="mb-2 text-xl font-semibold">{item.title}</h3>
-                <p className="text-gray-600 leading-relaxed text-sm">{item.description}</p>
-              </div>
-            </div>
+              <i className={`${item.icon} text-5xl text-primary mb-5`}></i>
+              <h3 className="mb-3 text-xl font-semibold text-foreground">{item.title}</h3>
+              <p className="text-muted leading-relaxed text-sm">{item.description}</p>
+            </motion.div>
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   )
 }

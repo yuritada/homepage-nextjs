@@ -6,21 +6,20 @@ import Link from 'next/link'
 const navLinks = [
   { href: '#about', label: 'About' },
   { href: '#skills', label: 'Skills' },
-  { href: '#projects', label: 'Projects' },
+  
   { href: '#education', label: 'Education' },
-  { href: '#achievements', label: 'Achievements' }, // 追加
+  { href: '#achievements', label: 'Achievements' },
   { href: '#contact', label: 'Contact' },
 ]
 
 export default function Navigation() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false) // ハンバーガーが開いているかを確認
-  const [isScrolled, setIsScrolled] = useState(false) // スクロールされたかを確認(100px以上)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100)
+      setIsScrolled(window.scrollY > 50)
     }
-
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -31,17 +30,9 @@ export default function Navigation() {
       const targetElement = document.querySelector(href)
       if (targetElement) {
         const navHeight = 70
-        const targetPosition =
-          targetElement.getBoundingClientRect().top +
-          window.pageYOffset -
-          navHeight
-
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth',
-        })
-
-        setIsMenuOpen(false) // メニューを閉じる
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight
+        window.scrollTo({ top: targetPosition, behavior: 'smooth' })
+        setIsMenuOpen(false)
       }
     }
   }
@@ -49,29 +40,27 @@ export default function Navigation() {
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/98 shadow-lg py-2'
-          : 'bg-white/95 shadow-md py-3'
+        isScrolled ? 'bg-surface/80 backdrop-blur-sm shadow-lg py-3' : 'bg-transparent py-4'
       }`}
     >
-      <div className="flex justify-between items-center px-[5%]">
-        <Link href="/" className="text-3xl font-bold text-[#6c63ff]">
+      <div className="flex justify-between items-center px-[5%] max-w-7xl mx-auto">
+        <Link href="/" className="text-3xl font-bold text-primary transition-colors hover:text-primary-light">
           YT
         </Link>
 
         <ul
           className={`nav-links list-none ${
             isMenuOpen
-              ? 'flex flex-col fixed right-0 top-[8vh] h-[92vh] w-1/2 bg-white/95 justify-around items-center shadow-lg'
+              ? 'flex flex-col fixed right-0 top-0 h-full w-3/4 bg-surface/95 backdrop-blur-lg justify-center items-center shadow-2xl'
               : 'hidden md:flex md:space-x-8'
           }`}
         >
           {navLinks.map(({ href, label }) => (
-            <li key={href}>
+            <li key={href} className={isMenuOpen ? 'my-4' : ''}>
               <a
                 href={href}
                 onClick={(e) => handleNavClick(e, href)}
-                className="text-gray-800 no-underline font-medium transition-colors hover:text-[#6c63ff]"
+                className="text-foreground no-underline font-medium text-lg relative after:content-[''] after:absolute after:left-0 after:bottom-[-5px] after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
               >
                 {label}
               </a>
@@ -80,26 +69,14 @@ export default function Navigation() {
         </ul>
 
         <button
-          className="md:hidden cursor-pointer"
+          className="md:hidden cursor-pointer z-50"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label={isMenuOpen ? 'メニューを閉じる' : 'メニューを開く'}
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isMenuOpen}
         >
-          <div
-            className={`w-6 h-0.5 bg-gray-800 m-1 transition-transform ${
-              isMenuOpen ? 'rotate-45 translate-y-1.5' : ''
-            }`}
-          ></div>
-          <div
-            className={`w-6 h-0.5 bg-gray-800 m-1 transition-opacity ${
-              isMenuOpen ? 'opacity-0' : ''
-            }`}
-          ></div>
-          <div
-            className={`w-6 h-0.5 bg-gray-800 m-1 transition-transform ${
-              isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''
-            }`}
-          ></div>
+          <div className={`w-6 h-0.5 bg-foreground m-1 transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></div>
+          <div className={`w-6 h-0.5 bg-foreground m-1 transition-opacity ${isMenuOpen ? 'opacity-0' : ''}`}></div>
+          <div className={`w-6 h-0.5 bg-foreground m-1 transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></div>
         </button>
       </div>
     </nav>
