@@ -1,27 +1,4 @@
-'use client'
-
-import { useState } from 'react'
-
 export default function ContactSection() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  })
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    alert('メッセージを受け付けました。ありがとうございます！')
-    setFormData({ name: '', email: '', message: '' })
-  }
-
   return (
     <section id="contact" className="py-20 bg-white">
       <div className="w-4/5 max-w-6xl mx-auto px-5">
@@ -63,50 +40,19 @@ export default function ContactSection() {
             </div>
           </div>
           
-          <form className="lg:col-span-2" onSubmit={handleSubmit}>
-            <div className="mb-5">
-              <label htmlFor="name" className="block mb-1 font-medium">名前</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                className="w-full p-3 border border-gray-300 rounded font-inherit text-base transition-all focus:outline-none focus:border-[#6c63ff] focus:shadow-[0_0_0_2px_rgba(108,99,255,0.1)]"
-              />
-            </div>
-            <div className="mb-5">
-              <label htmlFor="email" className="block mb-1 font-medium">メールアドレス</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="w-full p-3 border border-gray-300 rounded font-inherit text-base transition-all focus:outline-none focus:border-[#6c63ff] focus:shadow-[0_0_0_2px_rgba(108,99,255,0.1)]"
-              />
-            </div>
-            <div className="mb-5">
-              <label htmlFor="message" className="block mb-1 font-medium">メッセージ</label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                rows={5}
-                required
-                className="w-full p-3 border border-gray-300 rounded font-inherit text-base transition-all focus:outline-none focus:border-[#6c63ff] focus:shadow-[0_0_0_2px_rgba(108,99,255,0.1)] resize-vertical"
-              />
-            </div>
-            <button
-              type="submit"
-              className="bg-[#6c63ff] text-white py-3 px-6 border-none rounded cursor-pointer text-base font-medium transition-colors hover:bg-[#5a52e0]"
+          <div className="lg:col-span-2">
+            <p className="mb-4 text-gray-600">
+              お問い合わせは、こちらのフォームからお願いいたします。
+            </p>
+            <a
+              href="https://forms.gle/avJvHqEizJGWRnjF9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-[#6c63ff] text-white py-3 px-6 border-none rounded cursor-pointer text-base font-medium transition-colors hover:bg-[#5a52e0]"
             >
-              送信する
-            </button>
-          </form>
+              お問い合わせフォームへ
+            </a>
+          </div>
         </div>
       </div>
     </section>
