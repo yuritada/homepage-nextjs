@@ -8,8 +8,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Yuri Tada - Data Science & Engineering Portfolio",
-  description: "Exploring the universe of technology, from web development to machine learning.",
+  title: "多田有里 (Yuri Tada) - データサイエンス & エンジニアリング",
+  description: "多田有里のポートフォリオサイト。Web開発から機械学習、データサイエンスまで、テクノロジーの探求を通じた活動を紹介します。",
   icons: {
     icon: "/logo.png",
     apple: "/logo.png",
@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="ja" className="scroll-smooth">
       <head>
         <link 
           rel="stylesheet" 
