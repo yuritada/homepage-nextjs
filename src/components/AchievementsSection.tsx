@@ -29,6 +29,11 @@ const achievements = [
     title: 'エンジニア交流イベント',
     description: 'progateBarなどの交流イベントに毎月参加し、最新の知見やネットワーキングを広げています。',
   },
+  {
+    icon: 'fas fa-crown', // 優勝を表すアイコン（王冠など）
+    title: '学内ハッカソン 優勝',
+    description: '（開発したプロダクト名や、チームでの役割、評価されたポイントなどをここに記載）',
+  }
 ]
 
 export default function AchievementsSection() {
