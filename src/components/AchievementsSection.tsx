@@ -7,7 +7,7 @@ const achievements = [
   {
     icon: 'fas fa-trophy',
     title: '学内研究コンペ 学科賞受賞',
-    description: '（ここにコンペの簡単な説明や受賞内容を記載）',
+    description: '「旅に特化した統合バックエンドの提案」をテーマに、新規SNSのあり方と構造・デプロイ手法を研究。その成果が評価され、学科賞を受賞しました。',
   },
   {
     icon: 'fas fa-users',
@@ -30,9 +30,9 @@ const achievements = [
     description: 'progateBarなどの交流イベントに毎月参加し、最新の知見やネットワーキングを広げています。',
   },
   {
-    icon: 'fas fa-crown', // 優勝を表すアイコン（王冠など）
+    icon: 'fas fa-crown',
     title: '学内ハッカソン 優勝',
-    description: '（開発したプロダクト名や、チームでの役割、評価されたポイントなどをここに記載）',
+    description: '「開発環境そのものへのアプローチ」という独自の視点と圧倒的な技術力で他チームと差別化。一般的なSNS系アプリとは一線を画し、エンジニアの課題に正面から向き合ったプロダクトが評価され優勝しました。',
   }
 ]
 

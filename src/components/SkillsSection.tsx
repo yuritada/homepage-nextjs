@@ -32,6 +32,9 @@ const skillCategories = [
       { icon: 'fas fa-chart-bar', name: 'LightGBM' },
       { icon: 'fas fa-cogs', name: 'scikit-learn' },
       { icon: 'fas fa-table', name: 'Pandas' },
+      { icon: 'fas fa-flask', name: 'MLflow' },
+      { icon: 'fas fa-sliders-h', name: 'Optuna' },
+      { icon: 'fas fa-project-diagram', name: 'RAG' },
     ]
   },
   {
