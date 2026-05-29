@@ -3,7 +3,7 @@ export default function Footer() {
     <footer className="bg-surface py-6">
       <div className="w-4/5 max-w-6xl mx-auto px-5">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-muted text-sm">&copy; 2025 Yuri Tada. All Rights Reserved.</p>
+          <p className="text-muted text-sm">&copy; 2026 Yuri Tada. All Rights Reserved.</p>
           <div className="flex gap-6">
             <a
               href="https://github.com/yuritada"
