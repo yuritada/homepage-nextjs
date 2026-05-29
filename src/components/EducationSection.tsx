@@ -1,48 +1,90 @@
-import Section from '@/components/Section'
+'use client'
 
-const educationItems = [
-  {
-    title: '武蔵野大学 データサイエンス学部',
-    date: '2024 - 2028 (予定)',
-    description: 'データ分析とAIの理論と実践について学んでいます。統計学、機械学習、データビジュアライゼーションを中心に研究しています。'
+import Section from '@/components/Section'
+import { useLanguage } from '@/contexts/LanguageContext'
+
+const t = {
+  jp: {
+    eyebrow: 'Background',
+    heading: '学歴・経歴',
+    items: [
+      {
+        title: '武蔵野大学 データサイエンス学部',
+        date: '2024 – 2028（予定）',
+        description: '統計学・機械学習・データビジュアライゼーションを中心に学習。AIシステム開発と3D空間研究を専攻。',
+      },
+      {
+        title: 'R&Dインターン — 採用管理システム開発',
+        date: '2026 – 現在（週3日）',
+        description: 'ATS（採用管理システム）のR&Dに参加。ビジネス価値を保ちながら技術レベルを引き上げる実装に挑戦。ユーザー課題を想像しながら、複雑さを抑えた高度な処理設計を追求している。',
+      },
+      {
+        title: 'NAISインターン',
+        date: '2025年8月',
+        description: '短期インターンシップにて、実務でのデータサイエンス・エンジニアリングを経験。実際のプロジェクトを通じた知識の実践と、チーム開発プロセスを学んだ。',
+      },
+      {
+        title: 'エンジニアリング自己学習',
+        date: '2024 – 現在',
+        description: 'ハッカソン・Kaggleコンペ・Progate Barへの参加など、継続的な実践を通じてフルスタックエンジニアとしてのスキルを磨いている。',
+      },
+    ],
   },
-  {
-    title: 'エンジニアリング自己学習',
-    date: '2024 - 現在',
-    description: '生成AIを活用して、フルスタックエンジニアリングのスキルを習得しています。'
+  en: {
+    eyebrow: 'Background',
+    heading: 'Education',
+    items: [
+      {
+        title: 'Musashino University — Faculty of Data Science',
+        date: '2024 – 2028 (expected)',
+        description: 'Studying statistics, machine learning, and data visualization. Specializing in AI systems development and 3D space research.',
+      },
+      {
+        title: 'R&D Internship — ATS Development',
+        date: '2026 – Present (3 days/week)',
+        description: 'Building features for an Applicant Tracking System. Pursuing the balance of raising technical quality without lowering business value, informed by imagining real user pain points.',
+      },
+      {
+        title: 'NAIS Internship',
+        date: 'August 2025',
+        description: 'Gained hands-on data science and engineering experience in a real project environment. Learned collaborative development workflows and applied academic knowledge in practice.',
+      },
+      {
+        title: 'Self-Directed Engineering Learning',
+        date: '2024 – Present',
+        description: 'Continuously building full-stack skills through hackathons, Kaggle competitions, and monthly Progate Bar networking events.',
+      },
+    ],
   },
-  {
-    title: '研究テーマ',
-    date: '2024',
-    description: '新規SNSのあり方と、その構造とデプロイ方法について研究しました。'
-  },
-  {
-    title: '研究テーマ',
-    date: '2025 - 現在',
-    description: '3D空間のMCP自然言語制御における、生成物の評価方法とその学習方法について研究しています。'
-  }
-]
+}
 
 export default function EducationSection() {
+  const { lang } = useLanguage()
+  const c = t[lang]
+
   return (
     <Section id="education">
       <div className="w-4/5 max-w-6xl mx-auto px-5">
-        <h2 className="text-center mb-20 text-4xl font-bold relative">
-          Education
-          <span className="absolute bottom-[-15px] left-1/2 transform -translate-x-1/2 w-[70px] h-1 bg-primary"></span>
-        </h2>
+        <div className="text-center mb-16">
+          <p className="text-primary text-sm tracking-widest uppercase mb-3 font-medium">{c.eyebrow}</p>
+          <h2 className="text-4xl font-bold relative inline-block">
+            {c.heading}
+            <span className="absolute bottom-[-12px] left-1/2 transform -translate-x-1/2 w-16 h-px bg-gradient-to-r from-transparent via-primary to-transparent"></span>
+          </h2>
+        </div>
+
         <div className="relative max-w-3xl mx-auto">
-          <div className="absolute w-0.5 bg-border top-0 bottom-0 left-1/2 -translate-x-1/2"></div>
-          {educationItems.map((item, index) => (
-            <div key={index} className={`flex items-center w-full mb-12 ${index % 2 === 0 ? 'flex-row-reverse' : ''}`}>
+          <div className="absolute w-px bg-gradient-to-b from-primary/50 via-border to-transparent top-0 bottom-0 left-1/2 -translate-x-1/2"></div>
+          {c.items.map((item, index) => (
+            <div key={index} className={`flex items-start w-full mb-12 ${index % 2 === 0 ? 'flex-row-reverse' : ''}`}>
               <div className="w-1/2">
-                <div className={`p-6 rounded-xl glassmorphism ${index % 2 === 0 ? 'mr-auto' : 'ml-auto'}`}>
-                  <h3 className="mb-2 text-xl font-semibold text-primary">{item.title}</h3>
-                  <p className="text-muted text-sm mb-3">{item.date}</p>
-                  <p className="text-muted leading-relaxed">{item.description}</p>
+                <div className={`p-6 rounded-xl glassmorphism hover:border-primary/25 transition-all ${index % 2 === 0 ? 'mr-8' : 'ml-8'}`}>
+                  <h3 className="mb-1 text-base font-bold text-primary">{item.title}</h3>
+                  <p className="text-muted text-xs mb-3 font-mono">{item.date}</p>
+                  <p className="text-muted leading-relaxed text-sm">{item.description}</p>
                 </div>
               </div>
-              <div className="absolute left-1/2 -translate-x-1/2 w-6 h-6 bg-primary rounded-full z-10 border-4 border-surface"></div>
+              <div className="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-primary rounded-full z-10 border-2 border-background shadow-lg shadow-primary/50 mt-6"></div>
             </div>
           ))}
         </div>

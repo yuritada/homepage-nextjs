@@ -11,8 +11,8 @@ WORKDIR /app
 # 依存関係のキャッシュを効かせるため、package*.jsonを先にコピー
 COPY package*.json ./
 
-# 依存関係をインストール
-RUN npm install
+# 依存関係をインストール（package-lock.jsonを使用して確定的にインストール、リトライ設定付き）
+RUN npm ci --fetch-retry-mintimeout=20000 --fetch-retry-maxtimeout=120000 --fetch-retries=5
 
 # ★改善点2: ソースコードのCOPY命令をすべて削除
 # ソースコードはボリュームマウントでコンテナに提供するため、イメージに含める必要がありません。
