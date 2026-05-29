@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import Providers from "@/components/Providers";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -29,10 +30,8 @@ export default function RootLayout({
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" 
         />
       </head>
-      <body
-        className={`${spaceGrotesk.variable} font-sans antialiased`}
-      >
-        {children}
+      <body className={`${spaceGrotesk.variable} font-sans antialiased`}>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

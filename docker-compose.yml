@@ -14,3 +14,7 @@ services:
       - /app/node_modules # これは、マウントしないフォルダを指定
     # コンテナを常に起動状態に保つ
     tty: true
+    # Docker DesktopのDNS解決問題を回避するためにGoogleのDNSを指定
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
