@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 const navLinks = {
@@ -10,6 +11,7 @@ const navLinks = {
     { href: '#research',   label: 'Research' },
     { href: '#works',      label: 'Works' },
     { href: '#skills',     label: 'Skills' },
+    { href: '/blog',       label: 'Blog' },
     { href: '#contact',    label: 'Contact' },
   ],
   en: [
@@ -18,6 +20,7 @@ const navLinks = {
     { href: '#research',   label: 'Research' },
     { href: '#works',      label: 'Works' },
     { href: '#skills',     label: 'Skills' },
+    { href: '/blog',       label: 'Blog' },
     { href: '#contact',    label: 'Contact' },
   ],
 }
@@ -73,13 +76,23 @@ export default function Navigation() {
         >
           {links.map(({ href, label }) => (
             <li key={href} className={isMenuOpen ? 'my-4' : ''}>
-              <a
-                href={href}
-                onClick={(e) => handleNavClick(e, href)}
-                className="text-muted no-underline font-medium text-sm tracking-widest uppercase relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-0 after:h-px after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:text-primary transition-colors"
-              >
-                {label}
-              </a>
+              {href.startsWith('/') ? (
+                <Link
+                  href={href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-muted no-underline font-medium text-sm tracking-widest uppercase relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-0 after:h-px after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:text-primary transition-colors"
+                >
+                  {label}
+                </Link>
+              ) : (
+                <a
+                  href={href}
+                  onClick={(e) => handleNavClick(e, href)}
+                  className="text-muted no-underline font-medium text-sm tracking-widest uppercase relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-0 after:h-px after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:text-primary transition-colors"
+                >
+                  {label}
+                </a>
+              )}
             </li>
           ))}
 
