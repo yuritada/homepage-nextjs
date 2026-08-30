@@ -16,13 +16,13 @@ export default function BlogSection({ posts }: { posts: BlogPost[] }) {
 
   return (
     <Section id="blog">
-      <div className="w-4/5 max-w-6xl mx-auto px-5">
-        <h2 className="text-center mb-20 text-4xl font-bold relative">
+      <div className="w-full max-w-6xl mx-auto px-5 md:w-4/5">
+        <h2 className="text-center mb-14 md:mb-20 text-3xl md:text-4xl font-bold relative">
           Blog
           <span className="absolute bottom-[-15px] left-1/2 transform -translate-x-1/2 w-[70px] h-1 bg-primary"></span>
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {posts.map((post, index) => (
             <motion.div
               key={post.slug}

@@ -181,31 +181,31 @@ export default function WorksSection() {
 
   return (
     <Section id="works">
-      <div className="w-4/5 max-w-6xl mx-auto px-5">
-        <div className="text-center mb-16">
+      <div className="w-full max-w-6xl mx-auto px-5 md:w-4/5">
+        <div className="text-center mb-12 md:mb-16">
           <p className="text-primary text-sm tracking-widest uppercase mb-3 font-medium">{c.eyebrow}</p>
-          <h2 className="text-4xl font-bold relative inline-block">
+          <h2 className="text-3xl md:text-4xl font-bold relative inline-block">
             {c.heading}
             <span className="absolute bottom-[-12px] left-1/2 transform -translate-x-1/2 w-16 h-px bg-gradient-to-r from-transparent via-primary to-transparent"></span>
           </h2>
         </div>
 
         {/* Timeline */}
-        <div className="relative max-w-3xl mx-auto mb-20">
+        <div className="relative max-w-3xl mx-auto mb-14 md:mb-20">
           <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-primary/60 via-border to-transparent"></div>
           {c.timeline.map((item, i) => {
             const cfg = typeConfig[item.type]
             return (
               <motion.div
                 key={i}
-                className="relative pl-16 pb-10"
+                className="relative pl-12 md:pl-16 pb-8 md:pb-10"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ delay: i * 0.05, duration: 0.4 }}
               >
                 <div className={`absolute left-4 top-1 w-4 h-4 rounded-full border-2 ${cfg.border} ${cfg.bg} -translate-x-1/2`}></div>
-                <div className="glassmorphism rounded-xl p-5 hover:border-primary/25 transition-all">
+                <div className="glassmorphism rounded-xl p-4 md:p-5 hover:border-primary/25 transition-all">
                   <div className="flex flex-wrap items-center gap-2 mb-2">
                     <span className="text-xs text-muted font-mono">{item.date}</span>
                     <span className={`px-2 py-0.5 text-xs font-bold rounded-full ${cfg.bg} ${cfg.color}`}>
@@ -221,13 +221,13 @@ export default function WorksSection() {
         </div>
 
         {/* Project Cards */}
-        <div className="section-divider mb-16"></div>
-        <h3 className="text-2xl font-bold text-center mb-10 text-foreground">
+        <div className="section-divider mb-12 md:mb-16"></div>
+        <h3 className="text-xl md:text-2xl font-bold text-center mb-8 md:mb-10 text-foreground">
           {c.featuredHeading.split(' ')[0]}{' '}
           <span className="text-gradient">{c.featuredHeading.split(' ').slice(1).join(' ')}</span>
         </h3>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10">
           {c.projects.map((project, i) => (
             <motion.div
               key={i}
@@ -235,7 +235,7 @@ export default function WorksSection() {
               whileHover={{ y: -8, scale: 1.02 }}
               transition={{ type: 'spring', stiffness: 300 }}
             >
-              <div className="h-52 overflow-hidden relative">
+              <div className="h-44 sm:h-52 overflow-hidden relative">
                 <Image
                   src={project.image}
                   alt={project.title}
@@ -245,8 +245,8 @@ export default function WorksSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-surface/80 to-transparent"></div>
               </div>
-              <div className="p-6">
-                <h4 className="mb-3 text-xl font-bold text-foreground">{project.title}</h4>
+              <div className="p-5 md:p-6">
+                <h4 className="mb-3 text-lg md:text-xl font-bold text-foreground">{project.title}</h4>
                 <p className="text-muted mb-4 text-sm leading-relaxed">{project.description}</p>
                 <div className="flex flex-wrap gap-2 mb-5">
                   {project.tags.map((tag) => (

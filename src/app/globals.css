@@ -181,8 +181,32 @@ body {
   color: #c4c4e2;
   font-style: italic;
 }
-.prose-blog table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: 0.9rem; }
-.prose-blog th { background: rgba(0, 216, 255, 0.1); color: var(--color-foreground); font-weight: 600; text-align: left; padding: 0.75rem 1rem; border: 1px solid var(--color-border); }
+.prose-blog .prose-table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1.5rem;
+}
+.prose-blog table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.prose-blog th { background: rgba(0, 216, 255, 0.1); color: var(--color-foreground); font-weight: 600; text-align: left; padding: 0.75rem 1rem; border: 1px solid var(--color-border); white-space: nowrap; }
 .prose-blog td { padding: 0.75rem 1rem; border: 1px solid var(--color-border); }
 .prose-blog hr { border: none; border-top: 1px solid var(--color-border); margin: 2.5rem 0; }
 .prose-blog img { max-width: 100%; border-radius: 10px; margin: 1.5rem auto; display: block; }
+
+/* Blog prose — phone tuning */
+@media (max-width: 640px) {
+  .prose-blog {
+    font-size: 1rem;
+    line-height: 1.85;
+  }
+  .prose-blog h1 { font-size: 1.5rem; margin: 2rem 0 0.875rem; }
+  .prose-blog h2 { font-size: 1.25rem; margin: 2.25rem 0 1rem; }
+  .prose-blog h3 { font-size: 1.0625rem; margin: 1.75rem 0 0.625rem; }
+  .prose-blog p { margin-bottom: 1.25rem; }
+  .prose-blog ul, .prose-blog ol { margin-left: 1.25rem; }
+  .prose-blog pre { padding: 1rem; font-size: 0.8125rem; border-radius: 8px; }
+  .prose-blog blockquote { padding-left: 1rem; }
+  .prose-blog table { font-size: 0.8125rem; }
+  .prose-blog th, .prose-blog td { padding: 0.6rem 0.75rem; }
+  /* Long URLs and code must not widen the page */
+  .prose-blog a, .prose-blog code { overflow-wrap: anywhere; }
+}

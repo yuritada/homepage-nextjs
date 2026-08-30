@@ -37,14 +37,14 @@ export default function AboutSection() {
 
   return (
     <Section id="about">
-      <div className="w-4/5 max-w-6xl mx-auto px-5">
-        <h2 className="text-center mb-16 text-4xl font-bold relative">
+      <div className="w-full max-w-6xl mx-auto px-5 md:w-4/5">
+        <h2 className="text-center mb-12 md:mb-16 text-3xl md:text-4xl font-bold relative">
           {c.heading}
           <span className="absolute bottom-[-12px] left-1/2 transform -translate-x-1/2 w-16 h-px bg-gradient-to-r from-transparent via-primary to-transparent"></span>
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-center mb-16">
-          <div className="relative w-64 h-64 mx-auto rounded-2xl overflow-hidden border border-primary/20 shadow-xl shadow-primary/10 group animate-pulse-glow">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-center mb-12 md:mb-16">
+          <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 mx-auto rounded-2xl overflow-hidden border border-primary/20 shadow-xl shadow-primary/10 group animate-pulse-glow">
             <Image
               src="/profile.jpg"
               alt="Yuri Tada"
@@ -57,8 +57,8 @@ export default function AboutSection() {
           </div>
 
           <div className="md:col-span-2 space-y-5">
-            <p className="text-muted text-lg leading-relaxed">{c.p1}</p>
-            <p className="text-muted text-lg leading-relaxed">{c.p2}</p>
+            <p className="text-muted text-base md:text-lg leading-relaxed">{c.p1}</p>
+            <p className="text-muted text-base md:text-lg leading-relaxed">{c.p2}</p>
             <div className="flex flex-wrap gap-3 pt-2">
               {c.tags.map((tag) => (
                 <span key={tag} className="px-3 py-1 text-xs font-semibold tracking-wider border border-primary/30 text-primary rounded-full">
@@ -71,8 +71,8 @@ export default function AboutSection() {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {c.stats.map((s) => (
-            <div key={s.label} className="glassmorphism rounded-xl p-5 text-center hover:border-primary/30 transition-all">
-              <div className="text-3xl font-bold text-gradient mb-1">{s.value}</div>
+            <div key={s.label} className="glassmorphism rounded-xl p-4 md:p-5 text-center hover:border-primary/30 transition-all">
+              <div className="text-2xl md:text-3xl font-bold text-gradient mb-1">{s.value}</div>
               <div className="text-xs text-muted tracking-wider uppercase">{s.label}</div>
             </div>
           ))}

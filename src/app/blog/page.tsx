@@ -16,25 +16,25 @@ export default function BlogPage() {
       <Navigation />
       <main className="relative z-10 min-h-screen pt-28 pb-16">
         {/* Page header */}
-        <div className="w-4/5 max-w-4xl mx-auto px-5 mb-16">
+        <div className="w-full max-w-4xl mx-auto px-5 md:w-4/5 mb-10 md:mb-16">
           <Link
             href="/"
             className="inline-flex items-center gap-2 text-muted text-sm hover:text-primary-light transition-colors mb-8"
           >
             ← ホームに戻る
           </Link>
-          <h1 className="text-5xl font-bold mb-4 text-gradient">Blog</h1>
-          <p className="text-muted">技術的な学び、イベント感想、日々の気づきなど。</p>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gradient">Blog</h1>
+          <p className="text-muted text-sm md:text-base">技術的な学び、イベント感想、日々の気づきなど。</p>
         </div>
 
         {/* Post list */}
-        <div className="w-4/5 max-w-4xl mx-auto px-5 space-y-6">
+        <div className="w-full max-w-4xl mx-auto px-5 md:w-4/5 space-y-6">
           {posts.length === 0 ? (
             <p className="text-muted">記事はまだありません。</p>
           ) : (
             posts.map((post) => (
               <Link key={post.slug} href={`/blog/${post.slug}`} className="block group">
-                <div className="glassmorphism rounded-xl p-6 transition-all duration-200 group-hover:border-primary/40 group-hover:shadow-lg group-hover:shadow-primary/10">
+                <div className="glassmorphism rounded-xl p-5 md:p-6 transition-all duration-200 group-hover:border-primary/40 group-hover:shadow-lg group-hover:shadow-primary/10">
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2 mb-3">
                     {post.tags.map((tag) => (
@@ -47,7 +47,7 @@ export default function BlogPage() {
                     ))}
                   </div>
 
-                  <h2 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                  <h2 className="text-lg md:text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
                     {post.title}
                   </h2>
                   <p className="text-muted text-sm leading-relaxed mb-4">{post.summary}</p>

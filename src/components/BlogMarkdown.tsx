@@ -59,6 +59,14 @@ const components: Components = {
       </li>
     )
   },
+  table({ children }) {
+    // Wide tables scroll inside their own box instead of stretching the page
+    return (
+      <div className="prose-table-scroll">
+        <table>{children}</table>
+      </div>
+    )
+  },
   a({ href, children }) {
     const external = typeof href === 'string' && /^https?:\/\//.test(href)
     return (

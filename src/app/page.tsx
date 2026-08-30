@@ -19,17 +19,17 @@ export default function Home() {
       <Header />
       <main className="relative z-10">
         <AboutSection />
-        <div className="section-divider w-4/5 max-w-6xl mx-auto"></div>
+        <div className="section-divider w-[90%] max-w-6xl mx-auto"></div>
         <PhilosophySection />
-        <div className="section-divider w-4/5 max-w-6xl mx-auto"></div>
+        <div className="section-divider w-[90%] max-w-6xl mx-auto"></div>
         <ResearchSection />
-        <div className="section-divider w-4/5 max-w-6xl mx-auto"></div>
+        <div className="section-divider w-[90%] max-w-6xl mx-auto"></div>
         <WorksSection />
-        <div className="section-divider w-4/5 max-w-6xl mx-auto"></div>
+        <div className="section-divider w-[90%] max-w-6xl mx-auto"></div>
         <SkillsSection />
-        <div className="section-divider w-4/5 max-w-6xl mx-auto"></div>
+        <div className="section-divider w-[90%] max-w-6xl mx-auto"></div>
         <EducationSection />
-        <div className="section-divider w-4/5 max-w-6xl mx-auto"></div>
+        <div className="section-divider w-[90%] max-w-6xl mx-auto"></div>
         <BlogSection posts={latestPosts} />
         <ContactSection />
       </main>
