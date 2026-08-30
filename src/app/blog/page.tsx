@@ -19,7 +19,7 @@ export default function BlogPage() {
         <div className="w-4/5 max-w-4xl mx-auto px-5 mb-16">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-muted text-sm hover:text-primary transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-muted text-sm hover:text-primary-light transition-colors mb-8"
           >
             ← ホームに戻る
           </Link>
@@ -40,7 +40,7 @@ export default function BlogPage() {
                     {post.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-xs px-2 py-0.5 rounded-full border border-primary/30 text-primary/80"
+                        className="text-xs px-2 py-0.5 rounded-full border border-primary/40 bg-primary/10 text-primary-light font-medium"
                       >
                         {tag}
                       </span>
@@ -54,7 +54,7 @@ export default function BlogPage() {
 
                   <div className="flex items-center justify-between">
                     <time className="text-muted text-xs">{formatDate(post.date)}</time>
-                    <span className="text-primary text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="text-primary-light text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
                       読む →
                     </span>
                   </div>

@@ -10,6 +10,8 @@ export type BlogPost = {
   date: string
   tags: string[]
   summary: string
+  slides?: string
+  slidesTitle?: string
   content: string
 }
 
@@ -29,6 +31,8 @@ export function getAllPosts(): BlogPost[] {
         date: data.date ?? '',
         tags: data.tags ?? [],
         summary: data.summary ?? '',
+        slides: data.slides ?? undefined,
+        slidesTitle: data.slidesTitle ?? undefined,
         content,
       }
     })
@@ -46,6 +50,8 @@ export function getPostBySlug(slug: string): BlogPost | null {
     date: data.date ?? '',
     tags: data.tags ?? [],
     summary: data.summary ?? '',
+    slides: data.slides ?? undefined,
+    slidesTitle: data.slidesTitle ?? undefined,
     content,
   }
 }

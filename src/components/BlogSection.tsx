@@ -42,7 +42,7 @@ export default function BlogSection({ posts }: { posts: BlogPost[] }) {
                     {post.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-xs px-2 py-0.5 rounded-full border border-primary/30 text-primary/80"
+                        className="text-xs px-2 py-0.5 rounded-full border border-primary/40 bg-primary/10 text-primary-light font-medium"
                       >
                         {tag}
                       </span>

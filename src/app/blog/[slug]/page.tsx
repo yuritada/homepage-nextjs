@@ -1,8 +1,7 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
 import { getAllPosts, getPostBySlug, formatDate } from '@/lib/blog'
+import BlogMarkdown from '@/components/BlogMarkdown'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import type { Metadata } from 'next'
@@ -42,7 +41,7 @@ export default async function BlogPostPage({
           {/* Back link */}
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-muted text-sm hover:text-primary transition-colors mb-10"
+            className="inline-flex items-center gap-2 text-muted text-sm hover:text-primary-light transition-colors mb-10"
           >
             ← ブログ一覧に戻る
           </Link>
@@ -53,7 +52,7 @@ export default async function BlogPostPage({
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="text-xs px-3 py-1 rounded-full border border-primary/30 text-primary/80"
+                  className="text-xs px-3 py-1 rounded-full border border-primary/40 bg-primary/10 text-primary-light font-medium"
                 >
                   {tag}
                 </span>
@@ -69,17 +68,54 @@ export default async function BlogPostPage({
           <div className="section-divider mb-10" />
 
           {/* Markdown content */}
-          <div className="prose-blog">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {post.content}
-            </ReactMarkdown>
-          </div>
+          <BlogMarkdown content={post.content} />
+
+          {/* Slides (PDF) */}
+          {post.slides && (
+            <section className="mt-14">
+              <h2 className="text-xl md:text-2xl font-bold text-primary border-b border-primary/20 pb-2 mb-6">
+                スライド資料
+              </h2>
+              <div className="glassmorphism rounded-xl overflow-hidden">
+                <object
+                  data={post.slides}
+                  type="application/pdf"
+                  className="w-full h-[420px] md:h-[560px] bg-black/40"
+                  aria-label={post.slidesTitle ?? `${post.title} のスライド資料`}
+                >
+                  <div className="p-6 text-muted text-sm">
+                    お使いのブラウザではPDFを表示できません。下のリンクからご覧ください。
+                  </div>
+                </object>
+              </div>
+              <div className="mt-4 flex flex-wrap items-center gap-4">
+                <a
+                  href={post.slides}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-primary-light text-sm font-medium hover:text-white transition-colors"
+                >
+                  別タブで開く ↗
+                </a>
+                <a
+                  href={post.slides}
+                  download
+                  className="inline-flex items-center gap-2 text-muted text-sm hover:text-primary-light transition-colors"
+                >
+                  PDFをダウンロード ↓
+                </a>
+              </div>
+              {post.slidesTitle && (
+                <p className="mt-3 text-muted text-xs">{post.slidesTitle}</p>
+              )}
+            </section>
+          )}
 
           {/* Footer nav */}
           <div className="mt-16 pt-8 border-t border-border">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-primary text-sm font-medium hover:text-primary-light transition-colors"
+              className="inline-flex items-center gap-2 text-primary-light text-sm font-medium hover:text-white transition-colors"
             >
               ← ブログ一覧に戻る
             </Link>
