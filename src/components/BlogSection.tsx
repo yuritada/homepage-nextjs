@@ -3,15 +3,13 @@
 import Link from 'next/link'
 import Section from '@/components/Section'
 import { motion } from 'framer-motion'
-import type { BlogPost } from '@/lib/blog'
-
-function formatDate(dateStr: string): string {
-  const d = new Date(dateStr)
-  if (isNaN(d.getTime())) return dateStr
-  return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`
-}
+import { useLanguage } from '@/contexts/LanguageContext'
+import { formatDate, blogUI, type BlogPost } from '@/lib/post'
 
 export default function BlogSection({ posts }: { posts: BlogPost[] }) {
+  const { lang } = useLanguage()
+  const t = blogUI[lang]
+
   if (posts.length === 0) return null
 
   return (
@@ -23,7 +21,9 @@ export default function BlogSection({ posts }: { posts: BlogPost[] }) {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {posts.map((post, index) => (
+          {posts.map((post, index) => {
+            const c = post[lang]
+            return (
             <motion.div
               key={post.slug}
               initial={{ opacity: 0, y: 30 }}
@@ -39,7 +39,7 @@ export default function BlogSection({ posts }: { posts: BlogPost[] }) {
                 >
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2 mb-3">
-                    {post.tags.map((tag) => (
+                    {c.tags.map((tag) => (
                       <span
                         key={tag}
                         className="text-xs px-2 py-0.5 rounded-full border border-primary/40 bg-primary/10 text-primary-light font-medium"
@@ -51,23 +51,24 @@ export default function BlogSection({ posts }: { posts: BlogPost[] }) {
 
                   {/* Title */}
                   <h3 className="text-lg font-semibold text-foreground mb-2 leading-snug">
-                    {post.title}
+                    {c.title}
                   </h3>
 
                   {/* Summary */}
                   <p className="text-muted text-sm leading-relaxed flex-1">
-                    {post.summary}
+                    {c.summary}
                   </p>
 
                   {/* Footer */}
                   <div className="flex items-center justify-between mt-4 pt-4 border-t border-border">
-                    <span className="text-muted text-xs">{formatDate(post.date)}</span>
-                    <span className="text-primary text-xs font-medium">読む →</span>
+                    <span className="text-muted text-xs">{formatDate(post.date, lang)}</span>
+                    <span className="text-primary text-xs font-medium">{t.read}</span>
                   </div>
                 </motion.div>
               </Link>
             </motion.div>
-          ))}
+            )
+          })}
         </div>
 
         {/* All posts link */}
@@ -76,7 +77,7 @@ export default function BlogSection({ posts }: { posts: BlogPost[] }) {
             href="/blog"
             className="inline-block border border-primary/50 text-primary py-2.5 px-8 rounded-full text-sm font-semibold transition-all hover:bg-primary/10 hover:border-primary tracking-wide"
           >
-            すべての記事を見る
+            {t.allPosts}
           </Link>
         </div>
       </div>
