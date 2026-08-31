@@ -12,7 +12,7 @@ export default function Section({ children, id, className = '' }: SectionProps) 
   return (
     <motion.section
       id={id}
-      className={`py-24 relative ${className}`}
+      className={`py-16 md:py-24 relative ${className}`}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}

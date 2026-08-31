@@ -30,7 +30,7 @@ export default function ScrollToTop() {
     <AnimatePresence>
       {isVisible && (
         <motion.button
-          className="fixed bottom-8 right-8 w-14 h-14 rounded-full bg-primary text-white border-none text-2xl cursor-pointer flex justify-center items-center z-50 shadow-lg shadow-primary/40"
+          className="fixed bottom-5 right-4 md:bottom-8 md:right-8 w-12 h-12 md:w-14 md:h-14 rounded-full bg-primary text-white border-none text-xl md:text-2xl cursor-pointer flex justify-center items-center z-40 shadow-lg shadow-primary/40"
           onClick={scrollToTop}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

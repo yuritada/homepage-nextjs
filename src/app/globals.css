@@ -9,7 +9,7 @@
   --color-background: #050510;
   --color-surface: #0a0a1e;
   --color-foreground: #eeeeff;
-  --color-muted: #7878a8;
+  --color-muted: #9a9ac4;
   --color-border: #181838;
 
   --font-family-sans: 'Space Grotesk', sans-serif;
@@ -96,4 +96,117 @@ body {
 .section-divider {
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(0, 216, 255, 0.3), transparent);
+}
+
+/* Blog markdown prose */
+.prose-blog {
+  color: #d6d6ee;
+  line-height: 1.9;
+  font-size: 1.0625rem;
+  letter-spacing: 0.01em;
+}
+.prose-blog h1 { font-size: 1.875rem; font-weight: 700; color: var(--color-foreground); margin: 2.5rem 0 1rem; }
+.prose-blog h2 { font-size: 1.5rem; font-weight: 700; color: #8ceaff; border-bottom: 1px solid rgba(0, 216, 255, 0.25); padding-bottom: 0.5rem; margin: 3rem 0 1.25rem; }
+.prose-blog h3 { font-size: 1.1875rem; font-weight: 600; color: var(--color-foreground); margin: 2.25rem 0 0.75rem; }
+.prose-blog p { margin-bottom: 1.5rem; }
+.prose-blog a {
+  color: #9beeff;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(155, 238, 255, 0.35);
+  text-underline-offset: 4px;
+  border-radius: 3px;
+  padding: 0 0.1em;
+  transition: color 0.15s ease, background-color 0.15s ease, text-decoration-color 0.15s ease;
+}
+.prose-blog a:hover {
+  color: #d6f8ff;
+  background-color: rgba(0, 216, 255, 0.12);
+  text-decoration-color: rgba(214, 248, 255, 0.8);
+}
+.prose-blog a:focus-visible {
+  outline: 2px solid var(--color-primary-light);
+  outline-offset: 2px;
+}
+.prose-blog ul { list-style: disc; margin: 0 0 1.5rem 1.5rem; }
+.prose-blog ol { list-style: decimal; margin: 0 0 1.5rem 1.5rem; }
+.prose-blog li { margin-bottom: 0.4rem; }
+.prose-blog strong { color: var(--color-foreground); font-weight: 600; }
+.prose-blog em { font-style: italic; }
+.prose-blog code {
+  background: rgba(0, 216, 255, 0.12);
+  color: #a5efff;
+  padding: 0.15em 0.45em;
+  border-radius: 4px;
+  font-size: 0.875em;
+  font-family: 'Fira Code', 'Courier New', monospace;
+}
+.prose-blog strong code,
+.prose-blog strong a code,
+.prose-blog a strong code {
+  background: rgba(0, 216, 255, 0.16);
+  border: 1px solid rgba(0, 216, 255, 0.45);
+  color: #b7f4ff;
+  font-weight: 700;
+  font-size: 0.95em;
+  padding: 0.18em 0.5em;
+  box-shadow: 0 0 12px rgba(0, 216, 255, 0.18);
+}
+.prose-blog a code {
+  text-decoration: inherit;
+}
+.prose-blog th strong code,
+.prose-blog td strong code {
+  box-shadow: none;
+}
+.prose-blog pre {
+  background: rgba(5, 5, 20, 0.95);
+  border: 1px solid rgba(0, 216, 255, 0.15);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.75rem;
+  overflow-x: auto;
+}
+.prose-blog pre code {
+  background: transparent;
+  padding: 0;
+  color: #e0e8ff;
+  font-size: 0.9em;
+}
+.prose-blog blockquote {
+  border-left: 3px solid var(--color-primary);
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  margin: 0 0 1.5rem;
+  color: #c4c4e2;
+  font-style: italic;
+}
+.prose-blog .prose-table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1.5rem;
+}
+.prose-blog table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.prose-blog th { background: rgba(0, 216, 255, 0.1); color: var(--color-foreground); font-weight: 600; text-align: left; padding: 0.75rem 1rem; border: 1px solid var(--color-border); white-space: nowrap; }
+.prose-blog td { padding: 0.75rem 1rem; border: 1px solid var(--color-border); }
+.prose-blog hr { border: none; border-top: 1px solid var(--color-border); margin: 2.5rem 0; }
+.prose-blog img { max-width: 100%; border-radius: 10px; margin: 1.5rem auto; display: block; }
+
+/* Blog prose — phone tuning */
+@media (max-width: 640px) {
+  .prose-blog {
+    font-size: 1rem;
+    line-height: 1.85;
+  }
+  .prose-blog h1 { font-size: 1.5rem; margin: 2rem 0 0.875rem; }
+  .prose-blog h2 { font-size: 1.25rem; margin: 2.25rem 0 1rem; }
+  .prose-blog h3 { font-size: 1.0625rem; margin: 1.75rem 0 0.625rem; }
+  .prose-blog p { margin-bottom: 1.25rem; }
+  .prose-blog ul, .prose-blog ol { margin-left: 1.25rem; }
+  .prose-blog pre { padding: 1rem; font-size: 0.8125rem; border-radius: 8px; }
+  .prose-blog blockquote { padding-left: 1rem; }
+  .prose-blog table { font-size: 0.8125rem; }
+  .prose-blog th, .prose-blog td { padding: 0.6rem 0.75rem; }
+  /* Long URLs and code must not widen the page */
+  .prose-blog a, .prose-blog code { overflow-wrap: anywhere; }
 }

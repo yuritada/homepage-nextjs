@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 const navLinks = {
@@ -10,6 +11,7 @@ const navLinks = {
     { href: '#research',   label: 'Research' },
     { href: '#works',      label: 'Works' },
     { href: '#skills',     label: 'Skills' },
+    { href: '/blog',       label: 'Blog' },
     { href: '#contact',    label: 'Contact' },
   ],
   en: [
@@ -18,6 +20,7 @@ const navLinks = {
     { href: '#research',   label: 'Research' },
     { href: '#works',      label: 'Works' },
     { href: '#skills',     label: 'Skills' },
+    { href: '/blog',       label: 'Blog' },
     { href: '#contact',    label: 'Contact' },
   ],
 }
@@ -32,6 +35,14 @@ export default function Navigation() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Prevent the page behind the mobile drawer from scrolling
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isMenuOpen])
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith('#')) {
@@ -55,7 +66,16 @@ export default function Navigation() {
           : 'bg-transparent py-4'
       }`}
     >
-      <div className="flex justify-between items-center px-[5%] max-w-7xl mx-auto">
+      {/* Backdrop (mobile drawer) */}
+      <div
+        className={`md:hidden fixed inset-0 bg-background/70 backdrop-blur-sm transition-opacity duration-300 ${
+          isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={() => setIsMenuOpen(false)}
+        aria-hidden="true"
+      />
+
+      <div className="flex justify-between items-center px-5 md:px-[5%] max-w-7xl mx-auto">
         <a
           href="#home"
           onClick={(e) => handleNavClick(e, '#home')}
@@ -67,19 +87,33 @@ export default function Navigation() {
         <ul
           className={`nav-links list-none ${
             isMenuOpen
-              ? 'flex flex-col fixed right-0 top-0 h-full w-3/4 bg-surface/95 backdrop-blur-lg justify-center items-center shadow-2xl border-l border-border'
+              ? 'flex flex-col fixed right-0 top-0 h-[100dvh] w-64 max-w-[80%] bg-surface/95 backdrop-blur-lg justify-center items-center shadow-2xl border-l border-border overflow-y-auto py-20'
               : 'hidden md:flex md:space-x-8'
           }`}
         >
           {links.map(({ href, label }) => (
-            <li key={href} className={isMenuOpen ? 'my-4' : ''}>
-              <a
-                href={href}
-                onClick={(e) => handleNavClick(e, href)}
-                className="text-muted no-underline font-medium text-sm tracking-widest uppercase relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-0 after:h-px after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:text-primary transition-colors"
-              >
-                {label}
-              </a>
+            <li key={href} className={isMenuOpen ? 'my-1' : ''}>
+              {href.startsWith('/') ? (
+                <Link
+                  href={href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`no-underline font-medium tracking-widest uppercase relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-0 after:h-px after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:text-primary transition-colors ${
+                    isMenuOpen ? 'block text-foreground text-base py-3 px-6' : 'text-muted text-sm'
+                  }`}
+                >
+                  {label}
+                </Link>
+              ) : (
+                <a
+                  href={href}
+                  onClick={(e) => handleNavClick(e, href)}
+                  className={`no-underline font-medium tracking-widest uppercase relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-0 after:h-px after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:text-primary transition-colors ${
+                    isMenuOpen ? 'block text-foreground text-base py-3 px-6' : 'text-muted text-sm'
+                  }`}
+                >
+                  {label}
+                </a>
+              )}
             </li>
           ))}
 
@@ -99,7 +133,7 @@ export default function Navigation() {
 
           {/* Hamburger */}
           <button
-            className="md:hidden cursor-pointer z-50"
+            className="md:hidden cursor-pointer z-50 -mr-2 p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isMenuOpen}

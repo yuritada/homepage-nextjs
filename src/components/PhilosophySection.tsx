@@ -69,24 +69,24 @@ export default function PhilosophySection() {
 
   return (
     <Section id="philosophy">
-      <div className="w-4/5 max-w-6xl mx-auto px-5">
-        <div className="text-center mb-16">
+      <div className="w-full max-w-6xl mx-auto px-5 md:w-4/5">
+        <div className="text-center mb-12 md:mb-16">
           <p className="text-primary text-sm tracking-widest uppercase mb-3 font-medium">{c.eyebrow}</p>
-          <h2 className="text-4xl font-bold relative inline-block">
+          <h2 className="text-3xl md:text-4xl font-bold relative inline-block">
             {c.heading}
             <span className="absolute bottom-[-12px] left-1/2 transform -translate-x-1/2 w-16 h-px bg-gradient-to-r from-transparent via-primary to-transparent"></span>
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {c.pillars.map((pillar, i) => (
             <motion.div
               key={i}
-              className="relative glassmorphism rounded-2xl p-8 overflow-hidden group"
+              className="relative glassmorphism rounded-2xl p-6 md:p-8 overflow-hidden group"
               whileHover={{ y: -8 }}
               transition={{ type: 'spring', stiffness: 300 }}
             >
-              <div className={`absolute -top-4 -right-2 text-8xl font-black opacity-5 select-none ${pillar.accent === 'accent' ? 'text-accent' : 'text-primary'}`}>
+              <div className={`absolute -top-4 -right-2 text-6xl md:text-8xl font-black opacity-5 select-none ${pillar.accent === 'accent' ? 'text-accent' : 'text-primary'}`}>
                 {pillar.number}
               </div>
               <div className={`text-4xl mb-5 ${pillar.accent === 'accent' ? 'text-accent' : 'text-primary'}`}>
@@ -100,13 +100,13 @@ export default function PhilosophySection() {
         </div>
 
         <motion.div
-          className="mt-16 text-center"
+          className="mt-12 md:mt-16 text-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
         >
-          <p className="text-2xl md:text-3xl font-bold text-gradient leading-snug">{c.quote}</p>
+          <p className="text-xl md:text-3xl font-bold text-gradient leading-snug">{c.quote}</p>
         </motion.div>
       </div>
     </Section>

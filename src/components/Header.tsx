@@ -87,7 +87,7 @@ export default function Header() {
   const c = content[lang]
 
   return (
-    <header id="home" className="relative h-screen flex flex-col items-center justify-center text-center overflow-hidden">
+    <header id="home" className="relative min-h-[100svh] flex flex-col items-center justify-center text-center overflow-hidden py-24">
       <Starfield />
 
       {/* Grid overlay */}
@@ -100,20 +100,20 @@ export default function Header() {
         }}
       />
 
-      <div className="relative z-10 flex flex-col items-center px-4">
+      <div className="relative z-10 flex flex-col items-center w-full px-5">
         {/* Badge */}
-        <div className="mb-6 px-4 py-1.5 rounded-full border border-primary/40 text-primary text-sm font-medium tracking-widest animate-pulse-glow">
+        <div className="mb-6 px-3 py-1.5 md:px-4 rounded-full border border-primary/40 text-primary text-[0.7rem] sm:text-xs md:text-sm font-medium tracking-wide md:tracking-widest animate-pulse-glow max-w-full">
           {c.badge}
         </div>
 
         {/* Title */}
-        <h1 className="text-5xl md:text-8xl font-bold mb-6 tracking-tighter h-24 text-gradient">
+        <h1 className="text-4xl sm:text-5xl md:text-8xl font-bold mb-4 md:mb-6 tracking-tighter h-14 sm:h-16 md:h-28 text-gradient">
           {title}
           {!isTitleDone && <span className="animate-blink text-primary">|</span>}
         </h1>
 
         {/* Subtitle */}
-        <p className="text-xl md:text-2xl text-muted mb-10 max-w-2xl h-32 leading-relaxed">
+        <p className="text-base sm:text-lg md:text-2xl text-muted mb-8 md:mb-10 max-w-2xl min-h-[7.5rem] sm:min-h-[8rem] md:h-32 leading-relaxed px-2">
           {subtitle.split('\n').map((line, i) => (
             <Fragment key={i}>
               {line}
@@ -126,16 +126,16 @@ export default function Header() {
         </p>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex flex-col sm:flex-row gap-4 w-full max-w-xs sm:max-w-none sm:w-auto">
           <a
             href="#research"
-            className="bg-primary text-background py-3 px-8 rounded-full text-base font-bold transition-all hover:scale-105 shadow-lg shadow-primary/30 tracking-wide"
+            className="bg-primary text-background py-3 px-8 rounded-full text-base font-bold transition-all hover:scale-105 shadow-lg shadow-primary/30 tracking-wide text-center"
           >
             {c.cta1}
           </a>
           <a
             href="#contact"
-            className="border border-primary/50 text-primary py-3 px-8 rounded-full text-base font-semibold transition-all hover:bg-primary/10 hover:border-primary tracking-wide"
+            className="border border-primary/50 text-primary py-3 px-8 rounded-full text-base font-semibold transition-all hover:bg-primary/10 hover:border-primary tracking-wide text-center"
           >
             {c.cta2}
           </a>
@@ -143,7 +143,7 @@ export default function Header() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted text-xs tracking-widest">
+      <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2 text-muted text-xs tracking-widest">
         <span>SCROLL</span>
         <div className="w-px h-10 bg-gradient-to-b from-primary/60 to-transparent"></div>
       </div>
