@@ -1,18 +1,56 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
+import type { BlogPost, PostContent } from '@/lib/post'
 
 const BLOG_DIR = path.join(process.cwd(), 'content/blog')
+const EN_DIR = path.join(BLOG_DIR, 'en')
 
-export type BlogPost = {
-  slug: string
-  title: string
+export type { BlogPost, PostContent } from '@/lib/post'
+export { formatDate } from '@/lib/post'
+
+type ParsedPost = {
   date: string
-  tags: string[]
-  summary: string
   slides?: string
-  slidesTitle?: string
-  content: string
+  content: PostContent
+}
+
+function parsePost(filepath: string): ParsedPost | null {
+  if (!fs.existsSync(filepath)) return null
+
+  const { data, content } = matter(fs.readFileSync(filepath, 'utf-8'))
+  return {
+    date: data.date ?? '',
+    slides: data.slides ?? undefined,
+    content: {
+      title: data.title ?? '',
+      summary: data.summary ?? '',
+      tags: data.tags ?? [],
+      slidesTitle: data.slidesTitle ?? undefined,
+      content,
+    },
+  }
+}
+
+/**
+ * Load one post in both languages.
+ *
+ * Japanese is the source of truth: it supplies the slug, date and slide deck, and
+ * stands in for any post whose English translation has not been written yet.
+ */
+function buildPost(slug: string): BlogPost | null {
+  const jp = parsePost(path.join(BLOG_DIR, `${slug}.md`))
+  if (!jp) return null
+
+  const en = parsePost(path.join(EN_DIR, `${slug}.md`))
+
+  return {
+    slug,
+    date: jp.date,
+    slides: jp.slides,
+    jp: jp.content,
+    en: en?.content ?? jp.content,
+  }
 }
 
 export function getAllPosts(): BlogPost[] {
@@ -21,43 +59,11 @@ export function getAllPosts(): BlogPost[] {
   return fs
     .readdirSync(BLOG_DIR)
     .filter((f) => f.endsWith('.md'))
-    .map((filename) => {
-      const slug = filename.replace(/\.md$/, '')
-      const raw = fs.readFileSync(path.join(BLOG_DIR, filename), 'utf-8')
-      const { data, content } = matter(raw)
-      return {
-        slug,
-        title: data.title ?? slug,
-        date: data.date ?? '',
-        tags: data.tags ?? [],
-        summary: data.summary ?? '',
-        slides: data.slides ?? undefined,
-        slidesTitle: data.slidesTitle ?? undefined,
-        content,
-      }
-    })
+    .map((filename) => buildPost(filename.replace(/\.md$/, '')))
+    .filter((post): post is BlogPost => post !== null)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 }
 
 export function getPostBySlug(slug: string): BlogPost | null {
-  const filepath = path.join(BLOG_DIR, `${slug}.md`)
-  if (!fs.existsSync(filepath)) return null
-  const raw = fs.readFileSync(filepath, 'utf-8')
-  const { data, content } = matter(raw)
-  return {
-    slug,
-    title: data.title ?? slug,
-    date: data.date ?? '',
-    tags: data.tags ?? [],
-    summary: data.summary ?? '',
-    slides: data.slides ?? undefined,
-    slidesTitle: data.slidesTitle ?? undefined,
-    content,
-  }
-}
-
-export function formatDate(dateStr: string): string {
-  const d = new Date(dateStr)
-  if (isNaN(d.getTime())) return dateStr
-  return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`
+  return buildPost(slug)
 }
