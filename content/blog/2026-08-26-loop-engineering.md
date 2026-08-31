@@ -1,6 +1,6 @@
 ---
 title: "月1.7万円のClaude Maxに課金して自律AI組織を作ったら「ただの承認マシーン」になって絶望した話"
-date: "2026-08-31"
+date: "2026-08-26"
 tags: ["AI", "Claude", "開発体験", "LT", "イベントレポート"]
 summary: "MeetStageTokyo#1でLT登壇してきました。夏休みにClaude Max 5xへ課金し、自律AIエージェント組織「claude-factory」を作った結果、開発体験が虚無になった話。そこから辿り着いた「ループエンジニアリング」という発散と収束のバランスについてまとめます。"
 slides: "/slides/summer-ai-lt.pdf"
