@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 const navLinks = {
@@ -27,8 +28,13 @@ const navLinks = {
 
 export default function Navigation() {
   const { lang, toggle } = useLanguage()
+  const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+
+  // The section anchors (#about, #research, ...) only exist on the home page.
+  // Anywhere else (e.g. /blog) they must route home first, or they do nothing.
+  const isHome = pathname === '/'
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
@@ -76,13 +82,23 @@ export default function Navigation() {
       />
 
       <div className="flex justify-between items-center px-5 md:px-[5%] max-w-7xl mx-auto">
-        <a
-          href="#home"
-          onClick={(e) => handleNavClick(e, '#home')}
-          className="text-2xl font-bold text-gradient cursor-pointer tracking-tighter"
-        >
-          YT.
-        </a>
+        {isHome ? (
+          <a
+            href="#home"
+            onClick={(e) => handleNavClick(e, '#home')}
+            className="text-2xl font-bold text-gradient cursor-pointer tracking-tighter"
+          >
+            YT.
+          </a>
+        ) : (
+          <Link
+            href="/"
+            onClick={() => setIsMenuOpen(false)}
+            className="text-2xl font-bold text-gradient cursor-pointer tracking-tighter"
+          >
+            YT.
+          </Link>
+        )}
 
         <ul
           className={`nav-links list-none ${
@@ -91,31 +107,30 @@ export default function Navigation() {
               : 'hidden md:flex md:space-x-8'
           }`}
         >
-          {links.map(({ href, label }) => (
-            <li key={href} className={isMenuOpen ? 'my-1' : ''}>
-              {href.startsWith('/') ? (
-                <Link
-                  href={href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`no-underline font-medium tracking-widest uppercase relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-0 after:h-px after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:text-primary transition-colors ${
-                    isMenuOpen ? 'block text-foreground text-base py-3 px-6' : 'text-muted text-sm'
-                  }`}
-                >
-                  {label}
-                </Link>
-              ) : (
-                <a
-                  href={href}
-                  onClick={(e) => handleNavClick(e, href)}
-                  className={`no-underline font-medium tracking-widest uppercase relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-0 after:h-px after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:text-primary transition-colors ${
-                    isMenuOpen ? 'block text-foreground text-base py-3 px-6' : 'text-muted text-sm'
-                  }`}
-                >
-                  {label}
-                </a>
-              )}
-            </li>
-          ))}
+          {links.map(({ href, label }) => {
+            const isAnchor = href.startsWith('#')
+            const linkClass = `no-underline font-medium tracking-widest uppercase relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-0 after:h-px after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:text-primary transition-colors ${
+              isMenuOpen ? 'block text-foreground text-base py-3 px-6' : 'text-muted text-sm'
+            }`
+
+            return (
+              <li key={href} className={isMenuOpen ? 'my-1' : ''}>
+                {isAnchor && isHome ? (
+                  <a href={href} onClick={(e) => handleNavClick(e, href)} className={linkClass}>
+                    {label}
+                  </a>
+                ) : (
+                  <Link
+                    href={isAnchor ? `/${href}` : href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={linkClass}
+                  >
+                    {label}
+                  </Link>
+                )}
+              </li>
+            )
+          })}
 
           {/* Language toggle — inline in mobile menu */}
           {isMenuOpen && (
