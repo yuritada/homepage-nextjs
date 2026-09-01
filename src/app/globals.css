@@ -102,62 +102,78 @@ body {
 }
 
 /* ---------------------------------------------------------------------------
-   Blog article — a light "paper" surface laid on the dark page.
+   Blog — a light surface.
 
    Long-form reading is the one place where the site's dark palette tires the
-   eye, so the article itself gets a light scope of its own. Everything around
-   it (nav, back link, slides, footer) stays on the dark theme: the edge of the
-   paper is what makes the switch read as intentional. The site accents
-   (#00d8ff / #ffd700) are unusable on white — under 2:1 contrast — so this
-   scope carries its own darker teal and blue.
+   eye, so everything under /blog runs light. The switch is a scope, not a fork:
+   the theme tokens are simply redefined here, so the existing utilities
+   (text-muted, bg-surface, border-primary/40, ...) re-resolve on their own and
+   the components stay unaware of which surface they are on.
+
+   The site accents (#00d8ff / #ffd700) are unusable on white — both under 2:1
+   contrast — so this scope carries a darker teal and amber in their place.
    --------------------------------------------------------------------------- */
-.article-paper,
-.prose-blog {
-  --paper-bg: #ffffff;
-  --paper-text: #262933;
-  --paper-heading: #12141c;
-  --paper-muted: #646980;
-  --paper-link: #0369a1;
-  --paper-link-hover: #024f7c;
-  --paper-accent: #0e7490;
-  --paper-rule: #e4e7ee;
-  --paper-fill: #f3f5f9;
+.blog-light {
+  --color-primary: #0e7490;
+  --color-primary-light: #155e75;
+  --color-accent: #b45309;
+  --color-accent-light: #92400e;
+  --color-background: #ffffff;
+  --color-surface: #f4f6fa;
+  --color-foreground: #12141c;
+  --color-muted: #5c6072;
+  --color-border: #e0e4ec;
+
+  background-color: var(--color-background);
+  color: var(--color-foreground);
 }
 
-.article-paper {
-  background: var(--paper-bg);
-  color: var(--paper-text);
-  border-radius: 16px;
-  padding: 1.75rem 1.375rem;
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
+/* Effects built for the dark theme: the blur and the cyan glow have nothing to
+   sit on here, so the card becomes a plain filled panel. */
+.blog-light .glassmorphism,
+.blog-light .glassmorphism-accent {
+  background: var(--color-surface);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid var(--color-border);
 }
 
-/* The page-wide divider is a cyan glow built for the dark background. */
-.article-paper .section-divider {
-  background: linear-gradient(90deg, transparent, var(--paper-rule), transparent);
+.blog-light .section-divider {
+  background: linear-gradient(90deg, transparent, var(--color-border), transparent);
 }
 
-.article-paper .paper-title { color: var(--paper-heading); }
-.article-paper .paper-meta { color: var(--paper-muted); }
-.article-paper .paper-tag {
-  color: var(--paper-accent);
-  background: rgba(14, 116, 144, 0.08);
-  border: 1px solid rgba(14, 116, 144, 0.25);
+/* A white scrim over a white page is invisible, and then nothing tells the
+   reader that tapping outside closes the drawer. */
+.blog-light .nav-scrim {
+  background-color: rgb(18 20 28 / 0.35);
 }
+
+/* `body` is what shows through on overscroll, and the page scrollbar belongs to
+   an element outside the scope — both need the light values spelled out. */
+body:has(.blog-light) { background-color: #ffffff; }
+html:has(.blog-light) { scrollbar-color: #b7bdcc #ffffff; }
+html:has(.blog-light)::-webkit-scrollbar-track { background: #ffffff; }
+html:has(.blog-light)::-webkit-scrollbar-thumb { background: #b7bdcc; }
+html:has(.blog-light)::-webkit-scrollbar-thumb:hover { background: #949cb0; }
 
 /* Blog markdown prose */
 .prose-blog {
-  color: var(--paper-text);
+  /* Links keep a hue of their own so they still read as links next to the
+     teal headings. */
+  --prose-link: #0369a1;
+  --prose-link-hover: #024f7c;
+
+  color: #262933;
   line-height: 1.9;
   font-size: 1.0625rem;
   letter-spacing: 0.01em;
 }
-.prose-blog h1 { font-size: 1.875rem; font-weight: 700; color: var(--paper-heading); margin: 2.5rem 0 1rem; }
-.prose-blog h2 { font-size: 1.5rem; font-weight: 700; color: var(--paper-accent); border-bottom: 1px solid rgba(14, 116, 144, 0.22); padding-bottom: 0.5rem; margin: 3rem 0 1.25rem; }
-.prose-blog h3 { font-size: 1.1875rem; font-weight: 600; color: var(--paper-heading); margin: 2.25rem 0 0.75rem; }
+.prose-blog h1 { font-size: 1.875rem; font-weight: 700; color: var(--color-foreground); margin: 2.5rem 0 1rem; }
+.prose-blog h2 { font-size: 1.5rem; font-weight: 700; color: var(--color-primary); border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem; margin: 3rem 0 1.25rem; }
+.prose-blog h3 { font-size: 1.1875rem; font-weight: 600; color: var(--color-foreground); margin: 2.25rem 0 0.75rem; }
 .prose-blog p { margin-bottom: 1.5rem; }
 .prose-blog a {
-  color: var(--paper-link);
+  color: var(--prose-link);
   font-weight: 500;
   text-decoration: underline;
   text-decoration-thickness: 1px;
@@ -168,18 +184,18 @@ body {
   transition: color 0.15s ease, background-color 0.15s ease, text-decoration-color 0.15s ease;
 }
 .prose-blog a:hover {
-  color: var(--paper-link-hover);
+  color: var(--prose-link-hover);
   background-color: rgba(3, 105, 161, 0.08);
   text-decoration-color: rgba(2, 79, 124, 0.8);
 }
 .prose-blog a:focus-visible {
-  outline: 2px solid var(--paper-link);
+  outline: 2px solid var(--prose-link);
   outline-offset: 2px;
 }
 .prose-blog ul { list-style: disc; margin: 0 0 1.5rem 1.5rem; }
 .prose-blog ol { list-style: decimal; margin: 0 0 1.5rem 1.5rem; }
 .prose-blog li { margin-bottom: 0.4rem; }
-.prose-blog strong { color: var(--paper-heading); font-weight: 600; }
+.prose-blog strong { color: var(--color-foreground); font-weight: 600; }
 .prose-blog em { font-style: italic; }
 .prose-blog code {
   background: rgba(14, 116, 144, 0.09);
@@ -203,8 +219,8 @@ body {
   text-decoration: inherit;
 }
 .prose-blog pre {
-  background: var(--paper-fill);
-  border: 1px solid var(--paper-rule);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 10px;
   padding: 1.25rem 1.5rem;
   margin-bottom: 1.75rem;
@@ -231,10 +247,10 @@ body {
   font-size: 0.9em;
 }
 .prose-blog blockquote {
-  border-left: 3px solid var(--paper-accent);
+  border-left: 3px solid var(--color-primary);
   padding: 0.5rem 0 0.5rem 1.5rem;
   margin: 0 0 1.5rem;
-  color: var(--paper-muted);
+  color: var(--color-muted);
   font-style: italic;
 }
 .prose-blog .prose-table-scroll {
@@ -243,20 +259,16 @@ body {
   margin-bottom: 1.5rem;
 }
 .prose-blog table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-.prose-blog th { background: var(--paper-fill); color: var(--paper-heading); font-weight: 600; text-align: left; padding: 0.75rem 1rem; border: 1px solid var(--paper-rule); white-space: nowrap; }
-.prose-blog td { padding: 0.75rem 1rem; border: 1px solid var(--paper-rule); }
-.prose-blog hr { border: none; border-top: 1px solid var(--paper-rule); margin: 2.5rem 0; }
+.prose-blog th { background: var(--color-surface); color: var(--color-foreground); font-weight: 600; text-align: left; padding: 0.75rem 1rem; border: 1px solid var(--color-border); white-space: nowrap; }
+.prose-blog td { padding: 0.75rem 1rem; border: 1px solid var(--color-border); }
+.prose-blog hr { border: none; border-top: 1px solid var(--color-border); margin: 2.5rem 0; }
 .prose-blog img { max-width: 100%; border-radius: 10px; margin: 1.5rem auto; display: block; }
 /* Image caption: a paragraph containing only italic text (e.g. `*▲ 会場の様子*`) */
 .prose-blog p:has(> em:only-child) {
   margin-top: -0.75rem;
   text-align: center;
   font-size: 0.875rem;
-  color: var(--paper-muted);
-}
-
-@media (min-width: 768px) {
-  .article-paper { padding: 3rem 3.5rem; }
+  color: var(--color-muted);
 }
 
 /* Blog prose — phone tuning */
