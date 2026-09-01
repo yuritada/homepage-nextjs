@@ -88,3 +88,5 @@ amplifytools.xcconfig
 #   magick 元画像.jpg -auto-orient -resize '1600x1600>' -strip -quality 82 public/photos/<slug>/出力.jpg
 #     -strip … EXIF を全削除（GPS含む）
 content/photo/
+content/pdf/
+content/_raw/

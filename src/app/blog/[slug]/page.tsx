@@ -1,10 +1,11 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { getAllPosts, getPostBySlug } from '@/lib/blog'
+import { getAllPosts, getPostBySlug, getSeriesPosts } from '@/lib/blog'
 import { formatDate, blogUI, type BlogPost, type PostContent } from '@/lib/post'
 import type { Lang } from '@/contexts/LanguageContext'
 import BlogMarkdown from '@/components/BlogMarkdown'
 import LangSwitch from '@/components/LangSwitch'
+import SeriesNav from '@/components/SeriesNav'
 import type { Metadata } from 'next'
 
 export async function generateStaticParams() {
@@ -28,7 +29,17 @@ export async function generateMetadata({
 }
 
 /** The whole article in one language. Rendered twice on the server, see LangSwitch. */
-function Article({ post, c, lang }: { post: BlogPost; c: PostContent; lang: Lang }) {
+function Article({
+  post,
+  c,
+  lang,
+  series,
+}: {
+  post: BlogPost
+  c: PostContent
+  lang: Lang
+  series: BlogPost[]
+}) {
   const t = blogUI[lang]
 
   return (
@@ -61,6 +72,9 @@ function Article({ post, c, lang }: { post: BlogPost; c: PostContent; lang: Lang
 
       {/* Divider */}
       <div className="section-divider mb-8 md:mb-10" />
+
+      {/* Series table of contents — omitted for standalone posts */}
+      <SeriesNav posts={series} currentSlug={post.slug} lang={lang} />
 
       {/* Markdown content */}
       <BlogMarkdown content={c.content} />
@@ -123,6 +137,9 @@ function Article({ post, c, lang }: { post: BlogPost; c: PostContent; lang: Lang
         </section>
       )}
 
+      {/* Last, so the link to the next part is the final thing on the page */}
+      <SeriesNav posts={series} currentSlug={post.slug} lang={lang} />
+
       {/* Footer nav */}
       <div className="mt-12 md:mt-16 pt-8 border-t border-border">
         <Link
@@ -145,12 +162,14 @@ export default async function BlogPostPage({
   const post = getPostBySlug(slug)
   if (!post) notFound()
 
+  const series = post.series ? getSeriesPosts(post.series) : []
+
   return (
     <main className="relative z-10 min-h-screen pt-24 md:pt-28 pb-16 md:pb-20">
       <article className="w-full max-w-3xl mx-auto px-5 md:w-4/5">
         <LangSwitch
-          jp={<Article post={post} c={post.jp} lang="jp" />}
-          en={<Article post={post} c={post.en} lang="en" />}
+          jp={<Article post={post} c={post.jp} lang="jp" series={series} />}
+          en={<Article post={post} c={post.en} lang="en" series={series} />}
         />
       </article>
     </main>
