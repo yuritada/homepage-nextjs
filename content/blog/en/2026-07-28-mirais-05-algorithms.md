@@ -3,6 +3,8 @@ title: "MIRAIS Design Record #5｜The Brains — Matching, Awards, Allocation Al
 date: "2026-07-28"
 tags: ["MIRAIS", "Algorithms", "LLM", "API Integration"]
 summary: "Part 5 covers the algorithms: a dual strategy and deterministic mock embeddings that keep recommendations alive when the LLM is down, proportional allocation of nomination quotas via the Hamilton method, a two-phase award algorithm whose idempotency had to be retrofitted, and the design decisions behind slide generation and spreadsheet export."
+slides: "/slides/mirais.pdf"
+slidesTitle: "MIRAIS presentation — ‘core feature demo ②’ matches this part"
 series: "mirais"
 seriesOrder: 5
 seriesTitle: "MIRAIS Design & Implementation Record"

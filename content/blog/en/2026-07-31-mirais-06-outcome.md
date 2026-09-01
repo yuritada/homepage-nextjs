@@ -3,6 +3,8 @@ title: "MIRAIS Design Record #6｜Defence and Results — Security Design, Remai
 date: "2026-07-31"
 tags: ["MIRAIS", "Security", "Technical Debt", "Retrospective"]
 summary: "The final part. The security design built around \"hiding something on the frontend is not security\", an honest inventory of what remains — no tests, no migrations — and three things I learned about constraints, other people's workflows, and where to fix the axis."
+slides: "/slides/mirais.pdf"
+slidesTitle: "MIRAIS presentation — ‘development highlights’ and ‘closing’ match this part"
 series: "mirais"
 seriesOrder: 6
 seriesTitle: "MIRAIS Design & Implementation Record"

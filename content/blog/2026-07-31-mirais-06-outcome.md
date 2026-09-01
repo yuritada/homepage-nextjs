@@ -3,6 +3,8 @@ title: "MIRAIS 設計・実装記録 #6｜守り方と到達点 — セキュリ
 date: "2026-07-31"
 tags: ["MIRAIS", "セキュリティ", "技術的負債", "振り返り"]
 summary: "最終回。「フロントエンドで隠すことはセキュリティではない」を軸にしたセキュリティ設計、テスト不在やマイグレーション未導入といった残課題の率直な棚卸し、そして制約・ユーザーの運用・軸の置き方について学んだ3つのことをまとめます。"
+slides: "/slides/mirais.pdf"
+slidesTitle: "MIRAIS 発表スライド ／ 「開発こだわりポイント」「終わりに」がこの回に対応します"
 series: "mirais"
 seriesOrder: 6
 seriesTitle: "MIRAIS 設計・実装記録"

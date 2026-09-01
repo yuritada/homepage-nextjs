@@ -3,6 +3,8 @@ title: "MIRAIS 設計・実装記録 #4｜3D バーチャル会場 — 見取り
 date: "2026-07-25"
 tags: ["MIRAIS", "3D", "React Three Fiber", "WebGL"]
 summary: "第4回は3D会場編。実測の見取り図を2倍にスケールした「意図的な嘘」、36面のポスターボードへのPDF自動割り当て、現実のデータの表記ゆれの吸収、そしてマルチプレイ実装で最も時間を溶かした複数タブ問題までを記録します。"
+slides: "/slides/mirais.pdf"
+slidesTitle: "MIRAIS 発表スライド ／ 「コア機能デモ①」がこの回に対応します"
 series: "mirais"
 seriesOrder: 4
 seriesTitle: "MIRAIS 設計・実装記録"

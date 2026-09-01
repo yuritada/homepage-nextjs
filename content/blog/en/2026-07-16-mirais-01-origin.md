@@ -3,6 +3,8 @@ title: "MIRAIS Design Record #1｜Why We Built It — Problem Framing, Interview
 date: "2026-07-16"
 tags: ["MIRAIS", "Requirements", "User Research", "Project Design"]
 summary: "Part 1 of the record of rebuilding my department's annual research showcase. The origins of the project, an inventory of the existing workflow, the interview with the administrator who runs the event, and the twelve features and non-functional requirements we drew out of it."
+slides: "/slides/mirais.pdf"
+slidesTitle: "MIRAIS presentation — the ‘problem framing’ and ‘interviews’ sections match this part"
 series: "mirais"
 seriesOrder: 1
 seriesTitle: "MIRAIS Design & Implementation Record"

@@ -3,6 +3,8 @@ title: "MIRAIS 設計・実装記録 #2｜どう組んだのか — 情報設計
 date: "2026-07-19"
 tags: ["MIRAIS", "アーキテクチャ", "データモデル", "PostgreSQL"]
 summary: "第2回は設計編。6ロールのサイトマップと権限マトリクス、「画面を隠すことと、データを渡さないことは別問題」という公開遮断ポリシー、技術選定の理由、そして年度をまたいでデータが混ざらない星型スキーマの設計を扱います。"
+slides: "/slides/mirais.pdf"
+slidesTitle: "MIRAIS 発表スライド ／ 「プロダクト紹介」がこの回に対応します"
 series: "mirais"
 seriesOrder: 2
 seriesTitle: "MIRAIS 設計・実装記録"

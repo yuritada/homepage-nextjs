@@ -3,6 +3,8 @@ title: "MIRAIS Design Record #2｜How It Is Put Together — Information Archite
 date: "2026-07-19"
 tags: ["MIRAIS", "Architecture", "Data Modelling", "PostgreSQL"]
 summary: "Part 2 is the design chapter. A sitemap and permission matrix across six roles, the public-data policy behind \"hiding a screen and withholding data are different problems\", the reasoning behind each technology choice, and the star schema that keeps years from ever mixing."
+slides: "/slides/mirais.pdf"
+slidesTitle: "MIRAIS presentation — the ‘product overview’ section matches this part"
 series: "mirais"
 seriesOrder: 2
 seriesTitle: "MIRAIS Design & Implementation Record"

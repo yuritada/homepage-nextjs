@@ -3,6 +3,8 @@ title: "MIRAIS 設計・実装記録 #1｜なぜ作ったのか — 課題認識
 date: "2026-07-16"
 tags: ["MIRAIS", "要件定義", "ヒアリング", "プロジェクト設計"]
 summary: "学部の年次発表会を作り直したプロジェクトの記録、第1回。プロジェクトの原点、現行フローの棚卸し、運営事務担当者へのヒアリング、そしてそこから引き出した機能一覧 F-01〜F-12 と非機能要件までをまとめます。"
+slides: "/slides/mirais.pdf"
+slidesTitle: "MIRAIS 発表スライド ／ 「導入・課題提起」「ヒアリング」がこの回に対応します"
 series: "mirais"
 seriesOrder: 1
 seriesTitle: "MIRAIS 設計・実装記録"

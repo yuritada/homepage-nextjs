@@ -79,9 +79,6 @@ function Article({
       {/* Markdown content */}
       <BlogMarkdown content={c.content} />
 
-      {/* Repeated at the foot, where the reader actually needs the next part */}
-      <SeriesNav posts={series} currentSlug={post.slug} lang={lang} />
-
       {/* Slides (PDF) */}
       {post.slides && (
         <section className="mt-12 md:mt-14">
@@ -139,6 +136,9 @@ function Article({
           )}
         </section>
       )}
+
+      {/* Last, so the link to the next part is the final thing on the page */}
+      <SeriesNav posts={series} currentSlug={post.slug} lang={lang} />
 
       {/* Footer nav */}
       <div className="mt-12 md:mt-16 pt-8 border-t border-border">

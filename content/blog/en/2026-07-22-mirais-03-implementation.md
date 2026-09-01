@@ -3,6 +3,8 @@ title: "MIRAIS Design Record #3｜Server and Screens — Backend and Frontend Im
 date: "2026-07-22"
 tags: ["MIRAIS", "FastAPI", "Next.js", "Authentication"]
 summary: "Part 3 is the implementation chapter. Separating routers from services, handling three login paths (Google ID Token, magic link, development) through a single JWT format, multi-stage file validation, and displaying an authentication-only PDF in an iframe via a blob URL."
+slides: "/slides/mirais.pdf"
+slidesTitle: "MIRAIS presentation — the ‘product overview’ section matches this part"
 series: "mirais"
 seriesOrder: 3
 seriesTitle: "MIRAIS Design & Implementation Record"

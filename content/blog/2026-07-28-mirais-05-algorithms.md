@@ -3,6 +3,8 @@ title: "MIRAIS 設計・実装記録 #5｜頭脳部分 — マッチング・表
 date: "2026-07-28"
 tags: ["MIRAIS", "アルゴリズム", "LLM", "外部API連携"]
 summary: "第5回はアルゴリズム編。LLMが落ちても止まらない二重化戦略と決定論的なモック埋め込み、Hamilton法による推薦枠の比例配分、冪等性を後から足す羽目になった2フェーズ表彰アルゴリズム、そしてスライド生成やスプレッドシート書き出しの設計判断を扱います。"
+slides: "/slides/mirais.pdf"
+slidesTitle: "MIRAIS 発表スライド ／ 「コア機能デモ②」がこの回に対応します"
 series: "mirais"
 seriesOrder: 5
 seriesTitle: "MIRAIS 設計・実装記録"

@@ -3,6 +3,8 @@ title: "MIRAIS 設計・実装記録 #3｜サーバと画面 — バックエン
 date: "2026-07-22"
 tags: ["MIRAIS", "FastAPI", "Next.js", "認証・認可"]
 summary: "第3回は実装編。ルータとサービスのレイヤー分離、Google ID Token・マジックリンク・開発用の3経路を単一のJWT形式で扱う認証設計、多段のファイル検証、そして認証必須のPDFをiframeに表示するための blob URL 経由の実装をまとめます。"
+slides: "/slides/mirais.pdf"
+slidesTitle: "MIRAIS 発表スライド ／ 「プロダクト紹介」がこの回に対応します"
 series: "mirais"
 seriesOrder: 3
 seriesTitle: "MIRAIS 設計・実装記録"
