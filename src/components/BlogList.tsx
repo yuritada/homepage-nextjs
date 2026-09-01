@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useLanguage } from '@/contexts/LanguageContext'
-import { formatDate, blogUI, type BlogPost } from '@/lib/post'
+import { formatDate, blogUI, withoutSeriesPrefix, type BlogPost } from '@/lib/post'
 
 export default function BlogList({ posts }: { posts: BlogPost[] }) {
   const { lang } = useLanguage()
@@ -44,8 +44,16 @@ export default function BlogList({ posts }: { posts: BlogPost[] }) {
                     ))}
                   </div>
 
+                  {/* Series marker, so the parts of a long series read as one group */}
+                  {c.seriesTitle && (
+                    <p className="text-primary-light/80 text-xs mb-1">
+                      {c.seriesTitle}
+                      {c.seriesLabel && ` ／ ${c.seriesLabel}`}
+                    </p>
+                  )}
+
                   <h2 className="text-base md:text-xl font-semibold text-foreground leading-snug mb-1.5 md:mb-2 line-clamp-2 md:line-clamp-none group-hover:text-primary transition-colors">
-                    {c.title}
+                    {c.seriesTitle ? withoutSeriesPrefix(c.title) : c.title}
                   </h2>
                   <p className="text-muted text-[0.8125rem] md:text-sm leading-relaxed mb-3 md:mb-4 line-clamp-2 md:line-clamp-none">
                     {c.summary}

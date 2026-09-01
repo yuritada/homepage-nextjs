@@ -9,10 +9,10 @@ import BlogSection from '@/components/BlogSection'
 import ContactSection from '@/components/ContactSection'
 import Footer from '@/components/Footer'
 import ScrollToTop from '@/components/ScrollToTop'
-import { getAllPosts } from '@/lib/blog'
+import { getFeaturedPosts } from '@/lib/blog'
 
 export default function Home() {
-  const latestPosts = getAllPosts().slice(0, 3)
+  const latestPosts = getFeaturedPosts(3)
 
   return (
     <>

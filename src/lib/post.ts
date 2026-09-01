@@ -13,6 +13,10 @@ export type PostContent = {
   summary: string
   tags: string[]
   slidesTitle?: string
+  /** Display name of the series, e.g. "MIRAIS 設計・実装記録". */
+  seriesTitle?: string
+  /** This post's place in the series, e.g. "第 1 回 企画編". */
+  seriesLabel?: string
   content: string
 }
 
@@ -20,6 +24,10 @@ export type BlogPost = {
   slug: string
   date: string
   slides?: string
+  /** Language-neutral id shared by every post in the same series. */
+  series?: string
+  /** Position within the series, counting from 1. */
+  seriesOrder?: number
   jp: PostContent
   en: PostContent
 }
@@ -48,6 +56,18 @@ export function formatDate(dateStr: string, lang: Lang = 'jp'): string {
   return `${d.getUTCFullYear()}年${d.getUTCMonth() + 1}月${d.getUTCDate()}日`
 }
 
+/**
+ * Drop the "<series> #N｜" prefix a post title carries for standalone contexts.
+ *
+ * A title has to stand on its own when shared or shown in search results, so it
+ * repeats the series name — which is redundant wherever the series label is
+ * already displayed beside it.
+ */
+export function withoutSeriesPrefix(title: string): string {
+  const [, ...rest] = title.split('｜')
+  return rest.length > 0 ? rest.join('｜') : title
+}
+
 /** Static UI strings for the blog pages. */
 export const blogUI = {
   jp: {
@@ -62,6 +82,10 @@ export const blogUI = {
     tapToOpen: 'タップしてPDFを開く',
     openInNewTab: '別タブで開く ↗',
     downloadPdf: 'PDFをダウンロード ↓',
+    seriesHeading: 'このシリーズの記事',
+    seriesPosition: (n: number, total: number) => `全 ${total} 回中の第 ${n} 回`,
+    seriesPrev: '← 前の回',
+    seriesNext: '次の回 →',
   },
   en: {
     lead: 'Technical notes, event write-ups, and whatever I have been thinking about.',
@@ -75,5 +99,9 @@ export const blogUI = {
     tapToOpen: 'Tap to open the PDF',
     openInNewTab: 'Open in a new tab ↗',
     downloadPdf: 'Download PDF ↓',
+    seriesHeading: 'Posts in this series',
+    seriesPosition: (n: number, total: number) => `Part ${n} of ${total}`,
+    seriesPrev: '← Previous part',
+    seriesNext: 'Next part →',
   },
 } as const
