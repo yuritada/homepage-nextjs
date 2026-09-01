@@ -5,8 +5,6 @@ import { formatDate, blogUI, type BlogPost, type PostContent } from '@/lib/post'
 import type { Lang } from '@/contexts/LanguageContext'
 import BlogMarkdown from '@/components/BlogMarkdown'
 import LangSwitch from '@/components/LangSwitch'
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
 import type { Metadata } from 'next'
 
 export async function generateStaticParams() {
@@ -107,7 +105,7 @@ function Article({ post, c, lang }: { post: BlogPost; c: PostContent; lang: Lang
               href={post.slides}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-primary-light text-sm font-medium hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 text-primary-light text-sm font-medium hover:text-primary transition-colors"
             >
               {t.openInNewTab}
             </a>
@@ -129,7 +127,7 @@ function Article({ post, c, lang }: { post: BlogPost; c: PostContent; lang: Lang
       <div className="mt-12 md:mt-16 pt-8 border-t border-border">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-primary-light text-sm font-medium hover:text-white transition-colors"
+          className="inline-flex items-center gap-2 text-primary-light text-sm font-medium hover:text-primary transition-colors"
         >
           {t.backToList}
         </Link>
@@ -148,17 +146,13 @@ export default async function BlogPostPage({
   if (!post) notFound()
 
   return (
-    <>
-      <Navigation />
-      <main className="relative z-10 min-h-screen pt-24 md:pt-28 pb-16 md:pb-20">
-        <article className="w-full max-w-3xl mx-auto px-5 md:w-4/5">
-          <LangSwitch
-            jp={<Article post={post} c={post.jp} lang="jp" />}
-            en={<Article post={post} c={post.en} lang="en" />}
-          />
-        </article>
-      </main>
-      <Footer />
-    </>
+    <main className="relative z-10 min-h-screen pt-24 md:pt-28 pb-16 md:pb-20">
+      <article className="w-full max-w-3xl mx-auto px-5 md:w-4/5">
+        <LangSwitch
+          jp={<Article post={post} c={post.jp} lang="jp" />}
+          en={<Article post={post} c={post.en} lang="en" />}
+        />
+      </article>
+    </main>
   )
 }

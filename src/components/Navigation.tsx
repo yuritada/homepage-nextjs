@@ -36,6 +36,11 @@ export default function Navigation() {
   // Anywhere else (e.g. /blog) they must route home first, or they do nothing.
   const isHome = pathname === '/'
 
+  // The blog is a light surface whose content scrolls right under the bar, and
+  // at 85% opacity that text shows through. The bar goes solid (and page-white,
+  // to stay distinct from the grey cards) there.
+  const isBlog = pathname.startsWith('/blog')
+
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
     window.addEventListener('scroll', handleScroll)
@@ -68,13 +73,13 @@ export default function Navigation() {
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-surface/85 backdrop-blur-md shadow-lg shadow-primary/5 py-3 border-b border-border'
+          ? `${isBlog ? 'bg-background' : 'bg-surface/85'} backdrop-blur-md shadow-lg shadow-primary/5 py-3 border-b border-border`
           : 'bg-transparent py-4'
       }`}
     >
       {/* Backdrop (mobile drawer) */}
       <div
-        className={`md:hidden fixed inset-0 bg-background/70 backdrop-blur-sm transition-opacity duration-300 ${
+        className={`nav-scrim md:hidden fixed inset-0 bg-background/70 backdrop-blur-sm transition-opacity duration-300 ${
           isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
         onClick={() => setIsMenuOpen(false)}
