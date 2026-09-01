@@ -47,3 +47,33 @@ Claude-Code-Communication
 screenshot
 
 tmp
+
+# --- 認証情報・秘密鍵 ---
+# 公開リポジトリのため、鍵・証明書の類は一律で弾く（*.pem と .env* は上で指定済み）
+*.key
+*.p12
+*.pfx
+*.cer
+id_rsa*
+id_ed25519*
+.aws/
+credentials
+.secret-*
+secrets.json
+
+# --- AWS Amplify ---
+# team-provider-info.json は AWS アカウントID と IAM ロールの ARN を含むため、
+# 公開リポジトリにコミットしないこと（AWS 公式が明記している）。
+# 現在 Amplify は使用していないが、再度 amplify init した際の事故を防ぐために残す。
+amplify/team-provider-info.json
+amplify/backend/amplify-meta.json
+amplify/backend/awscloudformation/
+amplify/backend/.temp/
+amplify/.config/local-*
+amplify/#current-cloud-backend/
+amplify/mock-data/
+aws-exports.js
+amplifyconfiguration.json
+amplify-build-config.json
+amplifytools.xcconfig
+**/.amplifyrc
