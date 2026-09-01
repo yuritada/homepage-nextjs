@@ -1,6 +1,6 @@
 ---
 title: "MIRAIS Design Record #2｜How It Is Put Together — Information Architecture, System Architecture, Data Model"
-date: "2026-09-01"
+date: "2026-07-19"
 tags: ["MIRAIS", "Architecture", "Data Modelling", "PostgreSQL"]
 summary: "Part 2 is the design chapter. A sitemap and permission matrix across six roles, the public-data policy behind \"hiding a screen and withholding data are different problems\", the reasoning behind each technology choice, and the star schema that keeps years from ever mixing."
 series: "mirais"
@@ -11,7 +11,7 @@ seriesLabel: "Part 2 — Design"
 
 # Part 2 — How it is put together
 
-This instalment turns the requirements fixed in [Part 1](/blog/2026-09-01-mirais-01-origin) into actual structure: a sitemap built for six roles, the policy that cuts information off from logged-out visitors, the reasoning behind each technology choice, and the 20-table star schema.
+This instalment turns the requirements fixed in [Part 1](/blog/2026-07-16-mirais-01-origin) into actual structure: a sitemap built for six roles, the policy that cuts information off from logged-out visitors, the reasoning behind each technology choice, and the 20-table star schema.
 
 # Part IV — Information architecture
 
@@ -192,7 +192,7 @@ The reason the public response type is defined as a model with exactly three fie
 
 The structural point is that **every external integration is optional**. If the campus LLM is down, recommendations still work; if the slides API is unconfigured, the portal still works; without the chat integration, reminders are still recorded in the history. A failure in an external service does not propagate into a system-wide outage.
 
-Deployment is onto a campus GPU server (ARM architecture) as containers via Docker Compose. Only the reverse proxy is exposed externally; the frontend and the database are not published directly.
+Deployment is onto a campus GPU server (ARM architecture) as containers via Docker Compose. Permission to run on a university server came through during development, so that is where it runs today, and **there is no ongoing cost at all**. Only the reverse proxy is exposed externally; the frontend and the database are not published directly.
 
 ---
 
@@ -226,11 +226,11 @@ It combines libraries for physics, multiplayer synchronisation and PDF rendering
 
 ### 17-5. LLM: campus server plus fallback
 
-If a campus LLM server is configured, use it; if it is unconfigured or unresponsive, fall back to a **deterministic mock embedding**. The design point is that **recommendations do not stop working in an environment where the LLM is unavailable** ([Chapter 32 / Part 5](/blog/2026-09-01-mirais-05-algorithms)).
+If a campus LLM server is configured, use it; if it is unconfigured or unresponsive, fall back to a **deterministic mock embedding**. The design point is that **recommendations do not stop working in an environment where the LLM is unavailable** ([Chapter 32 / Part 5](/blog/2026-07-28-mirais-05-algorithms)).
 
 ### 17-6. Authentication: our own JWT
 
-Rather than an external authentication SaaS, we issue HS256 JWTs ourselves — because of the budget constraint, and because we needed the freedom to design a non-standard flow (magic links for companies).
+Rather than an external authentication SaaS, we issue HS256 JWTs ourselves — because of the commitment to depend on nothing external, and because we needed the freedom to design a non-standard flow (magic links for companies).
 
 ---
 

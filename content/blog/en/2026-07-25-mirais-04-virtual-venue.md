@@ -1,6 +1,6 @@
 ---
 title: "MIRAIS Design Record #4｜The 3D Virtual Venue — From Floor Plan to a Space You Can Walk"
-date: "2026-09-01"
+date: "2026-07-25"
 tags: ["MIRAIS", "3D", "React Three Fiber", "WebGL"]
 summary: "Part 4 covers the 3D venue: the deliberate lie of doubling the real floor plan, automatic PDF assignment onto 36 poster surfaces, absorbing the messiness of real data, and the multiple-tab problem that ate more time than anything else in the multiplayer implementation."
 series: "mirais"

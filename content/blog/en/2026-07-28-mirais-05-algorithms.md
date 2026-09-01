@@ -1,6 +1,6 @@
 ---
 title: "MIRAIS Design Record #5｜The Brains — Matching, Awards, Allocation Algorithms and External Integrations"
-date: "2026-09-01"
+date: "2026-07-28"
 tags: ["MIRAIS", "Algorithms", "LLM", "API Integration"]
 summary: "Part 5 covers the algorithms: a dual strategy and deterministic mock embeddings that keep recommendations alive when the LLM is down, proportional allocation of nomination quotas via the Hamilton method, a two-phase award algorithm whose idempotency had to be retrofitted, and the design decisions behind slide generation and spreadsheet export."
 series: "mirais"
@@ -126,11 +126,11 @@ Step ① was not in the first implementation, and it surfaced as a bug: "the poo
 
 The combined run only executes Phase 1 when the nomination pool is empty, and never overwrites an existing one — so that a pool a professor has adjusted cannot be wiped out because an organiser happened to press the automation button.
 
-**Automation goes only as far as it does not overwrite a human judgement.** Same instinct as the decision to accept the copy-and-paste workflow for logos ([section 7-5 / Part 1](/blog/2026-09-01-mirais-01-origin)).
+**Automation goes only as far as it does not overwrite a human judgement.** Same instinct as the decision to accept the copy-and-paste workflow for logos ([section 7-5 / Part 1](/blog/2026-07-16-mirais-01-origin)).
 
 ### 33-4. Swapping award recipients
 
-Reassigning an award to a different student is where the deferrable constraint from [section 21-1 / Part 2](/blog/2026-09-01-mirais-02-design) earns its keep. Exchanging two records temporarily violates the constraint in the intermediate state, but because evaluation is deferred to the end of the transaction, the operation succeeds.
+Reassigning an award to a different student is where the deferrable constraint from [section 21-1 / Part 2](/blog/2026-07-19-mirais-02-design) earns its keep. Exchanging two records temporarily violates the constraint in the intermediate state, but because evaluation is deferred to the end of the transaction, the operation succeeds.
 
 ---
 

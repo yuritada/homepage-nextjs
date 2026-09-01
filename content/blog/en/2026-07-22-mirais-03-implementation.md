@@ -1,6 +1,6 @@
 ---
 title: "MIRAIS Design Record #3｜Server and Screens — Backend and Frontend Implementation"
-date: "2026-09-01"
+date: "2026-07-22"
 tags: ["MIRAIS", "FastAPI", "Next.js", "Authentication"]
 summary: "Part 3 is the implementation chapter. Separating routers from services, handling three login paths (Google ID Token, magic link, development) through a single JWT format, multi-stage file validation, and displaying an authentication-only PDF in an iframe via a blob URL."
 series: "mirais"
@@ -196,7 +196,7 @@ Poster PDFs **require an authentication header**. But the `src` attribute of `<i
 ③ feed that blob URL into the iframe
 ```
 
-This is **the standard technique for displaying an authentication-only asset in a browser**, and it is the implementation linchpin that lets us show posters to authenticated users without breaking the public-data cutoff policy from [Chapter 15 / Part 2](/blog/2026-09-01-mirais-02-design). The lesson: a decision like "poster PDFs require authentication" is something you take on together with this kind of implementation cost.
+This is **the standard technique for displaying an authentication-only asset in a browser**, and it is the implementation linchpin that lets us show posters to authenticated users without breaking the public-data cutoff policy from [Chapter 15 / Part 2](/blog/2026-07-19-mirais-02-design). The lesson: a decision like "poster PDFs require authentication" is something you take on together with this kind of implementation cost.
 
 ### 26-2. Design system
 

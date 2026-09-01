@@ -1,8 +1,8 @@
 ---
 title: "MIRAIS Design Record #1｜Why We Built It — Problem Framing, Interviews, Requirements"
-date: "2026-09-01"
+date: "2026-07-16"
 tags: ["MIRAIS", "Requirements", "User Research", "Project Design"]
-summary: "Part 1 of the record of rebuilding my department's annual research showcase on a ¥3,000 budget. The origins of the project, an inventory of the existing workflow, the interview with the administrator who runs the event, and the twelve features and non-functional requirements we drew out of it."
+summary: "Part 1 of the record of rebuilding my department's annual research showcase. The origins of the project, an inventory of the existing workflow, the interview with the administrator who runs the event, and the twelve features and non-functional requirements we drew out of it."
 series: "mirais"
 seriesOrder: 1
 seriesTitle: "MIRAIS Design & Implementation Record"
@@ -22,7 +22,7 @@ This is the design and implementation record of **MIRAIS**, a portal system that
 
 Part 1 covers the problem framing the project started from, the interviews with the people involved, and the requirements we drew out of them.
 
-If you would rather take in the whole picture first, start with the [summary design notes](/blog/2026-09-02-mirais).
+If you would rather take in the whole picture first, start with the [summary design notes](/blog/2026-07-14-mirais).
 
 ## 0. About this document
 
@@ -98,15 +98,17 @@ We fixed that as the core experience, and agreed as a team at the outset that ho
 
 We also set a precondition: this must not end as a hackathon submission. It had to be designed as **infrastructure that keeps running in the years that follow**. If it stops working once its authors graduate, nothing has actually been solved.
 
-### 1-4. Budget constraint
+### 1-4. The premise: self-contained on campus resources
 
-The development budget was **¥3,000** (about US$20). This constraint directly determined the following architectural decisions.
+At the planning stage we committed to **depending on no external commercial service, and running entirely on the university's own computing resources**. This premise directly determined the following architectural decisions.
 
 - Do not depend on a commercial LLM API. Make the **LLM running on the university's own GPU server** the first choice, and build so that nothing stops working in an environment where it is unavailable.
 - Do not use an external SaaS for authentication; cover it with Google ID Token verification and our own JWT issuance.
 - Host on the university's own computing resources.
 
-Constraints were not the enemy of the design; they were material that forced our judgements to be explicit. Being able to think in the order "there is no budget, therefore this is the architecture" rather than "there is no budget, so we give up" is, I think, what ultimately made the architecture coherent.
+Partway through development we were granted permission to run on a university server, so the system runs on a campus GPU server today. **There is no ongoing cost at all.**
+
+Constraints were not the enemy of the design; they were material that forced our judgements to be explicit. Being able to think in the order "what we can use is limited, therefore this is the architecture" rather than "it is limited, so we give up" is, I think, what ultimately made the architecture coherent.
 
 ---
 
@@ -125,7 +127,7 @@ In the following session we put forward a plan at the granularity of "build a we
 - Voting
 - Poster management
 - Use of 3D technology (to be discussed)
-- Budget: ¥3,000
+- Depend on no external commercial service
 
 For technologies we wanted to use, we named FastAPI / Next.js / LLMs and embeddings / a 3D library. At this point one junior proposed that **it should be split into three patterns: administration, students and companies**, and the other proposed **reminders and comments** — the prototype of what later became the role design.
 
@@ -177,7 +179,7 @@ We enumerated the remaining pages, drew a Phase 0–5 roadmap, and started build
 
 We ran technical validation first to **prevent technology from being the reason the core experience collapses**. The detailed requirements were allowed to change. But an LLM that does not run, 3D that is too heavy to be usable, Slack that does not get through — those technical failure modes had to be eliminated before the plan was locked.
 
-All three validations concluded "it works", and we moved straight into the real implementation. In particular, the LLM validation led to the decision to prepare an alternative path that works even when the campus server is unavailable ([Chapter 32 / Part 5](/blog/2026-09-01-mirais-05-algorithms)).
+All three validations concluded "it works", and we moved straight into the real implementation. In particular, the LLM validation led to the decision to prepare an alternative path that works even when the campus server is unavailable ([Chapter 32 / Part 5](/blog/2026-07-28-mirais-05-algorithms)).
 
 ---
 
@@ -302,7 +304,7 @@ I asked the person responsible for administration to walk me through their work 
 - The seminars supply a **shortlist for the departmental award**, from which entries are **promoted to a company award**.
 - The lead professor rotates, supervising students in turn.
 
-→ This produced the **two-phase award algorithm** (Phase 1: build the faculty nomination pool → Phase 2: companies select from the pool in ranking order, promoting "departmental award → company award"). Detailed in [Chapter 33 / Part 5](/blog/2026-09-01-mirais-05-algorithms).
+→ This produced the **two-phase award algorithm** (Phase 1: build the faculty nomination pool → Phase 2: companies select from the pool in ranking order, promoting "departmental award → company award"). Detailed in [Chapter 33 / Part 5](/blog/2026-07-28-mirais-05-algorithms).
 
 ### 7-4. Collecting from students
 
@@ -422,7 +424,7 @@ Each feature is defined together with **why it is needed (whose problem does it 
 | **F-11** | Archive of previous years | Students/faculty | Preserve outstanding research as an asset of the faculty | Medium |
 | **F-12** | Organiser settings screen | Administration | Make next year's configuration no-code | Medium |
 
-Implementation status is summarised in [Chapter 42 / Part 6](/blog/2026-09-01-mirais-06-outcome).
+Implementation status is summarised in [Chapter 42 / Part 6](/blog/2026-07-31-mirais-06-outcome).
 
 ---
 
@@ -464,11 +466,11 @@ A note on NF-S1. One suggestion was "just branch on the frontend", but then anyo
 | NF-M4 | Thorough type annotation, schema definition and layer separation |
 | NF-M5 | Every significant technology choice comes with a stated reason |
 
-**Cost**
+**Operating cost and self-sufficiency**
 
 | ID | Detail |
 | --- | --- |
-| NF-C1 | Development budget within ¥3,000 |
+| NF-C1 | Depend on no external commercial service; run entirely on the university's own computing resources |
 | NF-C2 | The LLM defaults to the campus server, and **features do not stop** when it is unconfigured |
 | NF-C3 | Minimise always-on server resources |
 

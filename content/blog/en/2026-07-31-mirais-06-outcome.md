@@ -1,6 +1,6 @@
 ---
 title: "MIRAIS Design Record #6｜Defence and Results — Security Design, Remaining Work, What I Learned"
-date: "2026-09-01"
+date: "2026-07-31"
 tags: ["MIRAIS", "Security", "Technical Debt", "Retrospective"]
 summary: "The final part. The security design built around \"hiding something on the frontend is not security\", an honest inventory of what remains — no tests, no migrations — and three things I learned about constraints, other people's workflows, and where to fix the axis."
 series: "mirais"
@@ -113,7 +113,7 @@ Things that were invisible at the requirements stage and turned out to be necess
 | Previous-year CSV import | For validation with real data, and to seed the archive |
 | "Current session" linkage in the 3D venue | To synchronise the on-site and 3D experiences |
 
-This list is also evidence that **requirements are never complete at the start**. Each time an interview revealed an operational detail, a necessary feature stood up. The agreement made in [section 2-2 / Part 1](/blog/2026-09-01-mirais-01-origin) — "the detailed requirements may change, but the core experience does not" — is what let us treat that change as progress rather than chaos.
+This list is also evidence that **requirements are never complete at the start**. Each time an interview revealed an operational detail, a necessary feature stood up. The agreement made in [section 2-2 / Part 1](/blog/2026-07-16-mirais-01-origin) — "the detailed requirements may change, but the core experience does not" — is what let us treat that change as progress rather than chaos.
 
 ---
 
@@ -152,7 +152,7 @@ To close, three things I learned through the design decisions rather than the te
 
 **1. Constraints make a design clear**
 
-The ¥3,000 budget looked like an obstacle at first. In practice it forced a chain of decisions — "we cannot depend on a commercial API" → "use the university's own resources" → "make it work even when those are unavailable" — and produced **an architecture resilient to external failure**. Without the constraint, we would have simply called a commercial API, and everything would have stopped on the day it went down.
+Committing to "depend on no external commercial service" looked restrictive at first. In practice it forced a chain of decisions — "we cannot depend on a commercial API" → "use the university's own resources" → "make it work even when those are unavailable" — and produced **an architecture resilient to external failure**. Without that commitment, we would have simply called a commercial API, and everything would have stopped on the day it went down. And once permission to run on a university server came through mid-project, that same shape turned directly into operation with no ongoing cost.
 
 **2. Decide where not to touch someone's workflow**
 
@@ -162,7 +162,7 @@ What a system should solve is the user's problem, not the user's job. **Deciding
 
 **3. Requirements are never complete at the start, so fix the axis first**
 
-The agreement in [section 2-2 / Part 1](/blog/2026-09-01-mirais-01-origin) — "the detailed requirements will change a great deal, but the core experience will not" — supported this project to the end. And the requirements really did change. The table count went from 7 to 20, and 11 features that were not in the design were added.
+The agreement in [section 2-2 / Part 1](/blog/2026-07-16-mirais-01-origin) — "the detailed requirements will change a great deal, but the core experience will not" — supported this project to the end. And the requirements really did change. The table count went from 7 to 20, and 11 features that were not in the design were added.
 
 We never got lost anyway, because we had drawn the line between what was allowed to change and what was not, right at the start. **A plan robust to change is not a detailed plan; it is a plan with a clear axis.**
 
@@ -202,9 +202,9 @@ We never got lost anyway, because we had drawn the line between what was allowed
 | Styling | Own design tokens (no UI library) | Avoiding a generic-template feel, dynamic theme injection |
 | Database | PostgreSQL 16 | Deferrable unique constraints, the consistency year-based operation needs |
 | 3D | React Three Fiber / physics engine / multiplayer sync / PDF renderer | Declarative geometry, collision, dynamic textures |
-| LLM | Campus server + deterministic fallback | Budget constraint, resilience to external failure |
-| Authentication | Google ID Token verification + own JWT | Budget constraint, freedom for a non-standard flow |
-| Infrastructure | Docker Compose / nginx / campus GPU server | Using campus resources, self-contained on a single host |
+| LLM | Campus server + deterministic fallback | Self-containment on campus resources, resilience to external failure |
+| Authentication | Google ID Token verification + own JWT | Depending on no external SaaS, freedom for a non-standard flow |
+| Infrastructure | Docker Compose / nginx / campus GPU server | Using campus resources, self-contained on a single host, no ongoing cost |
 | CI | GitHub Actions | Build verification and image build connectivity checks |
 
 ---
@@ -223,7 +223,7 @@ We never got lost anyway, because we had drawn the line between what was allowed
 | Building geometry categories | 18 |
 | Embedding dimensions | 256 (in fallback mode) |
 | Award nomination slots | 30 (distributed by seminar size) |
-| Development budget | ¥3,000 |
+| Runtime environment | Campus GPU server (no ongoing cost) |
 
 ---
 
@@ -245,4 +245,4 @@ September 2026
 
 ---
 
-Thank you for reading all six parts. There is also a [summary design note](/blog/2026-09-02-mirais) that condenses the key points into a single article.
+Thank you for reading all six parts. There is also a [summary design note](/blog/2026-07-14-mirais) that condenses the key points into a single article.
