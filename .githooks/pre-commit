@@ -1,0 +1,15 @@
+#!/bin/sh
+# Block commits that would publish photo locations.
+#
+# Enabled with:  git config core.hooksPath .githooks
+# (npm's "prepare" script does this automatically after npm install)
+
+hooks_dir=$(dirname "$0")
+
+python=$(command -v python3 || command -v python)
+if [ -z "$python" ]; then
+  echo "pre-commit: python が見つからないため画像のGPS検査をスキップしました。" >&2
+  exit 0
+fi
+
+exec "$python" "$hooks_dir/check-image-gps.py" --staged
