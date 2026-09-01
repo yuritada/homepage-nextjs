@@ -6,7 +6,7 @@ import { useLanguage } from '@/contexts/LanguageContext'
 const t = {
   jp: {
     eyebrow: 'Background',
-    heading: '学歴・経歴',
+    heading: 'Education',
     items: [
       {
         title: '武蔵野大学 データサイエンス学部',

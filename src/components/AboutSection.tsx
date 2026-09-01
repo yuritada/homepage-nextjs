@@ -11,10 +11,10 @@ const t = {
     p2: '大学入学と同時に初めて自分のPCを手にし、プログラミング・機械学習・クラウドインフラからハードウェア（RTX 4090 / ROCm環境）まで貪欲に学習。ハッカソン優勝・R&Dインターン・技育展参加など、学外でも実績を積み上げています。',
     tags: ['データサイエンス', 'LLM / MCP', '3D研究', 'フルスタック', 'ハッカソン優勝'],
     stats: [
-      { value: '2+',     label: '年間のコーディング' },
-      { value: '5+',     label: 'ハッカソン参加数' },
-      { value: '1st',    label: '優勝経験' },
-      { value: '3D×LLM', label: '研究テーマ' },
+      { value: '3年+',   label: 'エンジニア歴' },
+      { value: '14',     label: 'イベント参加（登壇 4）' },
+      { value: '7',      label: 'ハッカソン（受賞 3）' },
+      { value: 'AI全領域', label: '研究テーマ' },
     ],
   },
   en: {
@@ -23,10 +23,10 @@ const t = {
     p2: 'Upon entering university with my first PC, curiosity exploded. From programming and machine learning to hardware (RTX 4090 / ROCm), I pursue every layer of tech. Highlights include winning a hackathon, joining an R&D internship, and presenting at Giken-ten.',
     tags: ['Data Science', 'LLM / MCP', '3D Research', 'Full-Stack', 'Hackathon Winner'],
     stats: [
-      { value: '2+',     label: 'Years Coding' },
-      { value: '5+',     label: 'Hackathons' },
-      { value: '1st',    label: 'Place Won' },
-      { value: '3D×LLM', label: 'Research Focus' },
+      { value: '3+',      label: 'Years as Engineer' },
+      { value: '14',      label: 'Events (4 Talks)' },
+      { value: '7',       label: 'Hackathons (3 Awards)' },
+      { value: 'All of AI', label: 'Research Focus' },
     ],
   },
 }
@@ -72,7 +72,7 @@ export default function AboutSection() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {c.stats.map((s) => (
             <div key={s.label} className="glassmorphism rounded-xl p-4 md:p-5 text-center hover:border-primary/30 transition-all">
-              <div className="text-2xl md:text-3xl font-bold text-gradient mb-1">{s.value}</div>
+              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gradient mb-1 leading-tight">{s.value}</div>
               <div className="text-xs text-muted tracking-wider uppercase">{s.label}</div>
             </div>
           ))}

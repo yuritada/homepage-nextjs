@@ -4,14 +4,12 @@ import Section from '@/components/Section'
 import { motion } from 'framer-motion'
 import { useLanguage } from '@/contexts/LanguageContext'
 
-const keywords = ['MCP', 'LLM', '3D Space', 'Geometric Hallucination', 'Blender', 'Natural Language Control']
-
 const t = {
   jp: {
     eyebrow: 'Academic Work',
     heading: 'Research',
-    currentBadge: '現在の研究',
-    dateBadge: '2025年〜現在',
+    dateBadge: '2025年〜2026年3月',
+    statusBadge: '学会発表済み',
     featuredTitle1: '3D空間のMCP自然言語制御における',
     featuredTitle2: '幾何学的ハルシネーションの解決',
     cards: [
@@ -42,8 +40,8 @@ const t = {
   en: {
     eyebrow: 'Academic Work',
     heading: 'Research',
-    currentBadge: 'Current Research',
-    dateBadge: '2025 – Present',
+    dateBadge: '2025 – Mar 2026',
+    statusBadge: 'Presented at Conference',
     featuredTitle1: 'Resolving Geometric Hallucination in',
     featuredTitle2: 'MCP-Based Natural Language Control of 3D Space',
     cards: [
@@ -97,13 +95,13 @@ export default function ResearchSection() {
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5"></div>
           <div className="relative p-6 sm:p-8 md:p-12">
             <div className="flex flex-wrap items-center gap-3 mb-6">
-              <span className="px-3 py-1 bg-primary/20 text-primary text-xs font-bold tracking-widest rounded-full uppercase">{c.currentBadge}</span>
-              <span className="px-3 py-1 bg-accent/15 text-accent text-xs font-bold tracking-widest rounded-full uppercase">{c.dateBadge}</span>
+              <span className="px-3 py-1 bg-primary/20 text-primary text-xs font-bold tracking-widest rounded-full uppercase">{c.dateBadge}</span>
+              <span className="px-3 py-1 bg-accent/15 text-accent text-xs font-bold tracking-widest rounded-full uppercase">{c.statusBadge}</span>
             </div>
             <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-2 leading-tight">{c.featuredTitle1}</h3>
             <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gradient mb-6 md:mb-8 leading-tight">{c.featuredTitle2}</h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {c.cards.map((card, i) => (
                 <div key={i} className="glassmorphism rounded-xl p-5">
                   <div className={`text-lg mb-2 ${card.accent ? 'text-accent' : 'text-primary'}`}>
@@ -112,14 +110,6 @@ export default function ResearchSection() {
                   <h4 className="font-bold text-xs text-foreground mb-2 tracking-wider uppercase">{card.label}</h4>
                   <p className="text-muted text-sm leading-relaxed">{card.body}</p>
                 </div>
-              ))}
-            </div>
-
-            <div className="flex flex-wrap gap-2">
-              {keywords.map((kw) => (
-                <span key={kw} className="px-3 py-1 text-xs font-medium bg-primary/10 text-primary border border-primary/20 rounded-full">
-                  {kw}
-                </span>
               ))}
             </div>
           </div>

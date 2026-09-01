@@ -82,7 +82,7 @@ const skillCategoriesBase: SkillCategory[] = [
 ]
 
 const headings = {
-  jp: { eyebrow: 'Arsenal', heading: 'スキル' },
+  jp: { eyebrow: 'Arsenal', heading: 'Skills' },
   en: { eyebrow: 'Arsenal', heading: 'Skills' },
 }
 
