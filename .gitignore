@@ -77,3 +77,14 @@ amplifyconfiguration.json
 amplify-build-config.json
 amplifytools.xcconfig
 **/.amplifyrc
+
+# --- 写真の元データ ---
+# content/photo/ にはスマホ等で撮影した元画像を置く。元画像は EXIF に
+# 位置情報（GPS緯度経度）・撮影日時・端末情報を含むことがあり、公開リポジトリに
+# そのまま入れると意図しない情報が公開される。
+#
+# 元データはローカル保管とし、サイトに載せる画像は EXIF を除去・リサイズした
+# コピーを public/photos/<記事slug>/ に置いて、そちらをコミットする。
+#   magick 元画像.jpg -auto-orient -resize '1600x1600>' -strip -quality 82 public/photos/<slug>/出力.jpg
+#     -strip … EXIF を全削除（GPS含む）
+content/photo/
