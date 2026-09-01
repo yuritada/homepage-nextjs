@@ -54,6 +54,7 @@ const skillCategoriesBase: SkillCategory[] = [
       { icon: 'fas fa-microchip', name: 'Lambda' },
       { icon: 'fab fa-docker',    name: 'Docker' },
       { icon: 'fas fa-cubes',     name: 'Compose' },
+      { icon: 'fab fa-cloudflare', name: 'Cloudflare' },
       { icon: 'fas fa-v',         name: 'Vercel' },
       { icon: 'fas fa-r',         name: 'Render' },
     ],
@@ -63,9 +64,7 @@ const skillCategoriesBase: SkillCategory[] = [
     color: 'accent',
     skills: [
       { icon: 'fab fa-linux',     name: 'Linux / ROCm' },
-      { icon: 'fas fa-microchip', name: 'RTX 4090' },
       { icon: 'fas fa-cube',      name: 'Blender' },
-      { icon: 'fas fa-gamepad',   name: 'Unreal Engine' },
       { icon: 'fab fa-git-alt',   name: 'Git' },
       { icon: 'fab fa-github',    name: 'GitHub' },
     ],
@@ -74,9 +73,10 @@ const skillCategoriesBase: SkillCategory[] = [
     title: 'Learning',
     color: 'primary',
     skills: [
-      { icon: 'fab fa-java',   name: 'Java' },
-      { icon: 'fas fa-code',   name: 'C++ / C#' },
-      { icon: 'fab fa-golang', name: 'Go' },
+      { icon: 'fab fa-java',    name: 'Java' },
+      { icon: 'fas fa-code',    name: 'C++ / C#' },
+      { icon: 'fab fa-golang',  name: 'Go' },
+      { icon: 'fas fa-gamepad', name: 'Unreal Engine' },
     ],
   },
 ]

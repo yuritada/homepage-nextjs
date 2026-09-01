@@ -79,12 +79,12 @@ export default function EducationSection() {
           {c.items.map((item, index) => (
             <div
               key={index}
-              className={`relative flex items-start w-full mb-8 md:mb-12 ${
+              className={`relative flex items-start w-full mb-8 md:mb-4 ${
                 index % 2 === 0 ? 'md:flex-row-reverse' : ''
               }`}
             >
               <div className="w-full pl-10 md:pl-0 md:w-1/2">
-                <div className={`p-5 md:p-6 rounded-xl glassmorphism hover:border-primary/25 transition-all ${index % 2 === 0 ? 'md:mr-8' : 'md:ml-8'}`}>
+                <div className={`p-5 rounded-xl glassmorphism hover:border-primary/25 transition-all ${index % 2 === 0 ? 'md:mr-8' : 'md:ml-8'}`}>
                   <h3 className="mb-1 text-base font-bold text-primary">{item.title}</h3>
                   <p className="text-muted text-xs mb-3 font-mono">{item.date}</p>
                   <p className="text-muted leading-relaxed text-sm">{item.description}</p>

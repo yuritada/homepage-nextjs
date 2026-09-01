@@ -8,7 +8,7 @@ const t = {
   jp: {
     heading: 'About',
     p1: '武蔵野大学データサイエンス学部に在籍。幼少期から「なぜ？どうして？」と物事の本質を追い求める探究心が強く、それが論理的思考力とAI研究の原点です。',
-    p2: '大学入学と同時に初めて自分のPCを手にし、プログラミング・機械学習・クラウドインフラからハードウェア（RTX 4090 / ROCm環境）まで貪欲に学習。ハッカソン優勝・R&Dインターン・技育展参加など、学外でも実績を積み上げています。',
+    p2: '大学入学と同時に初めて自分のPCを手にし、プログラミング・機械学習・クラウドインフラからハードウェアまで、誰に言われるでもなく勝手に学び続けています。ハッカソン受賞・R&Dインターン・技育展参加など、学外でも実績を積み上げています。',
     tags: ['データサイエンス', 'LLM / MCP', '3D研究', 'フルスタック', 'ハッカソン優勝'],
     stats: [
       { value: '3年+',   label: 'エンジニア歴' },
@@ -20,7 +20,7 @@ const t = {
   en: {
     heading: 'About',
     p1: "A Data Science student at Musashino University. Since childhood, a strong curiosity for \"why?\" and \"how?\" has driven me to explore the root of everything — forming the foundation of my logical thinking and AI research.",
-    p2: 'Upon entering university with my first PC, curiosity exploded. From programming and machine learning to hardware (RTX 4090 / ROCm), I pursue every layer of tech. Highlights include winning a hackathon, joining an R&D internship, and presenting at Giken-ten.',
+    p2: 'Upon entering university with my first PC, curiosity exploded. From programming and machine learning to cloud infrastructure and hardware, I just keep learning on my own — nobody has to tell me to. Highlights include hackathon awards, an R&D internship, and presenting at Giken-ten.',
     tags: ['Data Science', 'LLM / MCP', '3D Research', 'Full-Stack', 'Hackathon Winner'],
     stats: [
       { value: '3+',      label: 'Years as Engineer' },

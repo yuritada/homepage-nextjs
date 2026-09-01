@@ -10,7 +10,7 @@ type TimelineItem = {
   date: string
   title: string
   description: string
-  type: 'award' | 'event' | 'career' | 'conference'
+  type: 'award' | 'talk' | 'event' | 'career' | 'conference'
   /** Shown in the "Highlights" view. Everything else only appears under "All". */
   highlight?: boolean
   link?: string
@@ -59,7 +59,7 @@ const t: {
         date: '2024.07',
         title: 'Progate ユーザーLT会 — 登壇',
         description: '自らの開発アプローチと学習経験を発表。アウトプットを通じて自分の現在地を客観視し、エンジニアネットワークを構築。',
-        type: 'event',
+        type: 'talk',
         highlight: true,
         link: 'https://progate.connpass.com/event/323408/',
       },
@@ -112,7 +112,6 @@ const t: {
         title: '技育CAMP2025 ハッカソン Vol.4 — 参加',
         description: '「勝手に方言変換SNS」を開発。投稿が自動で別方言に翻訳されるユーモアとLLM活用を組み合わせたプロダクト。',
         type: 'event',
-        highlight: true,
       },
       {
         date: '2025.06',
@@ -151,8 +150,8 @@ const t: {
       },
       {
         date: '2025.12',
-        title: '学内ハッカソン — 優勝',
-        description: '「開発環境そのものへのアプローチ」という独自の視点と圧倒的な技術力で他チームを圧倒。一般的なSNS系アプリとは一線を画すプロダクトが評価され優勝。',
+        title: '学内ハッカソン — 最優秀賞',
+        description: '「開発環境そのものへのアプローチ」という独自の視点と圧倒的な技術力で他チームを圧倒。一般的なSNS系アプリとは一線を画すプロダクトが評価され、最優秀賞を受賞。',
         type: 'award',
         highlight: true,
       },
@@ -178,6 +177,20 @@ const t: {
         link: 'https://dena.connpass.com/event/393626/',
       },
       {
+        date: '2026.07',
+        title: '学内ハッカソン — 優秀賞',
+        description: '学部の年次発表会を運営ごと作り直したポータルシステム「MIRAIS」を3名チームで開発し、優秀賞を受賞。代表として全体設計とバックエンドを担当した。',
+        type: 'award',
+        highlight: true,
+      },
+      {
+        date: '2026.07',
+        title: '学内LT会 — 登壇',
+        description: '後輩に向けて、ハッカソンで実際に何が起きるのかと、アイディアをどう考えて形にしていくのかを話した。',
+        type: 'talk',
+        highlight: true,
+      },
+      {
         date: '2026.08',
         title: 'プロダクトマネジメントわいわい会 — 参加',
         description: '虎ノ門開催のPdM向けコミュニティイベント。エンジニアの外側から、何を作るかを決める仕事の考え方を聞きに行った。',
@@ -188,7 +201,7 @@ const t: {
         date: '2026.08',
         title: 'MEET STAGE in Tokyo vol.1 — LT登壇',
         description: '記念すべき第1回のLT交流会で登壇。Claude Maxで自律AI組織を作った顛末と、そこから辿り着いた「ループエンジニアリング」を発表した。',
-        type: 'event',
+        type: 'talk',
         highlight: true,
         link: 'https://localstage.connpass.com/event/399338/',
       },
@@ -250,7 +263,7 @@ const t: {
         date: '2024.07',
         title: 'Progate User LT Meetup — Speaker',
         description: 'Presented development approach and learnings. Gained outside perspective on my progress and expanded my engineer network.',
-        type: 'event',
+        type: 'talk',
         highlight: true,
         link: 'https://progate.connpass.com/event/323408/',
       },
@@ -303,7 +316,6 @@ const t: {
         title: 'Giken Camp 2025 Hackathon Vol.4 — Participated',
         description: 'Built "Unwanted Dialect Converter SNS" — posts auto-translate into another dialect. Blended humor with LLM application.',
         type: 'event',
-        highlight: true,
       },
       {
         date: '2025.06',
@@ -342,8 +354,8 @@ const t: {
       },
       {
         date: '2025.12',
-        title: 'Internal Hackathon — 1st Place',
-        description: '"An approach to the development environment itself" — a unique perspective backed by technical excellence, standing apart from the typical SNS-type entries.',
+        title: 'Internal Hackathon — Grand Prize',
+        description: '"An approach to the development environment itself" — a unique perspective backed by technical excellence, standing apart from the typical SNS-type entries. Took the grand prize.',
         type: 'award',
         highlight: true,
       },
@@ -369,6 +381,20 @@ const t: {
         link: 'https://dena.connpass.com/event/393626/',
       },
       {
+        date: '2026.07',
+        title: 'Internal Hackathon — Excellence Award',
+        description: 'Built MIRAIS — a portal that rebuilds the running of our faculty\'s annual showcase — with a team of three, and won the excellence award. I led the team and owned the overall design and backend.',
+        type: 'award',
+        highlight: true,
+      },
+      {
+        date: '2026.07',
+        title: 'Internal LT Meetup — Speaker',
+        description: 'Talked to the students a year below me about what a hackathon actually feels like from the inside, and how I go from an idea to something that ships.',
+        type: 'talk',
+        highlight: true,
+      },
+      {
         date: '2026.08',
         title: 'Product Management Meetup — Attended',
         description: 'A PdM community event in Toranomon. Went to hear how the decision of *what* to build is made, from outside the engineering seat.',
@@ -379,7 +405,7 @@ const t: {
         date: '2026.08',
         title: 'MEET STAGE in Tokyo vol.1 — Speaker',
         description: 'Spoke at the very first edition of this LT meetup: what happened when I built an autonomous AI organization on Claude Max, and the "loop engineering" idea I landed on.',
-        type: 'event',
+        type: 'talk',
         highlight: true,
         link: 'https://localstage.connpass.com/event/399338/',
       },
@@ -426,6 +452,7 @@ const t: {
 
 const typeConfig = {
   award:      { color: 'text-accent',    bg: 'bg-accent/15',    border: 'border-accent/40',    label: { jp: '受賞',   en: 'Award' } },
+  talk:       { color: 'text-pink-400',  bg: 'bg-pink-400/10',  border: 'border-pink-400/40',  label: { jp: '登壇',   en: 'Talk' } },
   event:      { color: 'text-primary',   bg: 'bg-primary/10',   border: 'border-primary/30',   label: { jp: 'イベント', en: 'Event' } },
   career:     { color: 'text-green-400', bg: 'bg-green-400/10', border: 'border-green-400/30', label: { jp: 'キャリア', en: 'Career' } },
   conference: { color: 'text-purple-400', bg: 'bg-purple-400/10', border: 'border-purple-400/30', label: { jp: '学会', en: 'Conf.' } },
