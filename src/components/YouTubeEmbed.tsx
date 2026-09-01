@@ -5,7 +5,7 @@ type Props = {
 
 export default function YouTubeEmbed({ videoId, title }: Props) {
   return (
-    <div className="my-5 rounded-xl overflow-hidden border border-primary/15 bg-black/50">
+    <div className="my-5 rounded-xl overflow-hidden border border-black/10 bg-black/5">
       <div className="relative w-full aspect-video">
         <iframe
           src={`https://www.youtube-nocookie.com/embed/${videoId}`}

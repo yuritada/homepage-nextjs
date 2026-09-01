@@ -43,33 +43,34 @@ function Article({ post, c, lang }: { post: BlogPost; c: PostContent; lang: Lang
         {t.backToList}
       </Link>
 
-      {/* Article header */}
-      <header className="mb-8 md:mb-10">
-        <div className="flex flex-wrap gap-2 mb-4">
-          {c.tags.map((tag) => (
-            <span
-              key={tag}
-              className="text-xs px-3 py-1 rounded-full border border-primary/40 bg-primary/10 text-primary-light font-medium"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground leading-snug mb-4">
-          {c.title}
-        </h1>
-        <time className="text-muted text-sm">{formatDate(post.date, lang)}</time>
-      </header>
+      {/* The article itself sits on a light "paper" surface — long-form reading is
+          where the dark palette tires the eye. Everything around it stays dark. */}
+      <div className="article-paper mb-10 md:mb-14">
+        {/* Article header */}
+        <header className="mb-8 md:mb-10">
+          <div className="flex flex-wrap gap-2 mb-4">
+            {c.tags.map((tag) => (
+              <span key={tag} className="paper-tag text-xs px-3 py-1 rounded-full font-medium">
+                {tag}
+              </span>
+            ))}
+          </div>
+          <h1 className="paper-title text-2xl sm:text-3xl md:text-4xl font-bold leading-snug mb-4">
+            {c.title}
+          </h1>
+          <time className="paper-meta text-sm">{formatDate(post.date, lang)}</time>
+        </header>
 
-      {/* Divider */}
-      <div className="section-divider mb-8 md:mb-10" />
+        {/* Divider */}
+        <div className="section-divider mb-8 md:mb-10" />
 
-      {/* Markdown content */}
-      <BlogMarkdown content={c.content} />
+        {/* Markdown content */}
+        <BlogMarkdown content={c.content} />
+      </div>
 
       {/* Slides (PDF) */}
       {post.slides && (
-        <section className="mt-12 md:mt-14">
+        <section>
           <h2 className="text-lg md:text-2xl font-bold text-primary-light border-b border-primary/20 pb-2 mb-5 md:mb-6">
             {t.slidesHeading}
           </h2>

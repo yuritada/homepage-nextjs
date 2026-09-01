@@ -36,6 +36,10 @@ export default function Navigation() {
   // Anywhere else (e.g. /blog) they must route home first, or they do nothing.
   const isHome = pathname === '/'
 
+  // Article pages slide a white "paper" under the bar, where a translucent
+  // background smears the text showing through. The bar goes solid there.
+  const isArticle = pathname.startsWith('/blog/')
+
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
     window.addEventListener('scroll', handleScroll)
@@ -68,7 +72,7 @@ export default function Navigation() {
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-surface/85 backdrop-blur-md shadow-lg shadow-primary/5 py-3 border-b border-border'
+          ? `${isArticle ? 'bg-surface' : 'bg-surface/85'} backdrop-blur-md shadow-lg shadow-primary/5 py-3 border-b border-border`
           : 'bg-transparent py-4'
       }`}
     >
