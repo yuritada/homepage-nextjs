@@ -40,7 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-docs
+# ルート直下の作業用ディレクトリのみ。アンカーしないと public/photos/docs/ の
+# ような同名ディレクトリまで巻き込んで無視してしまう。
+/docs
 
 Claude-Code-Communication
 
