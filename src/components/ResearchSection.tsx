@@ -33,9 +33,9 @@ const t = {
     ],
     linksLabel: '関連資料',
     links: [
-      { label: '解説ブログを読む', href: '/blog/2026-09-03-deim2026-mcp-text-to-3d', icon: 'fas fa-pen-nib', internal: true },
-      { label: '論文（DEIM2026）', href: '/slides/deim2026-paper.pdf', icon: 'fas fa-file-pdf' },
-      { label: '発表ポスター', href: '/slides/deim2026-poster.pdf', icon: 'fas fa-image' },
+      { label: '解説ブログを読む', href: '/blog/2026-09-03-deim2026-mcp-text-to-3d', icon: 'fas fa-pen-nib', primary: true },
+      { label: '論文（DEIM2026）', href: '/documents/deim2026-paper', icon: 'fas fa-file-pdf' },
+      { label: '発表ポスター', href: '/documents/deim2026-poster', icon: 'fas fa-image' },
     ],
     pastLabel: '過去の研究',
     pastAward: '学科賞受賞',
@@ -71,9 +71,9 @@ const t = {
     ],
     linksLabel: 'Resources',
     links: [
-      { label: 'Read the write-up', href: '/blog/2026-09-03-deim2026-mcp-text-to-3d', icon: 'fas fa-pen-nib', internal: true },
-      { label: 'Paper (DEIM2026)', href: '/slides/deim2026-paper.pdf', icon: 'fas fa-file-pdf' },
-      { label: 'Poster', href: '/slides/deim2026-poster.pdf', icon: 'fas fa-image' },
+      { label: 'Read the write-up', href: '/blog/2026-09-03-deim2026-mcp-text-to-3d', icon: 'fas fa-pen-nib', primary: true },
+      { label: 'Paper (DEIM2026)', href: '/documents/deim2026-paper', icon: 'fas fa-file-pdf' },
+      { label: 'Poster', href: '/documents/deim2026-poster', icon: 'fas fa-image' },
     ],
     pastLabel: 'Past Research',
     pastAward: 'Departmental Award',
@@ -130,29 +130,22 @@ export default function ResearchSection() {
             <div className="mt-8 pt-6 border-t border-border">
               <p className="text-xs text-muted tracking-widest uppercase font-medium mb-3">{c.linksLabel}</p>
               <div className="flex flex-wrap gap-3">
-                {c.links.map((link) =>
-                  link.internal ? (
+                {c.links.map((link) => {
+                  // The write-up leads; the source documents sit beside it, quieter.
+                  const style = link.primary
+                    ? 'bg-primary/15 border-primary/30 text-primary-light hover:bg-primary/25 hover:text-primary'
+                    : 'border-border text-muted hover:border-primary/40 hover:text-primary-light'
+                  return (
                     <Link
                       key={link.href}
                       href={link.href}
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/15 border border-primary/30 text-primary-light text-sm font-medium hover:bg-primary/25 hover:text-primary transition-colors"
+                      className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-medium transition-colors ${style}`}
                     >
                       <i className={link.icon}></i>
                       {link.label}
                     </Link>
-                  ) : (
-                    <a
-                      key={link.href}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border text-muted text-sm font-medium hover:border-primary/40 hover:text-primary-light transition-colors"
-                    >
-                      <i className={link.icon}></i>
-                      {link.label}
-                    </a>
                   )
-                )}
+                })}
               </div>
             </div>
           </div>

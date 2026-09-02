@@ -16,6 +16,8 @@ type TimelineItem = {
   highlight?: boolean
   /** External URL, or a site-internal path starting with "/". */
   link?: string
+  /** Slides, papers and posters for this entry, on /documents. */
+  docs?: { label: string; href: string }[]
 }
 
 type ProjectLink = {
@@ -64,6 +66,7 @@ const t: {
         type: 'talk',
         highlight: true,
         link: 'https://progate.connpass.com/event/323408/',
+        docs: [{ label: '発表スライド', href: '/documents/progate-user-lt' }],
       },
       {
         date: '2024.12',
@@ -171,6 +174,10 @@ const t: {
         type: 'conference',
         highlight: true,
         link: '/blog/2026-09-03-deim2026-mcp-text-to-3d',
+        docs: [
+          { label: '論文', href: '/documents/deim2026-paper' },
+          { label: '発表ポスター', href: '/documents/deim2026-poster' },
+        ],
       },
       {
         date: '2026.06',
@@ -192,6 +199,7 @@ const t: {
         description: '後輩に向けて、ハッカソンで実際に何が起きるのかと、アイディアをどう考えて形にしていくのかを話した。',
         type: 'talk',
         highlight: true,
+        docs: [{ label: '発表スライド', href: '/documents/hackathon-planning-lt' }],
       },
       {
         date: '2026.08',
@@ -207,6 +215,7 @@ const t: {
         type: 'talk',
         highlight: true,
         link: 'https://localstage.connpass.com/event/399338/',
+        docs: [{ label: '発表スライド', href: '/documents/summer-ai-lt' }],
       },
     ],
     projects: [
@@ -219,7 +228,7 @@ const t: {
         featured: true,
         links: [
           { label: '設計ノートを読む', href: '/blog/2026-07-14-mirais', icon: 'fas fa-book-open' },
-          { label: '発表スライド', href: '/slides/mirais.pdf', icon: 'fas fa-file-pdf', external: true },
+          { label: '発表スライド', href: '/documents/mirais-slides', icon: 'fas fa-file-pdf' },
         ],
       },
       {
@@ -269,6 +278,7 @@ const t: {
         type: 'talk',
         highlight: true,
         link: 'https://progate.connpass.com/event/323408/',
+        docs: [{ label: 'Slides', href: '/documents/progate-user-lt' }],
       },
       {
         date: '2024.12',
@@ -376,6 +386,10 @@ const t: {
         type: 'conference',
         highlight: true,
         link: '/blog/2026-09-03-deim2026-mcp-text-to-3d',
+        docs: [
+          { label: 'Paper', href: '/documents/deim2026-paper' },
+          { label: 'Poster', href: '/documents/deim2026-poster' },
+        ],
       },
       {
         date: '2026.06',
@@ -397,6 +411,7 @@ const t: {
         description: 'Talked to the students a year below me about what a hackathon actually feels like from the inside, and how I go from an idea to something that ships.',
         type: 'talk',
         highlight: true,
+        docs: [{ label: 'Slides', href: '/documents/hackathon-planning-lt' }],
       },
       {
         date: '2026.08',
@@ -412,6 +427,7 @@ const t: {
         type: 'talk',
         highlight: true,
         link: 'https://localstage.connpass.com/event/399338/',
+        docs: [{ label: 'Slides', href: '/documents/summer-ai-lt' }],
       },
     ],
     projects: [
@@ -424,7 +440,7 @@ const t: {
         featured: true,
         links: [
           { label: 'Read the Design Notes', href: '/blog/2026-07-14-mirais', icon: 'fas fa-book-open' },
-          { label: 'Slides', href: '/slides/mirais.pdf', icon: 'fas fa-file-pdf', external: true },
+          { label: 'Slides', href: '/documents/mirais-slides', icon: 'fas fa-file-pdf' },
         ],
       },
       {
@@ -624,6 +640,20 @@ export default function WorksSection() {
                     )}
                   </h4>
                   <p className="text-muted text-sm leading-relaxed">{item.description}</p>
+                  {item.docs && (
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      {item.docs.map((doc) => (
+                        <Link
+                          key={doc.href}
+                          href={doc.href}
+                          className="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full border border-primary/30 bg-primary/5 text-primary-light hover:bg-primary/15 hover:text-primary transition-colors"
+                        >
+                          <i className="fas fa-file-pdf text-[0.9em]"></i>
+                          {doc.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </motion.div>
             )
