@@ -54,6 +54,7 @@ const skillCategoriesBase: SkillCategory[] = [
       { icon: 'fas fa-microchip', name: 'Lambda' },
       { icon: 'fab fa-docker',    name: 'Docker' },
       { icon: 'fas fa-cubes',     name: 'Compose' },
+      { icon: 'fab fa-cloudflare', name: 'Cloudflare' },
       { icon: 'fas fa-v',         name: 'Vercel' },
       { icon: 'fas fa-r',         name: 'Render' },
     ],
@@ -63,9 +64,7 @@ const skillCategoriesBase: SkillCategory[] = [
     color: 'accent',
     skills: [
       { icon: 'fab fa-linux',     name: 'Linux / ROCm' },
-      { icon: 'fas fa-microchip', name: 'RTX 4090' },
       { icon: 'fas fa-cube',      name: 'Blender' },
-      { icon: 'fas fa-gamepad',   name: 'Unreal Engine' },
       { icon: 'fab fa-git-alt',   name: 'Git' },
       { icon: 'fab fa-github',    name: 'GitHub' },
     ],
@@ -74,15 +73,16 @@ const skillCategoriesBase: SkillCategory[] = [
     title: 'Learning',
     color: 'primary',
     skills: [
-      { icon: 'fab fa-java',   name: 'Java' },
-      { icon: 'fas fa-code',   name: 'C++ / C#' },
-      { icon: 'fab fa-golang', name: 'Go' },
+      { icon: 'fab fa-java',    name: 'Java' },
+      { icon: 'fas fa-code',    name: 'C++ / C#' },
+      { icon: 'fab fa-golang',  name: 'Go' },
+      { icon: 'fas fa-gamepad', name: 'Unreal Engine' },
     ],
   },
 ]
 
 const headings = {
-  jp: { eyebrow: 'Arsenal', heading: 'スキル' },
+  jp: { eyebrow: 'Arsenal', heading: 'Skills' },
   en: { eyebrow: 'Arsenal', heading: 'Skills' },
 }
 
@@ -97,26 +97,26 @@ export default function SkillsSection() {
 
   return (
     <Section id="skills">
-      <div className="w-4/5 max-w-6xl mx-auto px-5">
-        <div className="text-center mb-16">
+      <div className="w-full max-w-6xl mx-auto px-5 md:w-4/5">
+        <div className="text-center mb-12 md:mb-16">
           <p className="text-primary text-sm tracking-widest uppercase mb-3 font-medium">{eyebrow}</p>
-          <h2 className="text-4xl font-bold relative inline-block">
+          <h2 className="text-3xl md:text-4xl font-bold relative inline-block">
             {heading}
             <span className="absolute bottom-[-12px] left-1/2 transform -translate-x-1/2 w-16 h-px bg-gradient-to-r from-transparent via-primary to-transparent"></span>
           </h2>
         </div>
 
-        <div className="space-y-14">
+        <div className="space-y-10 md:space-y-14">
           {skillCategoriesBase.map((category, index) => (
             <div key={index}>
               <h3 className={`text-xl font-bold mb-6 text-center md:text-left tracking-wider ${category.color === 'accent' ? 'text-accent' : 'text-primary'}`}>
                 {category.title}
               </h3>
-              <div className="flex flex-wrap justify-center gap-6">
+              <div className="flex flex-wrap justify-center gap-5 md:gap-6">
                 {category.skills.map((skill, skillIndex) => (
                   <motion.div
                     key={skillIndex}
-                    className="flex flex-col items-center text-center w-20"
+                    className="flex flex-col items-center text-center w-[4.5rem] md:w-20"
                     variants={skillVariant}
                     initial="hidden"
                     whileInView="visible"
@@ -124,7 +124,7 @@ export default function SkillsSection() {
                     transition={{ delay: skillIndex * 0.07, duration: 0.4 }}
                     whileHover={{ scale: 1.15, y: -6, color: category.color === 'accent' ? '#ffd700' : '#00d8ff' }}
                   >
-                    <i className={`${skill.icon} text-4xl mb-2`}></i>
+                    <i className={`${skill.icon} text-3xl md:text-4xl mb-2`}></i>
                     <span className="text-xs text-muted">{skill.name}</span>
                   </motion.div>
                 ))}

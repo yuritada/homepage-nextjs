@@ -4,14 +4,12 @@ import Section from '@/components/Section'
 import { motion } from 'framer-motion'
 import { useLanguage } from '@/contexts/LanguageContext'
 
-const keywords = ['MCP', 'LLM', '3D Space', 'Geometric Hallucination', 'Blender', 'Natural Language Control']
-
 const t = {
   jp: {
     eyebrow: 'Academic Work',
     heading: 'Research',
-    currentBadge: '現在の研究',
-    dateBadge: '2025年〜現在',
+    dateBadge: '2025年〜2026年3月',
+    statusBadge: '学会発表済み',
     featuredTitle1: '3D空間のMCP自然言語制御における',
     featuredTitle2: '幾何学的ハルシネーションの解決',
     cards: [
@@ -42,8 +40,8 @@ const t = {
   en: {
     eyebrow: 'Academic Work',
     heading: 'Research',
-    currentBadge: 'Current Research',
-    dateBadge: '2025 – Present',
+    dateBadge: '2025 – Mar 2026',
+    statusBadge: 'Presented at Conference',
     featuredTitle1: 'Resolving Geometric Hallucination in',
     featuredTitle2: 'MCP-Based Natural Language Control of 3D Space',
     cards: [
@@ -79,10 +77,10 @@ export default function ResearchSection() {
 
   return (
     <Section id="research">
-      <div className="w-4/5 max-w-6xl mx-auto px-5">
-        <div className="text-center mb-16">
+      <div className="w-full max-w-6xl mx-auto px-5 md:w-4/5">
+        <div className="text-center mb-12 md:mb-16">
           <p className="text-primary text-sm tracking-widest uppercase mb-3 font-medium">{c.eyebrow}</p>
-          <h2 className="text-4xl font-bold relative inline-block">
+          <h2 className="text-3xl md:text-4xl font-bold relative inline-block">
             {c.heading}
             <span className="absolute bottom-[-12px] left-1/2 transform -translate-x-1/2 w-16 h-px bg-gradient-to-r from-transparent via-primary to-transparent"></span>
           </h2>
@@ -95,15 +93,15 @@ export default function ResearchSection() {
           transition={{ type: 'spring', stiffness: 200 }}
         >
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5"></div>
-          <div className="relative p-8 md:p-12">
+          <div className="relative p-6 sm:p-8 md:p-12">
             <div className="flex flex-wrap items-center gap-3 mb-6">
-              <span className="px-3 py-1 bg-primary/20 text-primary text-xs font-bold tracking-widest rounded-full uppercase">{c.currentBadge}</span>
-              <span className="px-3 py-1 bg-accent/15 text-accent text-xs font-bold tracking-widest rounded-full uppercase">{c.dateBadge}</span>
+              <span className="px-3 py-1 bg-primary/20 text-primary text-xs font-bold tracking-widest rounded-full uppercase">{c.dateBadge}</span>
+              <span className="px-3 py-1 bg-accent/15 text-accent text-xs font-bold tracking-widest rounded-full uppercase">{c.statusBadge}</span>
             </div>
-            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2 leading-tight">{c.featuredTitle1}</h3>
-            <h3 className="text-2xl md:text-3xl font-bold text-gradient mb-8 leading-tight">{c.featuredTitle2}</h3>
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-2 leading-tight">{c.featuredTitle1}</h3>
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gradient mb-6 md:mb-8 leading-tight">{c.featuredTitle2}</h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {c.cards.map((card, i) => (
                 <div key={i} className="glassmorphism rounded-xl p-5">
                   <div className={`text-lg mb-2 ${card.accent ? 'text-accent' : 'text-primary'}`}>
@@ -114,20 +112,12 @@ export default function ResearchSection() {
                 </div>
               ))}
             </div>
-
-            <div className="flex flex-wrap gap-2">
-              {keywords.map((kw) => (
-                <span key={kw} className="px-3 py-1 text-xs font-medium bg-primary/10 text-primary border border-primary/20 rounded-full">
-                  {kw}
-                </span>
-              ))}
-            </div>
           </div>
         </motion.div>
 
         {/* Past Research */}
         <motion.div
-          className="glassmorphism rounded-2xl p-6 md:p-8"
+          className="glassmorphism rounded-2xl p-5 sm:p-6 md:p-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -138,7 +128,7 @@ export default function ResearchSection() {
             <span className="px-2 py-0.5 bg-accent/15 text-accent text-xs font-bold rounded-full">{c.pastAward}</span>
             <span className="text-xs text-muted">{c.pastDate}</span>
           </div>
-          <h4 className="text-xl font-bold text-foreground mb-3">{c.pastTitle}</h4>
+          <h4 className="text-lg md:text-xl font-bold text-foreground mb-3">{c.pastTitle}</h4>
           <p className="text-muted text-sm leading-relaxed mb-4">{c.pastDesc}</p>
           <div className="flex flex-wrap gap-2">
             {c.pastTags.map((tag) => (

@@ -8,7 +8,7 @@ const t = {
   jp: {
     eyebrow: 'My Mindset',
     heading: 'Philosophy',
-    quote: '「混沌とした世界を、技術という補助線で構造化し、誰もがアクセス可能にすること。」',
+    quote: '「技術 × AI × 構造化思考で、誰も見たことない解を出し続ける。」',
     pillars: [
       {
         number: '01',
@@ -26,9 +26,9 @@ const t = {
       },
       {
         number: '03',
-        icon: 'fas fa-unlock-alt',
-        title: '創造を民主化する',
-        body: '技術の恩恵は、専門知識を持つ一部の人だけのものではない。LLM × 3D空間の研究を通じて、言葉で語りかけるだけで誰もがクリエイターになれる世界を作る。それが、このエンジニア人生を貫く軸。',
+        icon: 'fas fa-project-diagram',
+        title: '構造から逆算してウルトラCを',
+        body: '構造化力は、物事を正しく捉えるためだけの力ではない。要素と関係を解きほぐした先には、まだ誰も試していない組み合わせが見えてくる。構造を掴み、そこから「イメージを放射」させて逆算する。だから、想定の外にある一手——ウルトラCを設計できる。',
         accent: 'primary',
       },
     ],
@@ -36,7 +36,7 @@ const t = {
   en: {
     eyebrow: 'My Mindset',
     heading: 'Philosophy',
-    quote: '"Structure the chaos of the world with technology as the guide — and make it accessible to everyone."',
+    quote: '"Engineering × AI × Structural Thinking — answers no one has seen, again and again."',
     pillars: [
       {
         number: '01',
@@ -54,9 +54,9 @@ const t = {
       },
       {
         number: '03',
-        icon: 'fas fa-unlock-alt',
-        title: 'Democratize Creation',
-        body: "Technology shouldn't belong only to those with specialized knowledge. Through LLM × 3D research, I'm building a world where anyone can become a creator by simply speaking their vision. This is the axis of my engineering life.",
+        icon: 'fas fa-project-diagram',
+        title: 'Reverse-Engineer the Ultra C',
+        body: 'Structural thinking is not only a tool for grasping how things are. Once the elements and their relations are untangled, combinations nobody has tried come into view. Grasp the structure, radiate the image outward from it, and work backwards — that is how you design the move nobody saw coming.',
         accent: 'primary',
       },
     ],
@@ -69,24 +69,24 @@ export default function PhilosophySection() {
 
   return (
     <Section id="philosophy">
-      <div className="w-4/5 max-w-6xl mx-auto px-5">
-        <div className="text-center mb-16">
+      <div className="w-full max-w-6xl mx-auto px-5 md:w-4/5">
+        <div className="text-center mb-12 md:mb-16">
           <p className="text-primary text-sm tracking-widest uppercase mb-3 font-medium">{c.eyebrow}</p>
-          <h2 className="text-4xl font-bold relative inline-block">
+          <h2 className="text-3xl md:text-4xl font-bold relative inline-block">
             {c.heading}
             <span className="absolute bottom-[-12px] left-1/2 transform -translate-x-1/2 w-16 h-px bg-gradient-to-r from-transparent via-primary to-transparent"></span>
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {c.pillars.map((pillar, i) => (
             <motion.div
               key={i}
-              className="relative glassmorphism rounded-2xl p-8 overflow-hidden group"
+              className="relative glassmorphism rounded-2xl p-6 md:p-8 overflow-hidden group"
               whileHover={{ y: -8 }}
               transition={{ type: 'spring', stiffness: 300 }}
             >
-              <div className={`absolute -top-4 -right-2 text-8xl font-black opacity-5 select-none ${pillar.accent === 'accent' ? 'text-accent' : 'text-primary'}`}>
+              <div className={`absolute -top-4 -right-2 text-6xl md:text-8xl font-black opacity-5 select-none ${pillar.accent === 'accent' ? 'text-accent' : 'text-primary'}`}>
                 {pillar.number}
               </div>
               <div className={`text-4xl mb-5 ${pillar.accent === 'accent' ? 'text-accent' : 'text-primary'}`}>
@@ -100,13 +100,13 @@ export default function PhilosophySection() {
         </div>
 
         <motion.div
-          className="mt-16 text-center"
+          className="mt-12 md:mt-16 text-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
         >
-          <p className="text-2xl md:text-3xl font-bold text-gradient leading-snug">{c.quote}</p>
+          <p className="text-xl md:text-3xl font-bold text-gradient leading-snug">{c.quote}</p>
         </motion.div>
       </div>
     </Section>

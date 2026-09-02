@@ -26,12 +26,12 @@ const projects = [
 export default function ProjectsSection() {
   return (
     <Section id="projects">
-      <div className="w-4/5 max-w-6xl mx-auto px-5">
-        <h2 className="text-center mb-20 text-4xl font-bold relative">
+      <div className="w-full max-w-6xl mx-auto px-5 md:w-4/5">
+        <h2 className="text-center mb-14 md:mb-20 text-3xl md:text-4xl font-bold relative">
           Projects
           <span className="absolute bottom-[-15px] left-1/2 transform -translate-x-1/2 w-[70px] h-1 bg-primary"></span>
         </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
           {projects.map((project, index) => (
             <motion.div
               key={index}

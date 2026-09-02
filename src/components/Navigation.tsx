@@ -1,6 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 const navLinks = {
@@ -10,6 +12,7 @@ const navLinks = {
     { href: '#research',   label: 'Research' },
     { href: '#works',      label: 'Works' },
     { href: '#skills',     label: 'Skills' },
+    { href: '/blog',       label: 'Blog' },
     { href: '#contact',    label: 'Contact' },
   ],
   en: [
@@ -18,20 +21,39 @@ const navLinks = {
     { href: '#research',   label: 'Research' },
     { href: '#works',      label: 'Works' },
     { href: '#skills',     label: 'Skills' },
+    { href: '/blog',       label: 'Blog' },
     { href: '#contact',    label: 'Contact' },
   ],
 }
 
 export default function Navigation() {
   const { lang, toggle } = useLanguage()
+  const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+
+  // The section anchors (#about, #research, ...) only exist on the home page.
+  // Anywhere else (e.g. /blog) they must route home first, or they do nothing.
+  const isHome = pathname === '/'
+
+  // The blog is a light surface whose content scrolls right under the bar, and
+  // at 85% opacity that text shows through. The bar goes solid (and page-white,
+  // to stay distinct from the grey cards) there.
+  const isBlog = pathname.startsWith('/blog')
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Prevent the page behind the mobile drawer from scrolling
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isMenuOpen])
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith('#')) {
@@ -51,37 +73,69 @@ export default function Navigation() {
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-surface/85 backdrop-blur-md shadow-lg shadow-primary/5 py-3 border-b border-border'
+          ? `${isBlog ? 'bg-background' : 'bg-surface/85'} backdrop-blur-md shadow-lg shadow-primary/5 py-3 border-b border-border`
           : 'bg-transparent py-4'
       }`}
     >
-      <div className="flex justify-between items-center px-[5%] max-w-7xl mx-auto">
-        <a
-          href="#home"
-          onClick={(e) => handleNavClick(e, '#home')}
-          className="text-2xl font-bold text-gradient cursor-pointer tracking-tighter"
-        >
-          YT.
-        </a>
+      {/* Backdrop (mobile drawer) */}
+      <div
+        className={`nav-scrim md:hidden fixed inset-0 bg-background/70 backdrop-blur-sm transition-opacity duration-300 ${
+          isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={() => setIsMenuOpen(false)}
+        aria-hidden="true"
+      />
+
+      <div className="flex justify-between items-center px-5 md:px-[5%] max-w-7xl mx-auto">
+        {isHome ? (
+          <a
+            href="#home"
+            onClick={(e) => handleNavClick(e, '#home')}
+            className="text-2xl font-bold text-gradient cursor-pointer tracking-tighter"
+          >
+            YT.
+          </a>
+        ) : (
+          <Link
+            href="/"
+            onClick={() => setIsMenuOpen(false)}
+            className="text-2xl font-bold text-gradient cursor-pointer tracking-tighter"
+          >
+            YT.
+          </Link>
+        )}
 
         <ul
           className={`nav-links list-none ${
             isMenuOpen
-              ? 'flex flex-col fixed right-0 top-0 h-full w-3/4 bg-surface/95 backdrop-blur-lg justify-center items-center shadow-2xl border-l border-border'
+              ? 'flex flex-col fixed right-0 top-0 h-[100dvh] w-64 max-w-[80%] bg-surface/95 backdrop-blur-lg justify-center items-center shadow-2xl border-l border-border overflow-y-auto py-20'
               : 'hidden md:flex md:space-x-8'
           }`}
         >
-          {links.map(({ href, label }) => (
-            <li key={href} className={isMenuOpen ? 'my-4' : ''}>
-              <a
-                href={href}
-                onClick={(e) => handleNavClick(e, href)}
-                className="text-muted no-underline font-medium text-sm tracking-widest uppercase relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-0 after:h-px after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:text-primary transition-colors"
-              >
-                {label}
-              </a>
-            </li>
-          ))}
+          {links.map(({ href, label }) => {
+            const isAnchor = href.startsWith('#')
+            const linkClass = `no-underline font-medium tracking-widest uppercase relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-0 after:h-px after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:text-primary transition-colors ${
+              isMenuOpen ? 'block text-foreground text-base py-3 px-6' : 'text-muted text-sm'
+            }`
+
+            return (
+              <li key={href} className={isMenuOpen ? 'my-1' : ''}>
+                {isAnchor && isHome ? (
+                  <a href={href} onClick={(e) => handleNavClick(e, href)} className={linkClass}>
+                    {label}
+                  </a>
+                ) : (
+                  <Link
+                    href={isAnchor ? `/${href}` : href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={linkClass}
+                  >
+                    {label}
+                  </Link>
+                )}
+              </li>
+            )
+          })}
 
           {/* Language toggle — inline in mobile menu */}
           {isMenuOpen && (
@@ -99,7 +153,7 @@ export default function Navigation() {
 
           {/* Hamburger */}
           <button
-            className="md:hidden cursor-pointer z-50"
+            className="md:hidden cursor-pointer z-50 -mr-2 p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isMenuOpen}
