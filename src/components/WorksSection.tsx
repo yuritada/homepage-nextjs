@@ -14,10 +14,10 @@ type TimelineItem = {
   type: 'award' | 'talk' | 'event' | 'career' | 'conference'
   /** Shown in the "Highlights" view. Everything else only appears under "All". */
   highlight?: boolean
-  /** External URL, or a site-internal path starting with "/". */
+  /** The event page this entry refers to. External; opens in a new tab. */
   link?: string
-  /** Slides, papers and posters for this entry, on /documents. */
-  docs?: { label: string; href: string }[]
+  /** Write-ups, slides, papers and posters for this entry, shown as tags. */
+  docs?: { label: string; href: string; icon?: string }[]
 }
 
 type ProjectLink = {
@@ -173,8 +173,8 @@ const t: {
         description: 'MCPによるText-to-3D生成の自律的品質保証を、インタラクティブセッションでポスター発表。LayerXの参加レポートで「面白かった発表」4件の1件として紹介された。',
         type: 'conference',
         highlight: true,
-        link: '/blog/2026-09-03-deim2026-mcp-text-to-3d',
         docs: [
+          { label: '解説記事', href: '/blog/2026-09-03-deim2026-mcp-text-to-3d', icon: 'fas fa-pen-nib' },
           { label: '論文', href: '/documents/deim2026-paper' },
           { label: '発表ポスター', href: '/documents/deim2026-poster' },
         ],
@@ -385,8 +385,8 @@ const t: {
         description: 'Presented autonomous quality assurance for MCP-driven Text-to-3D at the interactive session. Featured in LayerX\'s conference report as one of four standout posters.',
         type: 'conference',
         highlight: true,
-        link: '/blog/2026-09-03-deim2026-mcp-text-to-3d',
         docs: [
+          { label: 'Write-up', href: '/blog/2026-09-03-deim2026-mcp-text-to-3d', icon: 'fas fa-pen-nib' },
           { label: 'Paper', href: '/documents/deim2026-paper' },
           { label: 'Poster', href: '/documents/deim2026-poster' },
         ],
@@ -616,25 +616,15 @@ export default function WorksSection() {
                   </div>
                   <h4 className="font-bold text-foreground mb-1">
                     {item.link ? (
-                      item.link.startsWith('/') ? (
-                        <Link
-                          href={item.link}
-                          className="hover:text-primary transition-colors inline-flex items-baseline gap-1.5"
-                        >
-                          {item.title}
-                          <i className="fas fa-arrow-right text-[0.65em] opacity-60"></i>
-                        </Link>
-                      ) : (
-                        <a
-                          href={item.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="hover:text-primary transition-colors inline-flex items-baseline gap-1.5"
-                        >
-                          {item.title}
-                          <i className="fas fa-external-link-alt text-[0.65em] opacity-60"></i>
-                        </a>
-                      )
+                      <a
+                        href={item.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-primary transition-colors inline-flex items-baseline gap-1.5"
+                      >
+                        {item.title}
+                        <i className="fas fa-external-link-alt text-[0.65em] opacity-60"></i>
+                      </a>
                     ) : (
                       item.title
                     )}
@@ -648,7 +638,7 @@ export default function WorksSection() {
                           href={doc.href}
                           className="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full border border-primary/30 bg-primary/5 text-primary-light hover:bg-primary/15 hover:text-primary transition-colors"
                         >
-                          <i className="fas fa-file-pdf text-[0.9em]"></i>
+                          <i className={`${doc.icon ?? 'fas fa-file-pdf'} text-[0.9em]`}></i>
                           {doc.label}
                         </Link>
                       ))}

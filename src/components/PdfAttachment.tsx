@@ -69,13 +69,6 @@ export default function PdfAttachment({
         >
           {t.openInNewTab}
         </a>
-        <a
-          href={href}
-          download
-          className="inline-flex items-center gap-2 text-muted text-sm hover:text-primary-light transition-colors"
-        >
-          {t.downloadPdf}
-        </a>
       </div>
       {caption && <p className="mt-3 hidden md:block text-muted text-xs">{caption}</p>}
     </div>
