@@ -79,7 +79,7 @@ const t: {
       {
         date: '2025.04',
         title: 'サポーターズミートアップ＠東京 — 参加',
-        description: '企業エンジニアと直接話す場に参加。学生の視点では見えない実務の制約や意思決定の基準を聞き、自分の設計観を見直した。',
+        description: '初めてエンジニアの集まるイベントに参加。この時の出会いが、後のLT会への積極的な参加につながった。',
         type: 'event',
       },
       {
@@ -283,7 +283,7 @@ const t: {
       {
         date: '2025.04',
         title: 'Supporterz Meetup @ Tokyo — Attended',
-        description: 'Talked directly with company engineers about the real-world constraints and decision criteria a student rarely gets to see.',
+        description: 'My first event among engineers. The connections made here led to actively joining lightning talk sessions later on.',
         type: 'event',
       },
       {
