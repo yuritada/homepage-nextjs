@@ -4,16 +4,21 @@ import Image from 'next/image'
 import Section from '@/components/Section'
 import { useLanguage } from '@/contexts/LanguageContext'
 
+/** One figure: an icon, the number, an optional counter word, and its caption. */
+type Figure = {
+  icon: string
+  value: string
+  /** Counter word set only in Japanese, where a bare numeral reads unfinished. */
+  unit?: string
+  label: string
+}
+
 /**
  * A stat can carry a second figure of its own (talks within events, awards
  * within hackathons). Both halves get the same type size — the breakdown is
  * the point, not a footnote to the headline number.
  */
-type Stat = {
-  value: string
-  label: string
-  sub?: { value: string; label: string }
-}
+type Stat = Figure & { sub?: Figure }
 
 type Content = {
   heading: string
@@ -30,10 +35,12 @@ const t: { jp: Content; en: Content } = {
     p2: '大学入学と同時に初めて自分のPCを手にし、プログラミング・機械学習・クラウドインフラからハードウェアまで、誰に言われるでもなく勝手に学び続けています。ハッカソン受賞・R&Dインターン・技育展参加など、学外でも実績を積み上げています。',
     tags: ['データサイエンス', 'LLM / MCP', '3D研究', 'フルスタック', 'ハッカソン優勝'],
     stats: [
-      { value: '3年+',   label: 'エンジニア歴' },
-      { value: '14',     label: 'イベント参加', sub: { value: '4', label: '登壇' } },
-      { value: '7',      label: 'ハッカソン',   sub: { value: '3', label: '受賞' } },
-      { value: 'AI全領域', label: '研究テーマ' },
+      { icon: 'fas fa-code',        value: '3年+',    label: 'エンジニア歴' },
+      { icon: 'fas fa-users',       value: '14', unit: '回', label: 'イベント参加',
+        sub: { icon: 'fas fa-microphone',  value: '4', unit: '回', label: '登壇' } },
+      { icon: 'fas fa-laptop-code', value: '7',  unit: '回', label: 'ハッカソン',
+        sub: { icon: 'fas fa-trophy',      value: '3', unit: '回', label: '受賞' } },
+      { icon: 'fas fa-brain',       value: 'AI全領域', label: '研究テーマ' },
     ],
   },
   en: {
@@ -42,12 +49,33 @@ const t: { jp: Content; en: Content } = {
     p2: 'Upon entering university with my first PC, curiosity exploded. From programming and machine learning to cloud infrastructure and hardware, I just keep learning on my own — nobody has to tell me to. Highlights include hackathon awards, an R&D internship, and presenting at Giken-ten.',
     tags: ['Data Science', 'LLM / MCP', '3D Research', 'Full-Stack', 'Hackathon Winner'],
     stats: [
-      { value: '3+',      label: 'Years as Engineer' },
-      { value: '14',      label: 'Events',     sub: { value: '4', label: 'Talks' } },
-      { value: '7',       label: 'Hackathons', sub: { value: '3', label: 'Awards' } },
-      { value: 'All of AI', label: 'Research Focus' },
+      { icon: 'fas fa-code',        value: '3+',   label: 'Years as Engineer' },
+      { icon: 'fas fa-users',       value: '14',   label: 'Events',
+        sub: { icon: 'fas fa-microphone', value: '4', label: 'Talks' } },
+      { icon: 'fas fa-laptop-code', value: '7',    label: 'Hackathons',
+        sub: { icon: 'fas fa-trophy',     value: '3', label: 'Awards' } },
+      { icon: 'fas fa-brain',       value: 'All of AI', label: 'Research Focus' },
     ],
   },
+}
+
+function StatFigure({ f, accent = false }: { f: Figure; accent?: boolean }) {
+  return (
+    <>
+      <div className="flex items-baseline justify-center gap-1.5 mb-1">
+        <i className={`${f.icon} text-sm md:text-base ${accent ? 'text-accent/70' : 'text-primary/70'}`} aria-hidden="true"></i>
+        <span className={`text-xl sm:text-2xl md:text-3xl font-bold leading-tight ${accent ? 'text-accent' : 'text-gradient'}`}>
+          {f.value}
+        </span>
+        {f.unit && (
+          <span className={`text-xs md:text-sm font-semibold ${accent ? 'text-accent/70' : 'text-muted'}`}>{f.unit}</span>
+        )}
+      </div>
+      <div className={`text-[0.65rem] sm:text-xs tracking-wider uppercase ${accent ? 'text-accent/80' : 'text-muted'}`}>
+        {f.label}
+      </div>
+    </>
+  )
 }
 
 export default function AboutSection() {
@@ -96,21 +124,12 @@ export default function AboutSection() {
                    the longest label ('Hackathons'); below that the two figures
                    stack so neither can ever overflow its column. */
                 <div className="flex flex-col xl:flex-row items-stretch justify-center gap-2 xl:gap-3">
-                  <div className="flex-1">
-                    <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gradient leading-tight">{s.value}</div>
-                    <div className="text-[0.65rem] sm:text-xs text-muted tracking-wider uppercase">{s.label}</div>
-                  </div>
+                  <div className="flex-1"><StatFigure f={s} /></div>
                   <div className="h-px w-full xl:h-auto xl:w-px bg-border"></div>
-                  <div className="flex-1">
-                    <div className="text-xl sm:text-2xl md:text-3xl font-bold text-accent leading-tight">{s.sub.value}</div>
-                    <div className="text-[0.65rem] sm:text-xs text-accent/80 tracking-wider uppercase">{s.sub.label}</div>
-                  </div>
+                  <div className="flex-1"><StatFigure f={s.sub} accent /></div>
                 </div>
               ) : (
-                <>
-                  <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gradient mb-1 leading-tight">{s.value}</div>
-                  <div className="text-xs text-muted tracking-wider uppercase">{s.label}</div>
-                </>
+                <StatFigure f={s} />
               )}
             </div>
           ))}
