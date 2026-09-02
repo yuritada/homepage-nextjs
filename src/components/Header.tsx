@@ -113,7 +113,7 @@ export default function Header() {
         </h1>
 
         {/* Catchphrase */}
-        <p className="font-display font-black text-foreground text-2xl sm:text-3xl md:text-5xl tracking-wide mb-8 md:mb-10 max-w-2xl min-h-[2.25rem] sm:min-h-[2.75rem] md:h-16 px-2">
+        <p className="font-display font-black text-foreground/85 text-2xl sm:text-3xl md:text-5xl tracking-wide mb-8 md:mb-10 max-w-2xl min-h-[2.25rem] sm:min-h-[2.75rem] md:h-16 px-2">
           {subtitle}
           {isTitleDone && !isSubtitleDone && (
             <span className="animate-blink text-primary">|</span>

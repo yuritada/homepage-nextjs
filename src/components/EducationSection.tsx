@@ -79,7 +79,7 @@ export default function EducationSection() {
           {c.items.map((item, index) => (
             <div
               key={index}
-              className={`relative flex items-start w-full mb-8 md:mb-4 ${
+              className={`relative flex items-start w-full mb-8 md:-mb-16 ${
                 index % 2 === 0 ? 'md:flex-row-reverse' : ''
               }`}
             >
