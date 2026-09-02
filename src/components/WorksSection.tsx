@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import Section from '@/components/Section'
 import { motion } from 'framer-motion'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -13,7 +14,10 @@ type TimelineItem = {
   type: 'award' | 'talk' | 'event' | 'career' | 'conference'
   /** Shown in the "Highlights" view. Everything else only appears under "All". */
   highlight?: boolean
+  /** The event page this entry refers to. External; opens in a new tab. */
   link?: string
+  /** Write-ups, slides, papers and posters for this entry, shown as tags. */
+  docs?: { label: string; href: string; icon?: string }[]
 }
 
 type ProjectLink = {
@@ -62,6 +66,7 @@ const t: {
         type: 'talk',
         highlight: true,
         link: 'https://progate.connpass.com/event/323408/',
+        docs: [{ label: '発表スライド', href: '/documents/progate-user-lt' }],
       },
       {
         date: '2024.12',
@@ -79,7 +84,7 @@ const t: {
       {
         date: '2025.04',
         title: 'サポーターズミートアップ＠東京 — 参加',
-        description: '企業エンジニアと直接話す場に参加。学生の視点では見えない実務の制約や意思決定の基準を聞き、自分の設計観を見直した。',
+        description: '初めてエンジニアの集まるイベントに参加。この時の出会いが、後のLT会への積極的な参加につながった。',
         type: 'event',
       },
       {
@@ -164,10 +169,15 @@ const t: {
       },
       {
         date: '2026.03',
-        title: 'DEIM — 参加',
-        description: '日本データベース学会のフォーラム（DEIM）に参加。研究成果を学術的な文脈で発表・議論。',
+        title: 'DEIM2026 — ポスター発表',
+        description: 'MCPによるText-to-3D生成の自律的品質保証を、インタラクティブセッションでポスター発表。LayerXの参加レポートで「面白かった発表」4件の1件として紹介された。',
         type: 'conference',
         highlight: true,
+        docs: [
+          { label: '解説記事', href: '/blog/2026-03-15-deim2026-mcp-text-to-3d', icon: 'fas fa-pen-nib' },
+          { label: '論文', href: '/documents/deim2026-paper' },
+          { label: '発表ポスター', href: '/documents/deim2026-poster' },
+        ],
       },
       {
         date: '2026.06',
@@ -182,6 +192,7 @@ const t: {
         description: '学部の年次発表会を運営ごと作り直したポータルシステム「MIRAIS」を3名チームで開発し、優秀賞を受賞。代表として全体設計とバックエンドを担当した。',
         type: 'award',
         highlight: true,
+        docs: [{ label: '解説記事', href: '/blog/2026-07-14-mirais', icon: 'fas fa-pen-nib' }],
       },
       {
         date: '2026.07',
@@ -189,6 +200,7 @@ const t: {
         description: '後輩に向けて、ハッカソンで実際に何が起きるのかと、アイディアをどう考えて形にしていくのかを話した。',
         type: 'talk',
         highlight: true,
+        docs: [{ label: '発表スライド', href: '/documents/hackathon-planning-lt' }],
       },
       {
         date: '2026.08',
@@ -204,6 +216,7 @@ const t: {
         type: 'talk',
         highlight: true,
         link: 'https://localstage.connpass.com/event/399338/',
+        docs: [{ label: '発表スライド', href: '/documents/summer-ai-lt' }],
       },
     ],
     projects: [
@@ -216,7 +229,7 @@ const t: {
         featured: true,
         links: [
           { label: '設計ノートを読む', href: '/blog/2026-07-14-mirais', icon: 'fas fa-book-open' },
-          { label: '発表スライド', href: '/slides/mirais.pdf', icon: 'fas fa-file-pdf', external: true },
+          { label: '発表スライド', href: '/documents/mirais-slides', icon: 'fas fa-file-pdf' },
         ],
       },
       {
@@ -266,6 +279,7 @@ const t: {
         type: 'talk',
         highlight: true,
         link: 'https://progate.connpass.com/event/323408/',
+        docs: [{ label: 'Slides', href: '/documents/progate-user-lt' }],
       },
       {
         date: '2024.12',
@@ -283,7 +297,7 @@ const t: {
       {
         date: '2025.04',
         title: 'Supporterz Meetup @ Tokyo — Attended',
-        description: 'Talked directly with company engineers about the real-world constraints and decision criteria a student rarely gets to see.',
+        description: 'My first event among engineers. The connections made here led to actively joining lightning talk sessions later on.',
         type: 'event',
       },
       {
@@ -368,10 +382,15 @@ const t: {
       },
       {
         date: '2026.03',
-        title: 'DEIM — Participated',
-        description: 'Presented research at the Forum on Data Engineering and Information Management. Discussed findings in an academic context.',
+        title: 'DEIM2026 — Poster Presentation',
+        description: 'Presented autonomous quality assurance for MCP-driven Text-to-3D at the interactive session. Featured in LayerX\'s conference report as one of four standout posters.',
         type: 'conference',
         highlight: true,
+        docs: [
+          { label: 'Write-up', href: '/blog/2026-03-15-deim2026-mcp-text-to-3d', icon: 'fas fa-pen-nib' },
+          { label: 'Paper', href: '/documents/deim2026-paper' },
+          { label: 'Poster', href: '/documents/deim2026-poster' },
+        ],
       },
       {
         date: '2026.06',
@@ -386,6 +405,7 @@ const t: {
         description: 'Built MIRAIS — a portal that rebuilds the running of our faculty\'s annual showcase — with a team of three, and won the excellence award. I led the team and owned the overall design and backend.',
         type: 'award',
         highlight: true,
+        docs: [{ label: 'Write-up', href: '/blog/2026-07-14-mirais', icon: 'fas fa-pen-nib' }],
       },
       {
         date: '2026.07',
@@ -393,6 +413,7 @@ const t: {
         description: 'Talked to the students a year below me about what a hackathon actually feels like from the inside, and how I go from an idea to something that ships.',
         type: 'talk',
         highlight: true,
+        docs: [{ label: 'Slides', href: '/documents/hackathon-planning-lt' }],
       },
       {
         date: '2026.08',
@@ -408,6 +429,7 @@ const t: {
         type: 'talk',
         highlight: true,
         link: 'https://localstage.connpass.com/event/399338/',
+        docs: [{ label: 'Slides', href: '/documents/summer-ai-lt' }],
       },
     ],
     projects: [
@@ -420,7 +442,7 @@ const t: {
         featured: true,
         links: [
           { label: 'Read the Design Notes', href: '/blog/2026-07-14-mirais', icon: 'fas fa-book-open' },
-          { label: 'Slides', href: '/slides/mirais.pdf', icon: 'fas fa-file-pdf', external: true },
+          { label: 'Slides', href: '/documents/mirais-slides', icon: 'fas fa-file-pdf' },
         ],
       },
       {
@@ -610,6 +632,20 @@ export default function WorksSection() {
                     )}
                   </h4>
                   <p className="text-muted text-sm leading-relaxed">{item.description}</p>
+                  {item.docs && (
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      {item.docs.map((doc) => (
+                        <Link
+                          key={doc.href}
+                          href={doc.href}
+                          className="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full border border-primary/30 bg-primary/5 text-primary-light hover:bg-primary/15 hover:text-primary transition-colors"
+                        >
+                          <i className={`${doc.icon ?? 'fas fa-file-pdf'} text-[0.9em]`}></i>
+                          {doc.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </motion.div>
             )

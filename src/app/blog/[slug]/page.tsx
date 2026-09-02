@@ -4,6 +4,7 @@ import { getAllPosts, getPostBySlug, getSeriesPosts } from '@/lib/blog'
 import { formatDate, blogUI, type BlogPost, type PostContent } from '@/lib/post'
 import type { Lang } from '@/contexts/LanguageContext'
 import BlogMarkdown from '@/components/BlogMarkdown'
+import PdfAttachment from '@/components/PdfAttachment'
 import LangSwitch from '@/components/LangSwitch'
 import SeriesNav from '@/components/SeriesNav'
 import type { Metadata } from 'next'
@@ -85,55 +86,24 @@ function Article({
           <h2 className="text-lg md:text-2xl font-bold text-primary-light border-b border-primary/20 pb-2 mb-5 md:mb-6">
             {t.slidesHeading}
           </h2>
-          {/* Inline viewer: desktop only — mobile browsers do not render embedded PDFs */}
-          <div className="hidden md:block glassmorphism rounded-xl overflow-hidden">
-            <object
-              data={post.slides}
-              type="application/pdf"
-              className="w-full h-[560px] bg-black/40"
-              aria-label={c.slidesTitle ?? `${c.title} — ${t.slidesHeading}`}
-            >
-              <div className="p-6 text-muted text-sm">{t.slidesFallback}</div>
-            </object>
-          </div>
-
-          {/* Tap-through card: phones and tablets */}
-          <a
+          <PdfAttachment
             href={post.slides}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="md:hidden flex items-center gap-4 glassmorphism rounded-xl p-4 active:border-primary/40 transition-colors"
-          >
-            <span className="flex-shrink-0 w-11 h-11 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center text-primary text-xl">
-              <i className="fas fa-file-pdf"></i>
-            </span>
-            <span className="min-w-0">
-              <span className="block text-foreground text-sm font-semibold truncate">
-                {c.slidesTitle ?? t.slidesHeading}
-              </span>
-              <span className="block text-muted text-xs mt-0.5">{t.tapToOpen}</span>
-            </span>
-          </a>
-          <div className="mt-4 hidden md:flex flex-wrap items-center gap-4">
-            <a
-              href={post.slides}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-primary-light text-sm font-medium hover:text-primary transition-colors"
-            >
-              {t.openInNewTab}
-            </a>
-            <a
-              href={post.slides}
-              download
-              className="inline-flex items-center gap-2 text-muted text-sm hover:text-primary-light transition-colors"
-            >
-              {t.downloadPdf}
-            </a>
-          </div>
-          {c.slidesTitle && (
-            <p className="mt-3 hidden md:block text-muted text-xs">{c.slidesTitle}</p>
-          )}
+            title={c.slidesTitle ?? `${c.title} — ${t.slidesHeading}`}
+            lang={lang}
+            caption={c.slidesTitle}
+          />
+        </section>
+      )}
+
+      {/* Supporting documents (paper, poster, ...) */}
+      {c.docs && c.docs.length > 0 && (
+        <section className="mt-12 md:mt-14">
+          <h2 className="text-lg md:text-2xl font-bold text-primary-light border-b border-primary/20 pb-2 mb-5 md:mb-6">
+            {t.docsHeading}
+          </h2>
+          {c.docs.map((doc) => (
+            <PdfAttachment key={doc.href} href={doc.href} title={doc.title} lang={lang} showTitle />
+          ))}
         </section>
       )}
 
