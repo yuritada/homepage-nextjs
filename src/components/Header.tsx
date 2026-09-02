@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef, Fragment } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Navigation from '@/components/Navigation'
 import Starfield from '@/components/Starfield'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -9,14 +9,14 @@ const content = {
   jp: {
     hiragana: 'ただゆうり',
     title: '多田有里',
-    subtitle: '目指せ、最強のAI人材。\n3D × LLM × 構造化思考で\n誰も見たことない解を出し続ける。',
+    subtitle: '目指せ、最強のAI人材',
     badge: 'AI研究者 × フルスタックエンジニア',
     cta1: '研究を見る',
     cta2: 'お問い合わせ',
   },
   en: {
     title: 'Yuri Tada',
-    subtitle: "On a mission: the strongest AI engineer.\nLLM × 3D Space × Structural Thinking —\nbuilding what others haven't imagined yet.",
+    subtitle: 'Becoming the strongest AI talent',
     badge: 'AI Researcher × Full-Stack Engineer',
     cta1: 'View Research',
     cta2: 'Contact Me',
@@ -112,14 +112,9 @@ export default function Header() {
           {!isTitleDone && <span className="animate-blink text-primary">|</span>}
         </h1>
 
-        {/* Subtitle */}
-        <p className="text-base sm:text-lg md:text-2xl text-muted mb-8 md:mb-10 max-w-2xl min-h-[7.5rem] sm:min-h-[8rem] md:h-32 leading-relaxed px-2">
-          {subtitle.split('\n').map((line, i) => (
-            <Fragment key={i}>
-              {line}
-              {i < subtitle.split('\n').length - 1 && <br />}
-            </Fragment>
-          ))}
+        {/* Catchphrase */}
+        <p className="font-display font-black text-foreground/85 text-2xl sm:text-3xl md:text-5xl tracking-wide mb-8 md:mb-10 max-w-2xl min-h-[2.25rem] sm:min-h-[2.75rem] md:h-16 px-2">
+          {subtitle}
           {isTitleDone && !isSubtitleDone && (
             <span className="animate-blink text-primary">|</span>
           )}
