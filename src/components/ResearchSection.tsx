@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import Section from '@/components/Section'
 import { motion } from 'framer-motion'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -29,6 +30,12 @@ const t = {
         body: 'プログラミングもモデリングも不要。言葉で語りかけるだけで誰もが3D空間を創造できる—「創造の民主化」を技術で実現する。',
         accent: true,
       },
+    ],
+    linksLabel: '関連資料',
+    links: [
+      { label: '解説ブログを読む', href: '/blog/2026-03-15-deim2026-mcp-text-to-3d', icon: 'fas fa-pen-nib', primary: true },
+      { label: '論文（DEIM2026）', href: '/documents/deim2026-paper', icon: 'fas fa-file-pdf' },
+      { label: '発表ポスター', href: '/documents/deim2026-poster', icon: 'fas fa-image' },
     ],
     pastLabel: '過去の研究',
     pastAward: '学科賞受賞',
@@ -61,6 +68,12 @@ const t = {
         body: 'No programming, no modeling required. Just speak, and 3D worlds come to life — democratizing creation through technology.',
         accent: true,
       },
+    ],
+    linksLabel: 'Resources',
+    links: [
+      { label: 'Read the write-up', href: '/blog/2026-03-15-deim2026-mcp-text-to-3d', icon: 'fas fa-pen-nib', primary: true },
+      { label: 'Paper (DEIM2026)', href: '/documents/deim2026-paper', icon: 'fas fa-file-pdf' },
+      { label: 'Poster', href: '/documents/deim2026-poster', icon: 'fas fa-image' },
     ],
     pastLabel: 'Past Research',
     pastAward: 'Departmental Award',
@@ -111,6 +124,29 @@ export default function ResearchSection() {
                   <p className="text-muted text-sm leading-relaxed">{card.body}</p>
                 </div>
               ))}
+            </div>
+
+            {/* Paper, poster and the write-up that explains them */}
+            <div className="mt-8 pt-6 border-t border-border">
+              <p className="text-xs text-muted tracking-widest uppercase font-medium mb-3">{c.linksLabel}</p>
+              <div className="flex flex-wrap gap-3">
+                {c.links.map((link) => {
+                  // The write-up leads; the source documents sit beside it, quieter.
+                  const style = link.primary
+                    ? 'bg-primary/15 border-primary/30 text-primary-light hover:bg-primary/25 hover:text-primary'
+                    : 'border-border text-muted hover:border-primary/40 hover:text-primary-light'
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-medium transition-colors ${style}`}
+                    >
+                      <i className={link.icon}></i>
+                      {link.label}
+                    </Link>
+                  )
+                })}
+              </div>
             </div>
           </div>
         </motion.div>

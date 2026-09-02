@@ -31,6 +31,7 @@ function parsePost(filepath: string): ParsedPost | null {
       summary: data.summary ?? '',
       tags: data.tags ?? [],
       slidesTitle: data.slidesTitle ?? undefined,
+      docs: data.docs ?? undefined,
       seriesTitle: data.seriesTitle ?? undefined,
       seriesLabel: data.seriesLabel ?? undefined,
       content,
