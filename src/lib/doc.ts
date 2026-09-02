@@ -73,6 +73,7 @@ export const docUI = {
     open: '開く →',
     relatedPost: '関連する記事',
     readPost: '解説記事を読む →',
+    allDocs: 'すべての資料を見る',
     count: (n: number) => `全 ${n} 件`,
   },
   en: {
@@ -84,6 +85,7 @@ export const docUI = {
     open: 'Open →',
     relatedPost: 'Related post',
     readPost: 'Read the write-up →',
+    allDocs: 'View all documents',
     count: (n: number) => `${n} document${n === 1 ? '' : 's'}`,
   },
 } as const

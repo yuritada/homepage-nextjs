@@ -75,3 +75,8 @@ export function getAllDocs(): DocEntry[] {
 export function getDocBySlug(slug: string): DocEntry | null {
   return buildDoc(slug)
 }
+
+/** The newest documents, for the home page teaser. */
+export function getFeaturedDocs(limit: number): DocEntry[] {
+  return getAllDocs().slice(0, limit)
+}
