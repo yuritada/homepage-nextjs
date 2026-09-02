@@ -6,7 +6,7 @@ event: "DEIM2026 interactive session"
 tags: ["Research", "MCP", "LLM", "3D Generation"]
 summary: "The poster displayed at the DEIM2026 interactive session: the system architecture and both experiments on a single sheet. Written in Japanese."
 file: "/slides/deim2026-poster.pdf"
-relatedPost: "2026-09-03-deim2026-mcp-text-to-3d"
+relatedPost: "2026-03-15-deim2026-mcp-text-to-3d"
 ---
 
 The poster I displayed at the DEIM2026 interactive session. *Written in Japanese.*

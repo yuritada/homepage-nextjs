@@ -6,7 +6,7 @@ event: "DEIM2026 インタラクティブセッション"
 tags: ["研究", "MCP", "LLM", "3D生成"]
 summary: "DEIM2026 インタラクティブセッションで掲示した発表ポスター。システム構成と2つの実験結果を1枚にまとめています。"
 file: "/slides/deim2026-poster.pdf"
-relatedPost: "2026-09-03-deim2026-mcp-text-to-3d"
+relatedPost: "2026-03-15-deim2026-mcp-text-to-3d"
 ---
 
 DEIM2026 のインタラクティブセッションで掲示したポスターです。

@@ -6,7 +6,7 @@ event: "DEIM2026 (18th Forum on Data Engineering and Information Management)"
 tags: ["Research", "MCP", "LLM", "3D Generation"]
 summary: "The paper behind the system that catches the structural errors — geometric hallucination — in AI-generated 3D models numerically rather than visually, and repairs them autonomously. Presented at the DEIM2026 interactive session. Written in Japanese."
 file: "/slides/deim2026-paper.pdf"
-relatedPost: "2026-09-03-deim2026-mcp-text-to-3d"
+relatedPost: "2026-03-15-deim2026-mcp-text-to-3d"
 ---
 
 The final manuscript of the research I presented at DEIM2026. *The paper itself is written in Japanese.*

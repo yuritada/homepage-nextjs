@@ -174,7 +174,7 @@ const t: {
         type: 'conference',
         highlight: true,
         docs: [
-          { label: '解説記事', href: '/blog/2026-09-03-deim2026-mcp-text-to-3d', icon: 'fas fa-pen-nib' },
+          { label: '解説記事', href: '/blog/2026-03-15-deim2026-mcp-text-to-3d', icon: 'fas fa-pen-nib' },
           { label: '論文', href: '/documents/deim2026-paper' },
           { label: '発表ポスター', href: '/documents/deim2026-poster' },
         ],
@@ -192,6 +192,7 @@ const t: {
         description: '学部の年次発表会を運営ごと作り直したポータルシステム「MIRAIS」を3名チームで開発し、優秀賞を受賞。代表として全体設計とバックエンドを担当した。',
         type: 'award',
         highlight: true,
+        docs: [{ label: '解説記事', href: '/blog/2026-07-14-mirais', icon: 'fas fa-pen-nib' }],
       },
       {
         date: '2026.07',
@@ -386,7 +387,7 @@ const t: {
         type: 'conference',
         highlight: true,
         docs: [
-          { label: 'Write-up', href: '/blog/2026-09-03-deim2026-mcp-text-to-3d', icon: 'fas fa-pen-nib' },
+          { label: 'Write-up', href: '/blog/2026-03-15-deim2026-mcp-text-to-3d', icon: 'fas fa-pen-nib' },
           { label: 'Paper', href: '/documents/deim2026-paper' },
           { label: 'Poster', href: '/documents/deim2026-poster' },
         ],
@@ -404,6 +405,7 @@ const t: {
         description: 'Built MIRAIS — a portal that rebuilds the running of our faculty\'s annual showcase — with a team of three, and won the excellence award. I led the team and owned the overall design and backend.',
         type: 'award',
         highlight: true,
+        docs: [{ label: 'Write-up', href: '/blog/2026-07-14-mirais', icon: 'fas fa-pen-nib' }],
       },
       {
         date: '2026.07',

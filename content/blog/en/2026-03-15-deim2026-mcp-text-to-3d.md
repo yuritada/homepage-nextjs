@@ -1,6 +1,6 @@
 ---
 title: "Teaching AI an Architect's Common Sense — Autonomous Quality Assurance for Text-to-3D via MCP"
-date: "2026-09-03"
+date: "2026-03-15"
 tags: ["Generative AI", "LLM", "MCP", "Blender", "3D Generation", "Research"]
 summary: "Doors that float, windows buried inside walls — the structural mistakes generative AI makes in 3D go unnoticed by visual evaluation. I built a system that catches and fixes them numerically instead. Here is the research I presented at DEIM2026."
 docs:

@@ -33,7 +33,7 @@ const t = {
     ],
     linksLabel: '関連資料',
     links: [
-      { label: '解説ブログを読む', href: '/blog/2026-09-03-deim2026-mcp-text-to-3d', icon: 'fas fa-pen-nib', primary: true },
+      { label: '解説ブログを読む', href: '/blog/2026-03-15-deim2026-mcp-text-to-3d', icon: 'fas fa-pen-nib', primary: true },
       { label: '論文（DEIM2026）', href: '/documents/deim2026-paper', icon: 'fas fa-file-pdf' },
       { label: '発表ポスター', href: '/documents/deim2026-poster', icon: 'fas fa-image' },
     ],
@@ -71,7 +71,7 @@ const t = {
     ],
     linksLabel: 'Resources',
     links: [
-      { label: 'Read the write-up', href: '/blog/2026-09-03-deim2026-mcp-text-to-3d', icon: 'fas fa-pen-nib', primary: true },
+      { label: 'Read the write-up', href: '/blog/2026-03-15-deim2026-mcp-text-to-3d', icon: 'fas fa-pen-nib', primary: true },
       { label: 'Paper (DEIM2026)', href: '/documents/deim2026-paper', icon: 'fas fa-file-pdf' },
       { label: 'Poster', href: '/documents/deim2026-poster', icon: 'fas fa-image' },
     ],

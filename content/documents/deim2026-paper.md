@@ -6,7 +6,7 @@ event: "DEIM2026（第18回データ工学と情報マネジメントに関す�
 tags: ["研究", "MCP", "LLM", "3D生成"]
 summary: "生成AIが作る3Dモデルの構造的な誤り（幾何学的ハルシネーション）を、画像ではなく座標・寸法の数値で検出し自律修正するシステムの提案論文。DEIM2026 インタラクティブセッション発表。"
 file: "/slides/deim2026-paper.pdf"
-relatedPost: "2026-09-03-deim2026-mcp-text-to-3d"
+relatedPost: "2026-03-15-deim2026-mcp-text-to-3d"
 ---
 
 DEIM2026 で発表した研究論文の最終稿です。
