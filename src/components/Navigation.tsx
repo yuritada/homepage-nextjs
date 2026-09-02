@@ -13,6 +13,7 @@ const navLinks = {
     { href: '#works',      label: 'Works' },
     { href: '#skills',     label: 'Skills' },
     { href: '/blog',       label: 'Blog' },
+    { href: '/documents',  label: 'Docs' },
     { href: '#contact',    label: 'Contact' },
   ],
   en: [
@@ -22,6 +23,7 @@ const navLinks = {
     { href: '#works',      label: 'Works' },
     { href: '#skills',     label: 'Skills' },
     { href: '/blog',       label: 'Blog' },
+    { href: '/documents',  label: 'Docs' },
     { href: '#contact',    label: 'Contact' },
   ],
 }
@@ -36,10 +38,10 @@ export default function Navigation() {
   // Anywhere else (e.g. /blog) they must route home first, or they do nothing.
   const isHome = pathname === '/'
 
-  // The blog is a light surface whose content scrolls right under the bar, and
-  // at 85% opacity that text shows through. The bar goes solid (and page-white,
-  // to stay distinct from the grey cards) there.
-  const isBlog = pathname.startsWith('/blog')
+  // The blog and the document archive are light surfaces whose content scrolls
+  // right under the bar, and at 85% opacity that text shows through. The bar goes
+  // solid (and page-white, to stay distinct from the grey cards) there.
+  const isBlog = pathname.startsWith('/blog') || pathname.startsWith('/documents')
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
