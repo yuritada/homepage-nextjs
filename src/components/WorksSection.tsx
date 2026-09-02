@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import Section from '@/components/Section'
 import { motion } from 'framer-motion'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -13,6 +14,7 @@ type TimelineItem = {
   type: 'award' | 'talk' | 'event' | 'career' | 'conference'
   /** Shown in the "Highlights" view. Everything else only appears under "All". */
   highlight?: boolean
+  /** External URL, or a site-internal path starting with "/". */
   link?: string
 }
 
@@ -164,10 +166,11 @@ const t: {
       },
       {
         date: '2026.03',
-        title: 'DEIM — 参加',
-        description: '日本データベース学会のフォーラム（DEIM）に参加。研究成果を学術的な文脈で発表・議論。',
+        title: 'DEIM2026 — ポスター発表',
+        description: 'MCPによるText-to-3D生成の自律的品質保証を、インタラクティブセッションでポスター発表。LayerXの参加レポートで「面白かった発表」4件の1件として紹介された。',
         type: 'conference',
         highlight: true,
+        link: '/blog/2026-09-03-deim2026-mcp-text-to-3d',
       },
       {
         date: '2026.06',
@@ -368,10 +371,11 @@ const t: {
       },
       {
         date: '2026.03',
-        title: 'DEIM — Participated',
-        description: 'Presented research at the Forum on Data Engineering and Information Management. Discussed findings in an academic context.',
+        title: 'DEIM2026 — Poster Presentation',
+        description: 'Presented autonomous quality assurance for MCP-driven Text-to-3D at the interactive session. Featured in LayerX\'s conference report as one of four standout posters.',
         type: 'conference',
         highlight: true,
+        link: '/blog/2026-09-03-deim2026-mcp-text-to-3d',
       },
       {
         date: '2026.06',
@@ -596,15 +600,25 @@ export default function WorksSection() {
                   </div>
                   <h4 className="font-bold text-foreground mb-1">
                     {item.link ? (
-                      <a
-                        href={item.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-primary transition-colors inline-flex items-baseline gap-1.5"
-                      >
-                        {item.title}
-                        <i className="fas fa-external-link-alt text-[0.65em] opacity-60"></i>
-                      </a>
+                      item.link.startsWith('/') ? (
+                        <Link
+                          href={item.link}
+                          className="hover:text-primary transition-colors inline-flex items-baseline gap-1.5"
+                        >
+                          {item.title}
+                          <i className="fas fa-arrow-right text-[0.65em] opacity-60"></i>
+                        </Link>
+                      ) : (
+                        <a
+                          href={item.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:text-primary transition-colors inline-flex items-baseline gap-1.5"
+                        >
+                          {item.title}
+                          <i className="fas fa-external-link-alt text-[0.65em] opacity-60"></i>
+                        </a>
+                      )
                     ) : (
                       item.title
                     )}
