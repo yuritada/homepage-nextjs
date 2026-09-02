@@ -4,7 +4,26 @@ import Image from 'next/image'
 import Section from '@/components/Section'
 import { useLanguage } from '@/contexts/LanguageContext'
 
-const t = {
+/**
+ * A stat can carry a second figure of its own (talks within events, awards
+ * within hackathons). Both halves get the same type size — the breakdown is
+ * the point, not a footnote to the headline number.
+ */
+type Stat = {
+  value: string
+  label: string
+  sub?: { value: string; label: string }
+}
+
+type Content = {
+  heading: string
+  p1: string
+  p2: string
+  tags: string[]
+  stats: Stat[]
+}
+
+const t: { jp: Content; en: Content } = {
   jp: {
     heading: 'About',
     p1: '武蔵野大学データサイエンス学部に在籍。幼少期から「なぜ？どうして？」と物事の本質を追い求める探究心が強く、それが論理的思考力とAI研究の原点です。',
@@ -12,8 +31,8 @@ const t = {
     tags: ['データサイエンス', 'LLM / MCP', '3D研究', 'フルスタック', 'ハッカソン優勝'],
     stats: [
       { value: '3年+',   label: 'エンジニア歴' },
-      { value: '14',     label: 'イベント参加（登壇 4）' },
-      { value: '7',      label: 'ハッカソン（受賞 3）' },
+      { value: '14',     label: 'イベント参加', sub: { value: '4', label: '登壇' } },
+      { value: '7',      label: 'ハッカソン',   sub: { value: '3', label: '受賞' } },
       { value: 'AI全領域', label: '研究テーマ' },
     ],
   },
@@ -24,8 +43,8 @@ const t = {
     tags: ['Data Science', 'LLM / MCP', '3D Research', 'Full-Stack', 'Hackathon Winner'],
     stats: [
       { value: '3+',      label: 'Years as Engineer' },
-      { value: '14',      label: 'Events (4 Talks)' },
-      { value: '7',       label: 'Hackathons (3 Awards)' },
+      { value: '14',      label: 'Events',     sub: { value: '4', label: 'Talks' } },
+      { value: '7',       label: 'Hackathons', sub: { value: '3', label: 'Awards' } },
       { value: 'All of AI', label: 'Research Focus' },
     ],
   },
@@ -71,9 +90,28 @@ export default function AboutSection() {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {c.stats.map((s) => (
-            <div key={s.label} className="glassmorphism rounded-xl p-4 md:p-5 text-center hover:border-primary/30 transition-all">
-              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gradient mb-1 leading-tight">{s.value}</div>
-              <div className="text-xs text-muted tracking-wider uppercase">{s.label}</div>
+            <div key={s.label} className="glassmorphism rounded-xl p-4 md:p-5 text-center hover:border-primary/30 transition-all flex flex-col justify-center">
+              {s.sub ? (
+                /* Side by side only from xl, where each half is wide enough for
+                   the longest label ('Hackathons'); below that the two figures
+                   stack so neither can ever overflow its column. */
+                <div className="flex flex-col xl:flex-row items-stretch justify-center gap-2 xl:gap-3">
+                  <div className="flex-1">
+                    <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gradient leading-tight">{s.value}</div>
+                    <div className="text-[0.65rem] sm:text-xs text-muted tracking-wider uppercase">{s.label}</div>
+                  </div>
+                  <div className="h-px w-full xl:h-auto xl:w-px bg-border"></div>
+                  <div className="flex-1">
+                    <div className="text-xl sm:text-2xl md:text-3xl font-bold text-accent leading-tight">{s.sub.value}</div>
+                    <div className="text-[0.65rem] sm:text-xs text-accent/80 tracking-wider uppercase">{s.sub.label}</div>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gradient mb-1 leading-tight">{s.value}</div>
+                  <div className="text-xs text-muted tracking-wider uppercase">{s.label}</div>
+                </>
+              )}
             </div>
           ))}
         </div>
