@@ -118,7 +118,15 @@ export default function AboutSection() {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {c.stats.map((s) => (
-            <div key={s.label} className="glassmorphism rounded-xl p-4 md:p-5 text-center hover:border-primary/30 transition-all flex flex-col justify-center">
+            /* Two columns on phones: the single figures pair up on the top row
+               and the taller split ones below, so each row is even in height.
+               From md the grid is one row of four and source order stands. */
+            <div
+              key={s.label}
+              className={`glassmorphism rounded-xl p-4 md:p-5 text-center hover:border-primary/30 transition-all flex flex-col justify-center md:order-none ${
+                s.sub ? 'order-2' : 'order-1'
+              }`}
+            >
               {s.sub ? (
                 /* Side by side only from xl, where each half is wide enough for
                    the longest label ('Hackathons'); below that the two figures
