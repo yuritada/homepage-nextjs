@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import Section from '@/components/Section'
 import { motion } from 'framer-motion'
@@ -39,8 +40,21 @@ export default function DocsSection({ docs }: { docs: DocEntry[] }) {
                     whileHover={{ y: -6, boxShadow: '0 0 20px rgba(0, 216, 255, 0.3)' }}
                     transition={{ type: 'spring', stiffness: 300 }}
                   >
+                    {/* First page of the PDF — a document reads as a page, not as prose */}
+                    {doc.thumbnail && (
+                      <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-white border border-border mb-4">
+                        <Image
+                          src={doc.thumbnail}
+                          alt=""
+                          fill
+                          sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 90vw"
+                          className="object-contain"
+                        />
+                      </div>
+                    )}
+
                     {/* Type badge and event */}
-                    <div className="flex flex-wrap items-center gap-2 mb-3">
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
                       <span className={`inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full ${cfg.bg} ${cfg.color}`}>
                         <i className={cfg.icon}></i>
                         {cfg.label[lang]}
@@ -49,15 +63,12 @@ export default function DocsSection({ docs }: { docs: DocEntry[] }) {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-lg font-semibold text-foreground mb-2 leading-snug">
+                    <h3 className="text-base font-semibold text-foreground leading-snug flex-1">
                       {c.title}
                     </h3>
 
-                    {/* Summary */}
-                    <p className="text-muted text-sm leading-relaxed flex-1">{c.summary}</p>
-
                     {/* Footer */}
-                    <div className="flex items-center justify-between mt-4 pt-4 border-t border-border">
+                    <div className="flex items-center justify-between mt-4 pt-3 border-t border-border">
                       <span className="text-muted text-xs">{formatDocDate(doc.date, lang)}</span>
                       <span className="text-primary text-xs font-medium">{t.open}</span>
                     </div>

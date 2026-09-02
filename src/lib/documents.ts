@@ -5,6 +5,7 @@ import type { DocContent, DocEntry, DocType } from '@/lib/doc'
 
 const DOC_DIR = path.join(process.cwd(), 'content/documents')
 const EN_DIR = path.join(DOC_DIR, 'en')
+const THUMB_DIR = path.join(process.cwd(), 'public/photos/docs')
 
 export type { DocEntry, DocContent } from '@/lib/doc'
 export { formatDocDate } from '@/lib/doc'
@@ -48,12 +49,18 @@ function buildDoc(slug: string): DocEntry | null {
 
   const en = parseDoc(path.join(EN_DIR, `${slug}.md`))
 
+  // Thumbnails are generated from the PDF, not authored, so they are found by
+  // convention rather than declared in the front matter.
+  const thumb = `${slug}.jpg`
+  const hasThumb = fs.existsSync(path.join(THUMB_DIR, thumb))
+
   return {
     slug,
     date: jp.date,
     type: jp.type,
     file: jp.file,
     relatedPost: jp.relatedPost,
+    thumbnail: hasThumb ? `/photos/docs/${thumb}` : undefined,
     jp: jp.content,
     en: en?.content ?? jp.content,
   }

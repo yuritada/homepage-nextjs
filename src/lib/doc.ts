@@ -30,6 +30,8 @@ export type DocEntry = {
   file: string
   /** Slug of the blog post that explains this document, when one exists. */
   relatedPost?: string
+  /** First page of the PDF, rendered by scripts/gen-doc-thumbs.sh. */
+  thumbnail?: string
   jp: DocContent
   en: DocContent
 }
