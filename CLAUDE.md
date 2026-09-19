@@ -82,7 +82,25 @@ magick 元画像.jpeg -auto-orient -resize '1600x1600>' -strip -quality 82 \
 *▲ キャプション*
 ```
 
-### 5. 記事に紐づけて Works / About を更新する
+### 5. 本文中のリンクは自動で埋め込みになる
+
+記事の段落や箇条書きに次のリンクがあると、`BlogMarkdown` がそれを検出して、その段落の
+直後にプレイヤー／カードを描画する。Markdown 側で特別な記法を書く必要はなく、
+**普通のリンクとして貼るだけでよい**。
+
+| リンク | 埋め込み | 実装 |
+| --- | --- | --- |
+| YouTube（`youtu.be/…`, `youtube.com/watch?v=…`, `/shorts/`, `/live/`） | プレイヤー | `src/components/YouTubeEmbed.tsx` |
+| X（`x.com/<user>/status/<id>`, `twitter.com/…`） | 投稿カード | `src/components/XEmbed.tsx` |
+
+- リンク自体は本文に残る。埋め込みが読み込めなくても文章として成立させるため
+- X は `platform.twitter.com/widgets.js` をページごとに1回だけ読み込む。削除済み・非公開の
+  投稿ではカードが高さ0のまま残るので、実際に高さを持つまでは投稿へのリンクを表示したままにしている
+- URL の解析（`src/lib/x-post.ts`）は `BlogMarkdown` がサーバー側で走る都合上、client
+  コンポーネントの外に置くこと。client コンポーネントから export した関数はサーバーから
+  呼べずビルドが落ちる
+
+### 6. 記事に紐づけて Works / About を更新する
 
 記事を足しただけでは載らない。実績を伴う記事なら、対応するセクションまで直す。
 
@@ -108,7 +126,7 @@ magick 元画像.jpeg -auto-orient -resize '1600x1600>' -strip -quality 82 \
 **`src/components/AboutSection.tsx`** — `stats` の数字（イベント参加・登壇・ハッカソン・受賞）
 を jp と en の両方で更新する。数字の指示は本人から出るので勝手に数えない。
 
-### 6. 検証
+### 7. 検証
 
 ```bash
 npx tsc --noEmit
