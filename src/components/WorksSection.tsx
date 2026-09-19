@@ -480,6 +480,14 @@ const typeConfig = {
   conference: { color: 'text-purple-400', bg: 'bg-purple-400/10', border: 'border-purple-400/30', label: { jp: '学会', en: 'Conf.' } },
 }
 
+/**
+ * The badges shown on a timeline entry. Talks are events too, so a talk carries
+ * the event badge as well and stays visible when someone scans for events.
+ */
+function badgeTypes(type: TimelineItem['type']): TimelineItem['type'][] {
+  return type === 'talk' ? ['talk', 'event'] : [type]
+}
+
 function ProjectMedia({ project }: { project: Project }) {
   if (project.video) {
     return (
@@ -612,9 +620,14 @@ export default function WorksSection() {
                 <div className="glassmorphism rounded-xl p-4 md:p-5 hover:border-primary/25 transition-all">
                   <div className="flex flex-wrap items-center gap-2 mb-2">
                     <span className="text-xs text-muted font-mono">{item.date}</span>
-                    <span className={`px-2 py-0.5 text-xs font-bold rounded-full ${cfg.bg} ${cfg.color}`}>
-                      {cfg.label[lang]}
-                    </span>
+                    {badgeTypes(item.type).map((type) => {
+                      const badge = typeConfig[type]
+                      return (
+                        <span key={type} className={`px-2 py-0.5 text-xs font-bold rounded-full ${badge.bg} ${badge.color}`}>
+                          {badge.label[lang]}
+                        </span>
+                      )
+                    })}
                   </div>
                   <h4 className="font-bold text-foreground mb-1">
                     {item.link ? (
