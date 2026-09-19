@@ -218,6 +218,14 @@ const t: {
         link: 'https://localstage.connpass.com/event/399338/',
         docs: [{ label: '発表スライド', href: '/documents/summer-ai-lt' }],
       },
+      {
+        date: '2026.09',
+        title: '技育博2026 Vol.2 — 企業賞2冠（SHIFT・DeNA）',
+        description: '約150チームから選抜された51チームの1組としてソロ出展。「学内DX」を軸に3時間半ピッチを重ね、株式会社SHIFT様・株式会社DeNA様の2社から企業賞をいただいた。',
+        type: 'award',
+        highlight: true,
+        docs: [{ label: '参加記', href: '/blog/2026-09-19-giikuhaku-2026', icon: 'fas fa-pen-nib' }],
+      },
     ],
     projects: [
       {
@@ -430,6 +438,14 @@ const t: {
         highlight: true,
         link: 'https://localstage.connpass.com/event/399338/',
         docs: [{ label: 'Slides', href: '/documents/summer-ai-lt' }],
+      },
+      {
+        date: '2026.09',
+        title: 'Giken-haku 2026 Vol.2 — Two Corporate Prizes (SHIFT, DeNA)',
+        description: 'Exhibited solo as one of 51 teams selected from nearly 150 applicants. Pitched "campus DX" for three and a half hours straight and took corporate prizes from both SHIFT Inc. and DeNA Co., Ltd.',
+        type: 'award',
+        highlight: true,
+        docs: [{ label: 'Event Report', href: '/blog/2026-09-19-giikuhaku-2026', icon: 'fas fa-pen-nib' }],
       },
     ],
     projects: [
