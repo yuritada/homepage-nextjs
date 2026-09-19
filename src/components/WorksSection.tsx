@@ -221,7 +221,7 @@ const t: {
       {
         date: '2026.09',
         title: '技育博2026 Vol.2 — 企業賞2冠（SHIFT・DeNA）',
-        description: '約150チームから選抜された51チームの1組としてソロ出展。「学内DX」を軸に3時間半ピッチを重ね、株式会社SHIFT様・株式会社DeNA様の2社から企業賞をいただいた。',
+        description: '学内DXポータル「MIRAIS」を携え、約150チームから選抜された51チームの1組としてソロ出展。3時間半ピッチを重ね、株式会社SHIFT様・株式会社DeNA様の2社から企業賞をいただいた。',
         type: 'award',
         highlight: true,
         docs: [{ label: '参加記', href: '/blog/2026-09-19-giikuhaku-2026', icon: 'fas fa-pen-nib' }],
@@ -237,6 +237,7 @@ const t: {
         featured: true,
         links: [
           { label: '設計ノートを読む', href: '/blog/2026-07-14-mirais', icon: 'fas fa-book-open' },
+          { label: '技育博2026 参加記', href: '/blog/2026-09-19-giikuhaku-2026', icon: 'fas fa-pen-nib' },
           { label: '発表スライド', href: '/documents/mirais-slides', icon: 'fas fa-file-pdf' },
         ],
       },
@@ -442,7 +443,7 @@ const t: {
       {
         date: '2026.09',
         title: 'Giken-haku 2026 Vol.2 — Two Corporate Prizes (SHIFT, DeNA)',
-        description: 'Exhibited solo as one of 51 teams selected from nearly 150 applicants. Pitched "campus DX" for three and a half hours straight and took corporate prizes from both SHIFT Inc. and DeNA Co., Ltd.',
+        description: 'Exhibited MIRAIS, my campus DX portal, solo as one of 51 teams selected from nearly 150 applicants. Pitched for three and a half hours straight and took corporate prizes from both SHIFT Inc. and DeNA Co., Ltd.',
         type: 'award',
         highlight: true,
         docs: [{ label: 'Event Report', href: '/blog/2026-09-19-giikuhaku-2026', icon: 'fas fa-pen-nib' }],
@@ -458,6 +459,7 @@ const t: {
         featured: true,
         links: [
           { label: 'Read the Design Notes', href: '/blog/2026-07-14-mirais', icon: 'fas fa-book-open' },
+          { label: 'Giken-haku 2026 Report', href: '/blog/2026-09-19-giikuhaku-2026', icon: 'fas fa-pen-nib' },
           { label: 'Slides', href: '/documents/mirais-slides', icon: 'fas fa-file-pdf' },
         ],
       },
