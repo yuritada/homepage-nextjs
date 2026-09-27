@@ -226,6 +226,21 @@ const t: {
         highlight: true,
         docs: [{ label: '参加記', href: '/blog/2026-09-19-giikuhaku-2026', icon: 'fas fa-pen-nib' }],
       },
+      {
+        date: '2026.09',
+        title: 'Google Gemini Day — 参加',
+        description: 'Google渋谷オフィスで開催された学生コミュニティ向けイベント。技術の深さではなくアイデアと手数で課題をハックする、普段いるギーク界隈とは毛色の違うコミュニティを観察しに行った。',
+        type: 'event',
+        docs: [{ label: '参加記', href: '/blog/2026-09-25-gemini-day', icon: 'fas fa-pen-nib' }],
+      },
+      {
+        date: '2026.09',
+        title: 'Findy テック文化祭 — 参加',
+        description: '学生LT11本と、dip田中雄登さんによる意思決定ワークショップ。「トレードオフとは何を諦めるかを決める力」という観点から、自分の判断軸を棚卸しした。',
+        type: 'event',
+        link: 'https://student.findy-code.io/events/b0u9w8WfRTmI4OFWEm188Q',
+        docs: [{ label: '参加記', href: '/blog/2026-09-26-findy-tech-bunkasai', icon: 'fas fa-pen-nib' }],
+      },
     ],
     projects: [
       {
@@ -447,6 +462,21 @@ const t: {
         type: 'award',
         highlight: true,
         docs: [{ label: 'Event Report', href: '/blog/2026-09-19-giikuhaku-2026', icon: 'fas fa-pen-nib' }],
+      },
+      {
+        date: '2026.09',
+        title: 'Google Gemini Day — Attended',
+        description: "A student community event at Google's Shibuya office. I went to observe a community with a very different flavour from my usual geek scene — one that hacks problems with ideas and sheer volume of attempts rather than technical depth.",
+        type: 'event',
+        docs: [{ label: 'Event Report', href: '/blog/2026-09-25-gemini-day', icon: 'fas fa-pen-nib' }],
+      },
+      {
+        date: '2026.09',
+        title: 'Findy Tech Festival — Attended',
+        description: 'Eleven student lightning talks, plus a decision-making workshop by Yuto Tanaka of dip. I took stock of my own decision criteria through the lens of "a trade-off is the power to decide what you give up."',
+        type: 'event',
+        link: 'https://student.findy-code.io/events/b0u9w8WfRTmI4OFWEm188Q',
+        docs: [{ label: 'Event Report', href: '/blog/2026-09-26-findy-tech-bunkasai', icon: 'fas fa-pen-nib' }],
       },
     ],
     projects: [
