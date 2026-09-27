@@ -36,7 +36,7 @@ const t: { jp: Content; en: Content } = {
     tags: ['データサイエンス', 'LLM / MCP', '3D研究', 'フルスタック', 'ハッカソン優勝'],
     stats: [
       { icon: 'fas fa-code',        value: '3年+',    label: 'エンジニア歴' },
-      { icon: 'fas fa-users',       value: '14', unit: '回', label: 'イベント参加',
+      { icon: 'fas fa-users',       value: '16', unit: '回', label: 'イベント参加',
         sub: { icon: 'fas fa-microphone',  value: '4', unit: '回', label: '登壇' } },
       { icon: 'fas fa-laptop-code', value: '8',  unit: '回', label: 'ハッカソン',
         sub: { icon: 'fas fa-trophy',      value: '6', unit: '回', label: '受賞' } },
@@ -50,7 +50,7 @@ const t: { jp: Content; en: Content } = {
     tags: ['Data Science', 'LLM / MCP', '3D Research', 'Full-Stack', 'Hackathon Winner'],
     stats: [
       { icon: 'fas fa-code',        value: '3+',   label: 'Years as Engineer' },
-      { icon: 'fas fa-users',       value: '14',   label: 'Events',
+      { icon: 'fas fa-users',       value: '16',   label: 'Events',
         sub: { icon: 'fas fa-microphone', value: '4', label: 'Talks' } },
       { icon: 'fas fa-laptop-code', value: '8',    label: 'Hackathons',
         sub: { icon: 'fas fa-trophy',     value: '6', label: 'Awards' } },
